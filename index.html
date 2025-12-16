@@ -522,7 +522,7 @@ button.btn.on{
 .reveal.in .stagger > *:nth-child(3){ transition-delay:.16s }
 .reveal.in .stagger > *:nth-child(4){ transition-delay:.22s }
 
-/* ===== MARKET CHAPTER (NEW) ===== */
+/* ===== MARKET CHAPTER ===== */
 .marketTop{
   display:flex;
   gap:12px;
@@ -697,9 +697,6 @@ button.btn.on{
 .matrix tr.usRow{
   background: linear-gradient(90deg, rgba(210,174,114,.08), rgba(200,143,149,.06), rgba(255,255,255,.0));
 }
-.matrix tr.usRow td:first-child{
-  position:relative;
-}
 .usPill{
   display:inline-flex;
   align-items:center;
@@ -720,293 +717,16 @@ button.btn.on{
 
 /* Highlight mode toggles */
 .matrixWrap[data-mode="fit"] .row-fit,
-.matrixWrap[data-mode="hygiene"] .row-hyg,
-.matrixWrap[data-mode="disputes"] .row-disp,
-.matrixWrap[data-mode="speed"] .row-speed,
-.matrixWrap[data-mode="bundles"] .row-bundle,
+.matrixWrap[data-mode="hygiene"] .row-hygiene,
+.matrixWrap[data-mode="disputes"] .row-disputes,
+.matrixWrap[data-mode="weekday"] .row-weekday,
 .matrixWrap[data-mode="proof"] .row-proof,
-.matrixWrap[data-mode="price"] .row-price,
-.matrixWrap[data-mode="weekday"] .row-weekday{
+.matrixWrap[data-mode="price"] .row-price{
   background: rgba(210,174,114,.10);
 }
 .matrixWrap[data-mode="none"] .matrix tr{ background: transparent; }
 .matrixWrap[data-mode="none"] .matrix tr.usRow{
   background: linear-gradient(90deg, rgba(210,174,114,.08), rgba(200,143,149,.06), rgba(255,255,255,.0));
-}
-
-/* ===== SOP (existing) ===== */
-.sopCard{ background: rgba(255,255,255,.72); }
-.sopInner{ padding: 26px; }
-
-.sopHeader{
-  display:flex;
-  gap:14px;
-  align-items:flex-start;
-  justify-content:space-between;
-  margin-bottom: 14px;
-}
-.sopTitle{ margin:0; }
-.sopSub{ margin-top:6px; max-width:70ch; }
-
-.sopStamp{
-  width:110px; height:110px;
-  border-radius:999px;
-  position:relative;
-  border:1px solid rgba(18,16,24,.12);
-  background: rgba(255,255,255,.65);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 18px 50px rgba(18,16,24,.10);
-  flex:0 0 auto;
-  overflow:hidden;
-}
-.sopStampRing{
-  position:absolute; inset:10px;
-  border-radius:999px;
-  border:1px dashed rgba(18,16,24,.22);
-  opacity:.7;
-  animation: stampSpin 12s linear infinite;
-}
-@keyframes stampSpin{ to{ transform: rotate(360deg); } }
-.sopStampText{
-  position:absolute; inset:0;
-  display:grid; place-items:center;
-  text-align:center;
-  padding:14px;
-}
-.sopStampTop{ font-size:10px; font-weight:900; letter-spacing:.22em; opacity:.72; }
-.sopStampMid{ font-family: var(--serif); font-weight:900; letter-spacing:.02em; font-size:18px; }
-.sopStampBot{ font-size:9px; font-weight:900; letter-spacing:.14em; opacity:.62; }
-
-.sopGrid{
-  display:grid;
-  gap:14px;
-  margin-top:12px;
-}
-@media(min-width:980px){
-  .sopGrid{ grid-template-columns: 1.05fr .95fr; }
-}
-
-.sopPanel{
-  border-radius: 24px;
-  border:1px solid rgba(18,16,24,.10);
-  background: rgba(255,255,255,.72);
-  box-shadow: 0 12px 30px rgba(18,16,24,.07);
-  padding: 16px;
-  position:relative;
-  overflow:hidden;
-}
-.sopPanelTop{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-  margin-bottom: 10px;
-}
-.sopTag{
-  font-size:12px;
-  font-weight:900;
-  color: rgba(18,16,24,.62);
-  padding:7px 10px;
-  border-radius:999px;
-  border:1px solid rgba(18,16,24,.10);
-  background: rgba(255,255,255,.72);
-}
-
-/* Flow stepper with thread */
-.flowWrap{ position:relative; padding: 6px 6px 0; }
-.flowSteps{ display:grid; gap:12px; padding-left: 4px; }
-.flowStep{
-  display:grid;
-  grid-template-columns: 34px 1fr;
-  gap:12px;
-  align-items:flex-start;
-  position:relative;
-}
-.node{
-  width:34px; height:34px;
-  border-radius: 14px;
-  display:grid; place-items:center;
-  font-weight:950;
-  border:1px solid rgba(18,16,24,.10);
-  background: rgba(255,255,255,.85);
-  box-shadow: 0 10px 24px rgba(18,16,24,.08);
-  color: rgba(18,16,24,.85);
-}
-.flowName{ font-weight:950; color: rgba(18,16,24,.86); }
-.flowNote{ margin-top:2px; font-size:13px; color: rgba(18,16,24,.60); line-height:1.6; }
-
-.thread{
-  position:absolute;
-  left: 22px;
-  top: 42px;
-  bottom: 42px;
-  width: 2px;
-  border-radius: 999px;
-  background: rgba(18,16,24,.10);
-  overflow:hidden;
-}
-.threadGlow{
-  position:absolute; inset:-40px 0;
-  background: linear-gradient(180deg, transparent, rgba(210,174,114,.65), rgba(200,143,149,.55), transparent);
-  opacity:.45;
-}
-.threadRunner{
-  position:absolute;
-  left:-10px;
-  width:22px;
-  height:46px;
-  border-radius: 18px;
-  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.95), rgba(255,255,255,.10));
-  opacity:.0;
-  transform: translateY(-20px);
-}
-.flowWrap.isLive .threadRunner{
-  opacity:.75;
-  animation: runThread 2.4s var(--ease) infinite;
-}
-@keyframes runThread{
-  0%{ transform: translateY(-24px); opacity:.0; }
-  12%{ opacity:.80; }
-  88%{ opacity:.80; }
-  100%{ transform: translateY(calc(100% + 24px)); opacity:.0; }
-}
-
-.ruleCallout{
-  margin-top: 14px;
-  display:flex;
-  gap:10px;
-  align-items:center;
-  padding: 12px 12px;
-  border-radius: 18px;
-  border:1px solid rgba(18,16,24,.10);
-  background: linear-gradient(90deg, rgba(210,174,114,.12), rgba(200,143,149,.10), rgba(255,255,255,.70));
-}
-.ruleDot{
-  width:10px; height:10px; border-radius:999px;
-  background: linear-gradient(135deg, rgba(210,174,114,.95), rgba(200,143,149,.85));
-  box-shadow: 0 10px 18px rgba(18,16,24,.12);
-}
-
-/* Protection chips */
-.chipGrid{
-  display:grid;
-  grid-template-columns: 1fr;
-  gap:10px;
-}
-@media(min-width:980px){
-  .chipGrid{ grid-template-columns: 1fr 1fr; }
-}
-.protChip{
-  text-align:left;
-  display:grid;
-  grid-template-columns: 34px 1fr;
-  gap:12px;
-  padding:12px 12px;
-  border-radius: 18px;
-  border:1px solid rgba(18,16,24,.10);
-  background: rgba(255,255,255,.82);
-  box-shadow: 0 10px 26px rgba(18,16,24,.07);
-  cursor:pointer;
-  position:relative;
-  overflow:hidden;
-  transition: transform .18s var(--ease), box-shadow .2s var(--ease);
-}
-.protChip:hover{
-  transform: translateY(-2px);
-  box-shadow: 0 16px 40px rgba(18,16,24,.10);
-}
-.chipIcon{
-  width:34px; height:34px;
-  border-radius: 14px;
-  display:grid; place-items:center;
-  border:1px solid rgba(18,16,24,.10);
-  background: linear-gradient(135deg, rgba(210,174,114,.16), rgba(200,143,149,.12), rgba(255,255,255,.82));
-  color: rgba(18,16,24,.78);
-}
-.chipIcon svg{ width:18px; height:18px; }
-.chipTitle{ display:block; font-weight:950; color: rgba(18,16,24,.86); }
-.chipDesc{
-  display:block;
-  margin-top:2px;
-  font-size:13px;
-  color: rgba(18,16,24,.60);
-  line-height:1.5;
-}
-.chipGlow{
-  position:absolute;
-  inset:-40% -60%;
-  background: radial-gradient(circle at 30% 30%, rgba(210,174,114,.25), transparent 55%);
-  transform: rotate(12deg);
-  opacity:.0;
-  transition: opacity .25s var(--ease);
-}
-.protChip:hover .chipGlow{ opacity:.9; }
-
-.sopMini{ margin-top: 12px; }
-.miniLine{
-  display:flex; gap:10px; align-items:center;
-  padding: 12px 12px;
-  border-radius: 18px;
-  border:1px solid rgba(18,16,24,.10);
-  background: rgba(255,255,255,.70);
-  color: rgba(18,16,24,.68);
-  font-size:13px;
-}
-.miniDot{
-  width:10px; height:10px; border-radius:999px;
-  background: rgba(31,157,110,.70);
-}
-
-/* Bottom illustrated cards */
-.sopBottomGrid{
-  display:grid;
-  gap:12px;
-  margin-top: 14px;
-}
-@media(min-width:980px){
-  .sopBottomGrid{ grid-template-columns: 1fr 1fr 1fr; }
-}
-.miniCard{
-  border-radius: 24px;
-  border:1px solid rgba(18,16,24,.10);
-  background: rgba(255,255,255,.72);
-  box-shadow: 0 12px 30px rgba(18,16,24,.07);
-  padding: 16px;
-  position:relative;
-  overflow:hidden;
-}
-.miniArt{
-  height: 74px;
-  border-radius: 20px;
-  border:1px solid rgba(18,16,24,.08);
-  background: linear-gradient(135deg, rgba(210,174,114,.10), rgba(200,143,149,.08), rgba(255,255,255,.70));
-  display:grid;
-  place-items:center;
-  margin-bottom: 10px;
-  position:relative;
-  overflow:hidden;
-}
-.miniArt::after{
-  content:"";
-  position:absolute;
-  top:-40%;
-  left:-30%;
-  width:60%;
-  height:220%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,.22), transparent);
-  transform: rotate(18deg);
-  opacity:.28;
-  animation: miniSweep 7.8s var(--ease) infinite;
-}
-@keyframes miniSweep{
-  0%{ transform: translateX(-40%) rotate(18deg); opacity:.14; }
-  40%{ opacity:.30; }
-  100%{ transform: translateX(220%) rotate(18deg); opacity:.14; }
-}
-.miniArt svg{
-  width: 110px;
-  height: 70px;
-  color: rgba(18,16,24,.62);
 }
 
 /* Footer */
@@ -1022,7 +742,7 @@ footer{
   html{scroll-behavior:auto}
   .reveal, .stagger > *{transition:none}
   .progress > div{transition:none}
-  .sweep, .miniArt::after, .sopStampRing, .marketType::after{animation:none}
+  .sweep,.marketType::after{animation:none}
 }
 </style>
 </head>
@@ -1045,8 +765,6 @@ footer{
     <div class="navRight">
       <a class="navLink" href="#model">Model</a>
       <a class="navLink" href="#market">Market</a>
-      <a class="navLink" href="#moat">Why Us</a>
-      <a class="navLink" href="#ops">SOP</a>
       <a class="navLink" href="#stress">Stress</a>
       <a class="navLink" href="#funding">Funding</a>
       <div class="pill"><span class="dot"></span><span id="readPct">0%</span></div>
@@ -1109,7 +827,7 @@ footer{
     </div>
   </section>
 
-  <!-- MODEL -->
+  <!-- MODEL (kept simple) -->
   <section class="section" id="model">
     <div class="container">
       <div class="chapter">
@@ -1143,35 +861,12 @@ footer{
               <div class="sub">profit compounds</div>
             </div>
           </div>
-
-          <div class="grid two">
-            <div class="tile">
-              <h3>Starter packages</h3>
-              <p><strong class="em">Bride Essentials</strong> — gown + veil + accessories.</p>
-              <p style="margin-top:10px"><strong class="em">Couple Bundle</strong> — gown + suit + coordinated accessories.</p>
-              <p style="margin-top:10px"><strong class="em">Weekday Studio Package</strong> — weekday pricing framed as “studio convenience,” not discount.</p>
-            </div>
-            <div class="tile">
-              <h3>Demand engine</h3>
-              <p>
-                We prioritize partnerships (planners/MUA/photo/venues) that already have trust.
-                This produces steadier bookings than ad-dependence.
-              </p>
-              <div class="list">
-                <div class="chip2 good"><span class="bul"></span> Planner referrals</div>
-                <div class="chip2 good"><span class="bul"></span> MUA collabs</div>
-                <div class="chip2 good"><span class="bul"></span> Studio bundles</div>
-                <div class="chip2 good"><span class="bul"></span> Reviews compounding</div>
-              </div>
-            </div>
-          </div>
-
         </div>
       </div>
     </div>
   </section>
 
-  <!-- MARKET (NEW) -->
+  <!-- MARKET (CONTENT LOADED FROM JSON) -->
   <section class="section" id="market">
     <div class="container">
       <div class="chapter">
@@ -1180,42 +875,38 @@ footer{
 
       <div class="card reveal" id="marketCard">
         <div class="cardInner">
-          <h2>Competitive landscape & our edge</h2>
-          <p>
-            Most studios cluster into four models. The stable lane for consistent cashflow is <strong class="em">Ops-led Boutique</strong>:
-            premium experience <em>with</em> standardized systems so you can scale, reduce disputes, and protect margins.
+          <h2 id="marketTitle">Competitive landscape & our edge</h2>
+          <p id="marketIntro">
+            (This text will be replaced by content/market.json)
           </p>
 
-          <div class="grid four stagger" style="margin-top:14px">
+          <!-- Market type cards (populated from JSON) -->
+          <div class="grid four stagger" style="margin-top:14px" id="marketTypes">
             <div class="tile marketType">
-              <div class="kicker"><span class="kdot bad"></span><div class="title">Budget Rack / High-volume</div></div>
-              <p>Wins on low price + quantity. Weak on fit consistency, hygiene control, and disputes.</p>
-              <div class="subline"><b>Risk:</b> price wars + higher damage rate.</div>
+              <div class="kicker"><span class="kdot mid"></span><div class="title">Loading…</div></div>
+              <p>Loading…</p>
+              <div class="subline"><b>Note:</b> Loading…</div>
             </div>
-
             <div class="tile marketType">
-              <div class="kicker"><span class="kdot mid"></span><div class="title">Typical Boutique</div></div>
-              <p>Wins on service and taste. Weak on operational throughput and fixed-cost sensitivity.</p>
-              <div class="subline"><b>Risk:</b> high rent/headcount early.</div>
+              <div class="kicker"><span class="kdot mid"></span><div class="title">Loading…</div></div>
+              <p>Loading…</p>
+              <div class="subline"><b>Note:</b> Loading…</div>
             </div>
-
             <div class="tile marketType">
-              <div class="kicker"><span class="kdot mid"></span><div class="title">Studio Bundle / Photo-first</div></div>
-              <p>Wins via partner bundles. Weak if partners leave or promo-driven pricing dilutes brand.</p>
-              <div class="subline"><b>Risk:</b> dependence on referral funnels.</div>
+              <div class="kicker"><span class="kdot mid"></span><div class="title">Loading…</div></div>
+              <p>Loading…</p>
+              <div class="subline"><b>Note:</b> Loading…</div>
             </div>
-
             <div class="tile marketType">
-              <div class="kicker"><span class="kdot good"></span><div class="title">Ops-led Boutique (Us)</div></div>
-              <p>Wins on reliability: fit-first, hygiene SLA, dispute-proof handover, and weekday productization.</p>
-              <div class="subline"><b>Result:</b> consistent bookings without discounting.</div>
+              <div class="kicker"><span class="kdot mid"></span><div class="title">Loading…</div></div>
+              <p>Loading…</p>
+              <div class="subline"><b>Note:</b> Loading…</div>
             </div>
           </div>
 
           <div class="marketTop">
             <div class="marketHint">
               Tap a focus button to highlight what we’re deliberately better at — without sounding arrogant.
-              This becomes your “stand out while staying competitive” story.
             </div>
 
             <div class="marketActions">
@@ -1225,6 +916,7 @@ footer{
               <button class="btn small" data-mode="disputes" type="button">Disputes</button>
               <button class="btn small" data-mode="weekday" type="button">Weekdays</button>
               <button class="btn small" data-mode="proof" type="button">Reviews</button>
+              <button class="btn small" data-mode="price" type="button">Price</button>
             </div>
           </div>
 
@@ -1249,90 +941,17 @@ footer{
               </thead>
 
               <tbody id="matrixBody">
-                <tr class="matrixRow row-price">
-                  <td>Price clarity</td>
-                  <td><span class="score"><span class="sIcon m"></span> medium</span></td>
-                  <td><span class="score"><span class="sIcon m"></span> medium</span></td>
-                  <td><span class="score"><span class="sIcon m"></span> medium</span></td>
-                  <td><span class="score"><span class="sIcon g"></span> strong</span></td>
-                </tr>
-
-                <tr class="matrixRow row-fit">
-                  <td>Fit reliability</td>
-                  <td><span class="score"><span class="sIcon r"></span> weak</span></td>
-                  <td><span class="score"><span class="sIcon m"></span> medium</span></td>
-                  <td><span class="score"><span class="sIcon m"></span> medium</span></td>
-                  <td><span class="score"><span class="sIcon g"></span> strong</span></td>
-                </tr>
-
-                <tr class="matrixRow row-hyg">
-                  <td>Hygiene & readiness</td>
-                  <td><span class="score"><span class="sIcon r"></span> weak</span></td>
-                  <td><span class="score"><span class="sIcon m"></span> medium</span></td>
-                  <td><span class="score"><span class="sIcon m"></span> medium</span></td>
-                  <td><span class="score"><span class="sIcon g"></span> strong</span></td>
-                </tr>
-
-                <tr class="matrixRow row-disp">
-                  <td>Dispute frequency</td>
-                  <td><span class="score"><span class="sIcon r"></span> weak</span></td>
-                  <td><span class="score"><span class="sIcon m"></span> medium</span></td>
-                  <td><span class="score"><span class="sIcon m"></span> medium</span></td>
-                  <td><span class="score"><span class="sIcon g"></span> strong</span></td>
-                </tr>
-
-                <tr class="matrixRow row-speed">
-                  <td>Turnaround speed</td>
-                  <td><span class="score"><span class="sIcon m"></span> medium</span></td>
-                  <td><span class="score"><span class="sIcon m"></span> medium</span></td>
-                  <td><span class="score"><span class="sIcon g"></span> strong</span></td>
-                  <td><span class="score"><span class="sIcon g"></span> strong</span></td>
-                </tr>
-
-                <tr class="matrixRow row-bundle">
-                  <td>Bundle power</td>
-                  <td><span class="score"><span class="sIcon r"></span> weak</span></td>
-                  <td><span class="score"><span class="sIcon m"></span> medium</span></td>
-                  <td><span class="score"><span class="sIcon g"></span> strong</span></td>
-                  <td><span class="score"><span class="sIcon g"></span> strong</span></td>
-                </tr>
-
-                <tr class="matrixRow row-weekday">
-                  <td>Weekday utilization</td>
-                  <td><span class="score"><span class="sIcon r"></span> weak</span></td>
-                  <td><span class="score"><span class="sIcon m"></span> medium</span></td>
-                  <td><span class="score"><span class="sIcon m"></span> medium</span></td>
-                  <td><span class="score"><span class="sIcon g"></span> strong</span></td>
-                </tr>
-
-                <tr class="matrixRow row-proof usRow row-proof">
-                  <td>
-                    Trust compounding
-                    <span class="usPill"><span class="spark"></span> review flywheel</span>
-                  </td>
-                  <td><span class="score"><span class="sIcon r"></span> weak</span></td>
-                  <td><span class="score"><span class="sIcon m"></span> medium</span></td>
-                  <td><span class="score"><span class="sIcon m"></span> medium</span></td>
-                  <td><span class="score"><span class="sIcon g"></span> strong</span></td>
-                </tr>
+                <!-- Rebuilt from JSON -->
               </tbody>
             </table>
           </div>
 
-          <div class="grid two" style="margin-top:14px">
-            <div class="tile">
-              <h3>How we stand out (high ROI)</h3>
-              <p><strong class="em">Calm Bride System:</strong> pre-education + reminders + fit checklist.</p>
-              <p style="margin-top:10px"><strong class="em">Quality seal:</strong> “ready-to-wear” checklist + timestamped cleaning.</p>
-              <p style="margin-top:10px"><strong class="em">Soft delivery, strict system:</strong> clear policies enforced kindly.</p>
-              <div class="subline"><b>Goal:</b> premium feel without premium fixed cost.</div>
+          <div class="grid two" style="margin-top:14px" id="marketBottomCards">
+            <div class="tile" id="standoutLeft">
+              <h3>Loading…</h3>
             </div>
-            <div class="tile">
-              <h3>Borrow smart from China marketplace</h3>
-              <p><strong class="em">Package-first selling:</strong> fewer choices, clearer tiers, higher conversion.</p>
-              <p style="margin-top:10px"><strong class="em">Capacity pooling:</strong> partner tailors/cleaners for fast turnaround.</p>
-              <p style="margin-top:10px"><strong class="em">Content loop:</strong> short clips showing sanitization + fit checks (trust-building).</p>
-              <div class="subline"><b>Translation:</b> productization + speed, without chaos.</div>
+            <div class="tile" id="chinaRight">
+              <h3>Loading…</h3>
             </div>
           </div>
 
@@ -1341,270 +960,17 @@ footer{
     </div>
   </section>
 
-  <!-- WHY US -->
-  <section class="section" id="moat">
-    <div class="container">
-      <div class="chapter">
-        <div class="num">03</div><div class="line"></div><div class="tag">Why we win</div>
-      </div>
-
-      <div class="card reveal">
-        <div class="cardInner">
-          <h2>Most studios compete on taste. We compete on reliability.</h2>
-          <p>
-            Bridal rental is logistics under emotional pressure. Our differentiation is the system:
-            consistent fit, hygiene, timing, and fairness — delivered softly.
-          </p>
-
-          <div class="grid three stagger">
-            <div class="tile">
-              <h3>Consistency</h3>
-              <p>Same process for every bride. No chaos. No last-minute surprises.</p>
-            </div>
-            <div class="tile">
-              <h3>Fairness</h3>
-              <p>Transparent deposits + damage tiers reduce disputes and protect inventory ROI.</p>
-            </div>
-            <div class="tile">
-              <h3>Speed</h3>
-              <p>Appointment flow + vendor network = fast turnaround without heavy hiring.</p>
-            </div>
-          </div>
-
-          <div style="margin-top:16px" class="quote">
-            <blockquote>
-              FINAL OPERATING PHILOSOPHY (FOR YOU & YOUR TEAM)<br/>
-              <span style="color:var(--champ)">“Be kind. Be calm. Be consistent.”</span>
-            </blockquote>
-            <div class="sub">
-              We run a <strong class="em">caring system</strong>: warm experience on the surface, strict operations underneath.
-              Competitors often pick one. We do both — and that’s the moat.
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SOP -->
-  <section class="section" id="ops">
-    <div class="container">
-      <div class="chapter">
-        <div class="num">04</div><div class="line"></div><div class="tag">SOP</div>
-      </div>
-
-      <div class="card reveal sopCard">
-        <div class="cardInner sopInner">
-          <div class="sopHeader">
-            <div>
-              <h2 class="sopTitle">Our SOP prevents disputes before they happen.</h2>
-              <p class="sopSub">The goal: protect the schedule and the collection — while keeping the bride calm.</p>
-            </div>
-
-            <div class="sopStamp" aria-hidden="true">
-              <div class="sopStampRing"></div>
-              <div class="sopStampText">
-                <div class="sopStampTop">BRIDAL</div>
-                <div class="sopStampMid">SYSTEM</div>
-                <div class="sopStampBot">CALM • CLEAN • CONSISTENT</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="sopGrid">
-            <!-- LEFT -->
-            <div class="sopPanel">
-              <div class="sopPanelTop">
-                <h3>FITTING FLOW</h3>
-                <span class="sopTag">Zero-surprise handover</span>
-              </div>
-
-              <div class="flowWrap" data-animate="flow">
-                <div class="thread" aria-hidden="true">
-                  <div class="threadGlow"></div>
-                  <div class="threadRunner"></div>
-                </div>
-
-                <div class="flowSteps">
-                  <div class="flowStep">
-                    <div class="node">1</div>
-                    <div class="flowText">
-                      <div class="flowName">Pre-education message</div>
-                      <div class="flowNote">Set expectations + sizing checklist before arrival.</div>
-                    </div>
-                  </div>
-
-                  <div class="flowStep">
-                    <div class="node">2</div>
-                    <div class="flowText">
-                      <div class="flowName">Appointment slot</div>
-                      <div class="flowNote">Time-boxed fitting to protect the schedule.</div>
-                    </div>
-                  </div>
-
-                  <div class="flowStep">
-                    <div class="node">3</div>
-                    <div class="flowText">
-                      <div class="flowName">Fit check</div>
-                      <div class="flowNote">Fit-first: if it doesn’t fit, it doesn’t leave.</div>
-                    </div>
-                  </div>
-
-                  <div class="flowStep">
-                    <div class="node">4</div>
-                    <div class="flowText">
-                      <div class="flowName">Deposit & signature</div>
-                      <div class="flowNote">Friendly language, firm standard.</div>
-                    </div>
-                  </div>
-
-                  <div class="flowStep">
-                    <div class="node">5</div>
-                    <div class="flowText">
-                      <div class="flowName">Pickup checklist</div>
-                      <div class="flowNote">Photos + condition check = fewer disputes.</div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="ruleCallout">
-                  <span class="ruleDot"></span>
-                  <b>Rule:</b> empathize with emotions, never negotiate policies.
-                </div>
-              </div>
-            </div>
-
-            <!-- RIGHT -->
-            <div class="sopPanel">
-              <div class="sopPanelTop">
-                <h3>INVENTORY PROTECTION</h3>
-                <span class="sopTag">Protect collection ROI</span>
-              </div>
-
-              <div class="chipGrid" data-animate="chips">
-                <button class="protChip" type="button">
-                  <span class="chipIcon">
-                    <svg viewBox="0 0 24 24" fill="none">
-                      <path d="M8 7l1.2-2h5.6L16 7h2a3 3 0 013 3v7a3 3 0 01-3 3H6a3 3 0 01-3-3v-7a3 3 0 013-3h2z" stroke="currentColor" stroke-width="1.6"/>
-                      <path d="M12 17a4 4 0 100-8 4 4 0 000 8z" stroke="currentColor" stroke-width="1.6"/>
-                    </svg>
-                  </span>
-                  <span class="chipText">
-                    <span class="chipTitle">Before/after photos</span>
-                    <span class="chipDesc">Standard angles + timestamp.</span>
-                  </span>
-                  <span class="chipGlow" aria-hidden="true"></span>
-                </button>
-
-                <button class="protChip" type="button">
-                  <span class="chipIcon">
-                    <svg viewBox="0 0 24 24" fill="none">
-                      <path d="M12 3l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V7l8-4z" stroke="currentColor" stroke-width="1.6"/>
-                      <path d="M9.5 12l1.8 1.8L15.8 9.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </span>
-                  <span class="chipText">
-                    <span class="chipTitle">Damage tiers</span>
-                    <span class="chipDesc">Clear tiers: minor → repair → replace.</span>
-                  </span>
-                  <span class="chipGlow" aria-hidden="true"></span>
-                </button>
-
-                <button class="protChip" type="button">
-                  <span class="chipIcon">
-                    <svg viewBox="0 0 24 24" fill="none">
-                      <path d="M12 22a10 10 0 110-20 10 10 0 010 20z" stroke="currentColor" stroke-width="1.6"/>
-                      <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </span>
-                  <span class="chipText">
-                    <span class="chipTitle">Cleaning SLA</span>
-                    <span class="chipDesc">Guaranteed turnaround windows.</span>
-                  </span>
-                  <span class="chipGlow" aria-hidden="true"></span>
-                </button>
-
-                <button class="protChip" type="button">
-                  <span class="chipIcon">
-                    <svg viewBox="0 0 24 24" fill="none">
-                      <path d="M20 13l-7 7-11-11V2h7L20 13z" stroke="currentColor" stroke-width="1.6"/>
-                      <path d="M7.5 7.5h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-                    </svg>
-                  </span>
-                  <span class="chipText">
-                    <span class="chipTitle">Lifecycle pricing</span>
-                    <span class="chipDesc">New → peak → mature pricing bands.</span>
-                  </span>
-                  <span class="chipGlow" aria-hidden="true"></span>
-                </button>
-              </div>
-
-              <div class="sopMini">
-                <div class="miniLine">
-                  <span class="miniDot"></span>
-                  <b>Principle:</b> softness in service, strictness in system.
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Bottom -->
-          <div class="sopBottomGrid" data-animate="bottom">
-            <div class="miniCard">
-              <div class="miniArt" aria-hidden="true">
-                <svg viewBox="0 0 120 80" fill="none">
-                  <path d="M20 60c18-18 32-28 40-28s22 10 40 28" stroke="currentColor" stroke-width="2" opacity=".35"/>
-                  <path d="M60 18c6 0 11 5 11 11s-5 11-11 11-11-5-11-11 5-11 11-11z" stroke="currentColor" stroke-width="2" opacity=".35"/>
-                  <path d="M44 62c5-9 10-14 16-14s11 5 16 14" stroke="currentColor" stroke-width="2" opacity=".55"/>
-                </svg>
-              </div>
-              <h3>QUALITY PROMISE</h3>
-              <p>“If it doesn’t fit properly, we don’t let it leave.” Fit-first prevents disasters.</p>
-            </div>
-
-            <div class="miniCard">
-              <div class="miniArt" aria-hidden="true">
-                <svg viewBox="0 0 120 80" fill="none">
-                  <path d="M18 56h84" stroke="currentColor" stroke-width="2" opacity=".35"/>
-                  <path d="M30 56c0-18 13-32 30-32s30 14 30 32" stroke="currentColor" stroke-width="2" opacity=".55"/>
-                  <path d="M52 44h16" stroke="currentColor" stroke-width="2" opacity=".35"/>
-                  <path d="M60 18v10" stroke="currentColor" stroke-width="2" opacity=".35"/>
-                </svg>
-              </div>
-              <h3>WEEKDAY UTILIZATION</h3>
-              <p>Weekday packages for shoots & civil ceremonies to fill quiet days.</p>
-            </div>
-
-            <div class="miniCard">
-              <div class="miniArt" aria-hidden="true">
-                <svg viewBox="0 0 120 80" fill="none">
-                  <path d="M22 52c12-16 26-24 38-24s26 8 38 24" stroke="currentColor" stroke-width="2" opacity=".35"/>
-                  <path d="M34 52c7-9 16-14 26-14s19 5 26 14" stroke="currentColor" stroke-width="2" opacity=".55"/>
-                  <path d="M60 26l4 8 9 1-7 6 2 9-8-4-8 4 2-9-7-6 9-1 4-8z" stroke="currentColor" stroke-width="2" opacity=".35"/>
-                </svg>
-              </div>
-              <h3>TRUST COMPOUNDING</h3>
-              <p>Review flywheel: every smooth experience becomes a future booking source.</p>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- STRESS TEST -->
+  <!-- STRESS TEST (NUMBERS LOADED FROM JSON) -->
   <section class="section" id="stress">
     <div class="container">
       <div class="chapter">
-        <div class="num">05</div><div class="line"></div><div class="tag">Stress test</div>
+        <div class="num">03</div><div class="line"></div><div class="tag">Stress test</div>
       </div>
 
       <div class="card reveal">
         <div class="cardInner">
           <h2>Adjust bookings and see profitability.</h2>
-          <p>
+          <p id="stressAssumptionText">
             Assumptions: Avg rental <strong class="em">RM 850</strong>, monthly burn <strong class="em">RM 7,500</strong>, capital buffer <strong class="em">RM 190,000</strong>.
           </p>
 
@@ -1617,7 +983,7 @@ footer{
             <div class="metric">
               <div class="label">Monthly revenue</div>
               <div class="value">RM <span id="revenue">8,500</span></div>
-              <div class="sub">850 × bookings</div>
+              <div class="sub">avg × bookings</div>
             </div>
             <div class="metric">
               <div class="label">Monthly net</div>
@@ -1644,11 +1010,11 @@ footer{
     </div>
   </section>
 
-  <!-- FUNDING -->
+  <!-- FUNDING (CONTACT LOADED FROM site.json) -->
   <section class="section" id="funding">
     <div class="container">
       <div class="chapter">
-        <div class="num">06</div><div class="line"></div><div class="tag">Funding</div>
+        <div class="num">04</div><div class="line"></div><div class="tag">Funding</div>
       </div>
 
       <div class="card reveal">
@@ -1656,28 +1022,7 @@ footer{
           <h2>Seeking RM 200,000 for stability and curated inventory.</h2>
           <p>Funds allocated toward inventory, operational buffer, and systems — not expensive rent or early headcount.</p>
 
-          <div class="grid two stagger">
-            <div class="tile">
-              <h3>Use of funds</h3>
-              <div class="list">
-                <div class="chip2 good"><span class="bul"></span> Inventory acquisition</div>
-                <div class="chip2 good"><span class="bul"></span> Overhead buffer</div>
-                <div class="chip2 good"><span class="bul"></span> Policies & SOP</div>
-                <div class="chip2 good"><span class="bul"></span> Partner network</div>
-              </div>
-            </div>
-            <div class="tile">
-              <h3>Risk controls</h3>
-              <div class="list">
-                <div class="chip2 good"><span class="bul"></span> Deposit discipline</div>
-                <div class="chip2 good"><span class="bul"></span> Damage tiers</div>
-                <div class="chip2 good"><span class="bul"></span> Appointment scheduling</div>
-                <div class="chip2 good"><span class="bul"></span> Vendor SLAs</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="subline">
+          <div class="subline" id="contactLine">
             Contact: <b>[Your Name]</b> • WhatsApp: <b>[+60…]</b> • Email: <b>[…]</b> • IG: <b>@[handle]</b>
           </div>
         </div>
@@ -1712,60 +1057,24 @@ const io = new IntersectionObserver((entries)=>{
 },{threshold:0.12});
 reveals.forEach(el=>io.observe(el));
 
-/* Stress test */
-const fmt = new Intl.NumberFormat('en-MY');
-const AVG = 850, BURN = 7500, CAPITAL = 190000;
-let bookings = 10;
-
-const elBookings = document.getElementById('bookings');
-const elRevenue  = document.getElementById('revenue');
-const elNet      = document.getElementById('net');
-const elRunway   = document.getElementById('runway');
-
-function clamp(n,a,b){ return Math.max(a, Math.min(b,n)); }
-function renderStress(){
-  const revenue = AVG * bookings;
-  const net = revenue - BURN;
-
-  elBookings.textContent = bookings;
-  elRevenue.textContent = fmt.format(revenue);
-
-  const sign = net >= 0 ? '+' : '−';
-  elNet.textContent = `RM ${sign}${fmt.format(Math.abs(net))}`;
-  elNet.style.color = net >= 0 ? 'rgba(31,157,110,.95)' : 'rgba(181,74,90,.95)';
-
-  const runway = net < 0 ? Math.floor(CAPITAL / Math.abs(net)) : 999;
-  elRunway.textContent = runway;
-}
-renderStress();
-document.getElementById('plus').addEventListener('click', ()=>{ bookings = clamp(bookings+1,0,40); renderStress(); });
-document.getElementById('minus').addEventListener('click', ()=>{ bookings = clamp(bookings-1,0,40); renderStress(); });
-
-/* Parallax: hero image + caption + mask */
+/* Simple parallax */
 const heroImg = document.getElementById('heroImg');
 const heroCaption = document.getElementById('heroCaption');
 const heroMask = document.getElementById('heroMask');
 const heroTitle = document.getElementById('heroTitle');
 const heroWrap = document.getElementById('heroWrap');
-
 let ticking=false;
 function parallax(){
   ticking=false;
-  const y = window.scrollY || 0;
-
   const rect = heroWrap.getBoundingClientRect();
   const center = rect.top + rect.height * 0.5;
   const vh = window.innerHeight || 800;
   const strength = Math.max(-1, Math.min(1, (center - vh*0.5) / (vh*0.7)));
-
   const imgY = strength * 22;
   const capY = strength * 10;
   const maskY = strength * 8;
   const titleY = strength * -8;
-
-  const s = 1.16 + Math.min(0.10, Math.max(0, y/9000));
-
-  heroImg.style.transform = `translate3d(0, ${imgY.toFixed(2)}px, 0) scale(${s.toFixed(3)})`;
+  heroImg.style.transform = `translate3d(0, ${imgY.toFixed(2)}px, 0) scale(1.16)`;
   heroCaption.style.transform = `translate3d(0, ${capY.toFixed(2)}px, 0)`;
   heroMask.style.transform = `translate3d(0, ${maskY.toFixed(2)}px, 0)`;
   heroTitle.style.transform = `translate3d(0, ${titleY.toFixed(2)}px, 0)`;
@@ -1779,34 +1088,174 @@ function onScroll(){
 window.addEventListener('scroll', onScroll, {passive:true});
 parallax();
 
-/* SOP: activate thread animation only when visible */
-const sopAnimTargets = document.querySelectorAll('[data-animate]');
-const sopIO = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      if(e.target.dataset.animate === 'flow'){
-        e.target.classList.add('isLive');
-      }
-      if(e.target.dataset.animate === 'matrix'){
-        document.getElementById('matrixBody')?.classList.add('matrixLive');
-      }
+/* ===== CMS JSON LOADER (THIS IS THE PART YOU WANTED) ===== */
+async function loadJSON(path){
+  const res = await fetch(path, { cache: "no-store" });
+  if(!res.ok) throw new Error(`Failed to load ${path}: ${res.status}`);
+  return res.json();
+}
+
+function scoreChip(val){
+  const map = { strong:["g","strong"], medium:["m","medium"], weak:["r","weak"] };
+  const [cls, label] = map[val] || map.medium;
+  return `<span class="score"><span class="sIcon ${cls}"></span> ${label}</span>`;
+}
+
+function setBullets(tileId, obj){
+  const tile = document.getElementById(tileId);
+  if(!tile || !obj) return;
+  tile.innerHTML = ""; // clear
+  const h3 = document.createElement("h3");
+  h3.textContent = obj.title || "";
+  tile.appendChild(h3);
+  (obj.bullets || []).forEach((b, idx)=>{
+    const p = document.createElement("p");
+    p.style.marginTop = idx ? "10px" : "0";
+    p.innerHTML = `<strong class="em">${b.split(":")[0]}:</strong> ${b.includes(":") ? b.split(":").slice(1).join(":").trim() : ""}`;
+    tile.appendChild(p);
+  });
+}
+
+function setContactLine(site){
+  const el = document.getElementById("contactLine");
+  if(!el) return;
+  el.innerHTML = `Contact: <b>${site.contactName || "[Your Name]"}</b> • WhatsApp: <b>${site.contactWhatsapp || "[+60…]"}</b> • Email: <b>${site.contactEmail || "[…]"}</b> • IG: <b>${site.contactIg || "@[handle]"}</b>`;
+}
+
+function hydrateMarket(market){
+  document.getElementById("marketTitle").textContent = market.title || "Competitive landscape & our edge";
+  document.getElementById("marketIntro").textContent = market.intro || "";
+
+  // 4 market type cards
+  const tiles = document.querySelectorAll("#marketTypes .marketType");
+  (market.types || []).slice(0,4).forEach((t, i)=>{
+    const tile = tiles[i];
+    if(!tile) return;
+    const title = tile.querySelector(".title");
+    const summary = tile.querySelector("p");
+    const risk = tile.querySelector(".subline");
+    const dot = tile.querySelector(".kdot");
+    if(title) title.textContent = t.title || "";
+    if(summary) summary.textContent = t.summary || "";
+    if(risk){
+      const parts = (t.risk || "").split(":");
+      const k = parts[0] || "Note";
+      const v = parts.slice(1).join(":").trim() || "";
+      risk.innerHTML = `<b>${k}:</b> ${v || t.risk || ""}`;
+    }
+    if(dot){
+      dot.classList.remove("good","mid","bad");
+      dot.classList.add(t.tone || "mid");
     }
   });
-},{threshold:0.18});
-sopAnimTargets.forEach(el => sopIO.observe(el));
 
-/* Market toggles: highlight matrix rows */
+  // Matrix rows
+  const tbody = document.getElementById("matrixBody");
+  tbody.innerHTML = (market.matrixRows || []).map((r)=>{
+    const rowClass = `matrixRow row-${r.key || ""} ${r.highlight ? "usRow row-proof" : ""}`;
+    const extra = r.highlight ? ` <span class="usPill"><span class="spark"></span> review flywheel</span>` : "";
+    return `
+      <tr class="${rowClass}">
+        <td>${r.label || ""}${extra}</td>
+        <td>${scoreChip(r.budget)}</td>
+        <td>${scoreChip(r.boutique)}</td>
+        <td>${scoreChip(r.studio)}</td>
+        <td>${scoreChip(r.us)}</td>
+      </tr>
+    `;
+  }).join("");
+
+  // bottom cards
+  setBullets("standoutLeft", market.standoutLeft);
+  setBullets("chinaRight", market.chinaRight);
+}
+
+let AVG = 850, BURN = 7500, CAPITAL = 190000;
+let bookings = 10;
+
+const fmt = new Intl.NumberFormat('en-MY');
+const elBookings = document.getElementById('bookings');
+const elRevenue  = document.getElementById('revenue');
+const elNet      = document.getElementById('net');
+const elRunway   = document.getElementById('runway');
+
+function clamp(n,a,b){ return Math.max(a, Math.min(b,n)); }
+
+function renderStress(){
+  const revenue = AVG * bookings;
+  const net = revenue - BURN;
+
+  elBookings.textContent = bookings;
+  elRevenue.textContent = fmt.format(revenue);
+
+  const sign = net >= 0 ? '+' : '−';
+  elNet.textContent = `RM ${sign}${fmt.format(Math.abs(net))}`;
+  elNet.style.color = net >= 0 ? 'rgba(31,157,110,.95)' : 'rgba(181,74,90,.95)';
+
+  const runway = net < 0 ? Math.floor(CAPITAL / Math.abs(net)) : 999;
+  elRunway.textContent = runway;
+
+  const stressText = document.getElementById("stressAssumptionText");
+  stressText.innerHTML =
+    `Assumptions: Avg rental <strong class="em">RM ${fmt.format(AVG)}</strong>, monthly burn <strong class="em">RM ${fmt.format(BURN)}</strong>, capital buffer <strong class="em">RM ${fmt.format(CAPITAL)}</strong>.`;
+}
+
+document.getElementById('plus').addEventListener('click', ()=>{ bookings = clamp(bookings+1,0,40); renderStress(); });
+document.getElementById('minus').addEventListener('click', ()=>{ bookings = clamp(bookings-1,0,40); renderStress(); });
+
+async function hydrateCMS(){
+  const [site, market, stress] = await Promise.all([
+    loadJSON("./content/site.json"),
+    loadJSON("./content/market.json"),
+    loadJSON("./content/stress.json")
+  ]);
+
+  // header brand
+  const brandStrong = document.querySelector(".brandText strong");
+  const brandSpan = document.querySelector(".brandText span");
+  if(brandStrong) brandStrong.textContent = site.brandName || "Bridal Rental Studio";
+  if(brandSpan) brandSpan.textContent = site.tagline || brandSpan.textContent;
+
+  // funding contact
+  setContactLine(site);
+
+  // market
+  hydrateMarket(market);
+
+  // stress values
+  AVG = Number(stress.avgRental ?? AVG);
+  BURN = Number(stress.burn ?? BURN);
+  CAPITAL = Number(stress.capital ?? CAPITAL);
+  bookings = Number(stress.defaultBookings ?? bookings);
+
+  renderStress();
+
+  // Start matrix row reveal when market enters view
+  const matrixBody = document.getElementById("matrixBody");
+  const marketCard = document.getElementById("marketCard");
+  const matrixIO = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting) matrixBody.classList.add("matrixLive");
+    });
+  }, { threshold: 0.18 });
+  matrixIO.observe(marketCard);
+}
+
+// Market highlight toggles
 const matrixWrap = document.getElementById('matrixWrap');
 const modeButtons = document.querySelectorAll('[data-mode]');
 modeButtons.forEach(btn=>{
   btn.addEventListener('click', ()=>{
     const mode = btn.getAttribute('data-mode');
     matrixWrap.setAttribute('data-mode', mode);
-
     modeButtons.forEach(b=>b.classList.remove('on'));
     btn.classList.add('on');
   });
 });
+
+// Boot
+renderStress(); // show something immediately
+hydrateCMS().catch(err => console.error("CMS hydrate failed:", err));
 </script>
 
 </body>
