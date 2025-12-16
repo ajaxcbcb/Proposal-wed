@@ -1,790 +1,421 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>Bridal Rental Studio — Editorial Pitch</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Bridal Rental Studio — Editorial Pitch</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@500;600;700;800;900&display=swap" rel="stylesheet">
 
-<style>
-:root{
-  --ivory:#fbf7f2;
-  --paper:#f4ede5;
-  --ink:#121018;
-  --muted:rgba(18,16,24,.62);
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-  --champ:#d2ae72;
-  --rose:#c88f95;
+  <style>
+    :root{
+      --ivory:#fbf7f2;
+      --paper:#f4ede5;
+      --ink:#121018;
+      --muted:rgba(18,16,24,.62);
 
-  --line:rgba(18,16,24,.11);
-  --glass:rgba(255,255,255,.78);
+      --champ:#d2ae72;
+      --rose:#c88f95;
 
-  --good:#1f9d6e;
-  --bad:#b54a5a;
+      --line:rgba(18,16,24,.11);
+      --glass:rgba(255,255,255,.78);
 
-  --radius:24px;
-  --shadow:0 30px 80px rgba(18,16,24,.13);
-  --shadow2:0 18px 45px rgba(18,16,24,.10);
+      --good:#1f9d6e;
+      --bad:#b54a5a;
 
-  --serif:"Playfair Display", ui-serif, Georgia, "Times New Roman", serif;
-  --sans:"Inter", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      --radius:24px;
+      --shadow:0 30px 80px rgba(18,16,24,.13);
+      --shadow2:0 18px 45px rgba(18,16,24,.10);
 
-  --ease:cubic-bezier(.2,.9,.2,1);
-}
+      --serif:"Playfair Display", ui-serif, Georgia, "Times New Roman", serif;
+      --sans:"Inter", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
 
-*{box-sizing:border-box}
-html,body{height:100%}
-html{scroll-behavior:smooth}
-body{
-  margin:0;
-  font-family:var(--sans);
-  color:var(--ink);
-  background:
-    radial-gradient(1100px 700px at 18% 10%, rgba(210,174,114,.16), transparent 55%),
-    radial-gradient(900px 650px at 86% 18%, rgba(200,143,149,.12), transparent 60%),
-    linear-gradient(180deg, var(--ivory), var(--paper));
-  overflow-x:hidden;
-}
+      --ease:cubic-bezier(.2,.9,.2,1);
+    }
 
-/* Grain + fibers */
-.grain, .fibers{
-  position:fixed; inset:0;
-  pointer-events:none;
-  z-index:0;
-}
-.grain{
-  opacity:.11;
-  background-image:
-    radial-gradient(circle at 10% 20%, rgba(0,0,0,.18) .6px, transparent 1px),
-    radial-gradient(circle at 70% 40%, rgba(0,0,0,.14) .6px, transparent 1px),
-    radial-gradient(circle at 30% 80%, rgba(0,0,0,.12) .6px, transparent 1px);
-  background-size: 180px 180px, 220px 220px, 260px 260px;
-}
-.fibers{
-  opacity:.10;
-  background:
-    linear-gradient(90deg, rgba(0,0,0,.05), transparent 28%, rgba(0,0,0,.04) 62%, transparent),
-    linear-gradient(0deg, rgba(0,0,0,.05), transparent 32%, rgba(0,0,0,.03) 72%, transparent);
-  mix-blend-mode:multiply;
-}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--ink);
+      background:
+        radial-gradient(1100px 700px at 18% 10%, rgba(210,174,114,.16), transparent 55%),
+        radial-gradient(900px 650px at 86% 18%, rgba(200,143,149,.12), transparent 60%),
+        linear-gradient(180deg, var(--ivory), var(--paper));
+      overflow-x:hidden;
+    }
 
-/* Ribbon motif */
-.ribbon{
-  position:fixed;
-  left:0; right:0;
-  top:72px;
-  height:1px;
-  z-index:50;
-  pointer-events:none;
-  background: linear-gradient(90deg, transparent, rgba(210,174,114,.55), rgba(200,143,149,.40), transparent);
-  opacity:.85;
-}
+    /* Grain + fibers */
+    .grain, .fibers{
+      position:fixed; inset:0;
+      pointer-events:none;
+      z-index:0;
+    }
+    .grain{
+      opacity:.11;
+      background-image:
+        radial-gradient(circle at 10% 20%, rgba(0,0,0,.18) .6px, transparent 1px),
+        radial-gradient(circle at 70% 40%, rgba(0,0,0,.14) .6px, transparent 1px),
+        radial-gradient(circle at 30% 80%, rgba(0,0,0,.12) .6px, transparent 1px);
+      background-size: 180px 180px, 220px 220px, 260px 260px;
+    }
+    .fibers{
+      opacity:.10;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,.05), transparent 28%, rgba(0,0,0,.04) 62%, transparent),
+        linear-gradient(0deg, rgba(0,0,0,.05), transparent 32%, rgba(0,0,0,.03) 72%, transparent);
+      mix-blend-mode:multiply;
+    }
 
-/* Header */
-header{
-  position:fixed;
-  top:0; left:0; right:0;
-  z-index:60;
-  padding: env(safe-area-inset-top) 14px 10px;
-  background: linear-gradient(180deg, rgba(251,247,242,.92), rgba(251,247,242,.45));
-  backdrop-filter: blur(14px);
-  border-bottom:1px solid var(--line);
-}
-.nav{
-  max-width:1120px;
-  margin:0 auto;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-}
-.brand{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  min-width:0;
-}
-.monogram{
-  width:42px; height:42px;
-  border-radius:18px;
-  display:grid;
-  place-items:center;
-  background:
-    radial-gradient(circle at 30% 30%, rgba(255,255,255,.95), transparent 55%),
-    linear-gradient(135deg, rgba(210,174,114,.92), rgba(200,143,149,.72));
-  box-shadow: var(--shadow2);
-  border:1px solid rgba(18,16,24,.10);
-  font-family: var(--serif);
-  font-weight:900;
-  letter-spacing:.5px;
-  color: rgba(18,16,24,.86);
-}
-.brandText strong{
-  display:block;
-  font-weight:950;
-  letter-spacing:.1px;
-  font-size:13px;
-  white-space:nowrap;
-}
-.brandText span{
-  display:block;
-  font-size:12px;
-  color:var(--muted);
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  max-width: 56vw;
-}
-.navRight{
-  display:flex;
-  gap:8px;
-  align-items:center;
-}
-a.navLink{
-  text-decoration:none;
-  color: rgba(18,16,24,.82);
-  font-weight:900;
-  font-size:12px;
-  letter-spacing:.2px;
-  padding:9px 10px;
-  border-radius:999px;
-  border:1px solid rgba(18,16,24,.10);
-  background: rgba(255,255,255,.70);
-  transition: transform .18s var(--ease), background .2s var(--ease);
-  white-space:nowrap;
-}
-a.navLink:hover{ background: rgba(255,255,255,.92); }
-a.navLink:active{ transform: translateY(1px); }
+    /* Navbar styling */
+    .navShell{
+      position:fixed;
+      top:0; left:0; right:0;
+      z-index:1030;
+      padding: env(safe-area-inset-top) 0 10px;
+      background: linear-gradient(180deg, rgba(251,247,242,.92), rgba(251,247,242,.45));
+      backdrop-filter: blur(14px);
+      border-bottom:1px solid var(--line);
+    }
+    .brandWrap{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:0;
+    }
+    .monogram{
+      width:42px; height:42px;
+      border-radius:18px;
+      display:grid;
+      place-items:center;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,.95), transparent 55%),
+        linear-gradient(135deg, rgba(210,174,114,.92), rgba(200,143,149,.72));
+      box-shadow: var(--shadow2);
+      border:1px solid rgba(18,16,24,.10);
+      font-family: var(--serif);
+      font-weight:900;
+      letter-spacing:.5px;
+      color: rgba(18,16,24,.86);
+      flex: 0 0 auto;
+    }
+    .brandText strong{
+      display:block;
+      font-weight:950;
+      letter-spacing:.1px;
+      font-size:13px;
+      white-space:nowrap;
+    }
+    .brandText span{
+      display:block;
+      font-size:12px;
+      color:var(--muted);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      max-width: 52vw;
+    }
 
-.pill{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  padding:9px 11px;
-  border-radius:999px;
-  border:1px solid rgba(18,16,24,.10);
-  background: rgba(255,255,255,.70);
-  color: rgba(18,16,24,.68);
-  font-weight:950;
-  font-size:12px;
-}
-.dot{
-  width:10px; height:10px;
-  border-radius:999px;
-  background: linear-gradient(135deg, rgba(210,174,114,.95), rgba(200,143,149,.85));
-}
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:9px 11px;
+      border-radius:999px;
+      border:1px solid rgba(18,16,24,.10);
+      background: rgba(255,255,255,.70);
+      color: rgba(18,16,24,.68);
+      font-weight:950;
+      font-size:12px;
+      white-space:nowrap;
+    }
+    .dot{
+      width:10px; height:10px;
+      border-radius:999px;
+      background: linear-gradient(135deg, rgba(210,174,114,.95), rgba(200,143,149,.85));
+    }
 
-.progress{
-  max-width:1120px;
-  margin:10px auto 0;
-  height:6px;
-  border-radius:999px;
-  background: rgba(18,16,24,.06);
-  overflow:hidden;
-  border:1px solid rgba(18,16,24,.10);
-}
-.progress > div{
-  height:100%;
-  width:0%;
-  background: linear-gradient(90deg, rgba(210,174,114,.95), rgba(200,143,149,.85));
-  border-radius:999px;
-  transition: width .28s var(--ease);
-}
+    .progressBarWrap{
+      max-width:1120px;
+      margin:10px auto 0;
+      height:6px;
+      border-radius:999px;
+      background: rgba(18,16,24,.06);
+      overflow:hidden;
+      border:1px solid rgba(18,16,24,.10);
+    }
+    .progressBarWrap > div{
+      height:100%;
+      width:0%;
+      background: linear-gradient(90deg, rgba(210,174,114,.95), rgba(200,143,149,.85));
+      border-radius:999px;
+      transition: width .28s var(--ease);
+    }
 
-/* Layout */
-main{ padding-top: 96px; position:relative; z-index:2; }
-.section{ padding: 46px 14px; }
-.container{ max-width:1120px; margin:0 auto; }
+    main{
+      position:relative;
+      z-index:1;
+      padding-top: 102px; /* space for fixed navbar + progress */
+    }
 
-/* Chapter */
-.chapter{
-  display:flex;
-  align-items:center;
-  gap:14px;
-  margin: 0 0 16px;
-}
-.chapter .num{
-  font-family: var(--serif);
-  font-weight:900;
-  font-size: 18px;
-  opacity:.78;
-}
-.chapter .line{
-  height:1px;
-  flex:1;
-  background: linear-gradient(90deg, rgba(18,16,24,.22), rgba(18,16,24,.06), transparent);
-}
-.chapter .tag{
-  font-size:12px;
-  font-weight:900;
-  letter-spacing:.22px;
-  text-transform:uppercase;
-  color: rgba(18,16,24,.66);
-  padding:6px 10px;
-  border-radius:999px;
-  border:1px solid rgba(18,16,24,.10);
-  background: rgba(255,255,255,.62);
-}
+    /* Editorial card */
+    .cardEditorial{
+      border-radius: 34px;
+      overflow:hidden;
+      position:relative;
+      box-shadow: var(--shadow);
+      background: rgba(255,255,255,.40);
+      border: 1px solid rgba(18,16,24,.10);
+    }
 
-/* Cards */
-.card{
-  border-radius: var(--radius);
-  background: rgba(255,255,255,.74);
-  box-shadow: var(--shadow);
-  position:relative;
-  overflow:hidden;
-}
-.card::before{
-  content:"";
-  position:absolute; inset:0;
-  padding:1px;
-  border-radius: inherit;
-  background: linear-gradient(135deg, rgba(210,174,114,.48), rgba(200,143,149,.35), rgba(18,16,24,.08));
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events:none;
-}
-.cardInner{
-  padding: 24px;
-  backdrop-filter: blur(14px);
-}
+    h1{
+      margin:0 0 14px;
+      font-family: var(--serif);
+      font-size: clamp(40px, 7.2vw, 72px);
+      line-height: .98;
+      letter-spacing: -0.8px;
+    }
+    h2{
+      margin:0 0 12px;
+      font-family: var(--serif);
+      font-size: clamp(24px, 4.2vw, 40px);
+      line-height:1.1;
+      letter-spacing:-0.35px;
+    }
+    p{
+      margin:0;
+      font-size:15px;
+      line-height:1.9;
+      color: var(--muted);
+    }
+    .em{ color: rgba(18,16,24,.92); font-weight:950; }
 
-/* Typography */
-h1{
-  margin:0 0 14px;
-  font-family: var(--serif);
-  font-size: clamp(40px, 7.2vw, 72px);
-  line-height: .98;
-  letter-spacing: -0.8px;
-}
-h2{
-  margin:0 0 12px;
-  font-family: var(--serif);
-  font-size: clamp(24px, 4.2vw, 40px);
-  line-height:1.1;
-  letter-spacing:-0.35px;
-}
-p{
-  margin:0;
-  font-size:15px;
-  line-height:1.9;
-  color: var(--muted);
-}
-strong.em{ color: rgba(18,16,24,.92); font-weight:950; }
-.subline{
-  margin-top:14px;
-  font-size:12px;
-  color: rgba(18,16,24,.56);
-  line-height:1.6;
-}
+    /* Hero */
+    .heroGrid{
+      display:grid;
+      gap:0;
+      min-height: 72vh;
+    }
+    @media(min-width: 992px){
+      .heroGrid{ grid-template-columns: 1.05fr .95fr; }
+    }
+    .heroLeft{
+      padding: 28px 22px 26px;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+    }
+    .badgeX{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:7px 12px;
+      border-radius:999px;
+      border:1px solid rgba(18,16,24,.10);
+      background: rgba(255,255,255,.66);
+      font-size:12px;
+      font-weight:950;
+      color: rgba(18,16,24,.70);
+      margin-right:8px;
+      margin-bottom:8px;
+    }
+    .heroRight{
+      position:relative;
+      min-height: 52vh;
+      background: #ddd;
+    }
+    .heroMedia{
+      position:absolute; inset:0; overflow:hidden;
+    }
+    .heroMedia img{
+      width:100%; height:100%;
+      object-fit:cover;
+      transform: translate3d(0,0,0) scale(1.16);
+      will-change: transform, filter;
+      filter: contrast(1.02) saturate(1.04);
+    }
+    .heroMask{
+      position:absolute; inset:0;
+      pointer-events:none;
+      background:
+        radial-gradient(850px 620px at 35% 15%, rgba(255,255,255,.18), transparent 58%),
+        linear-gradient(180deg, rgba(251,247,242,.05), rgba(18,16,24,.62));
+      will-change: transform;
+    }
+    .heroCaption{
+      position:absolute;
+      left:16px; right:16px; bottom:16px;
+      padding:12px 12px;
+      border-radius: 18px;
+      border:1px solid rgba(255,255,255,.22);
+      background: rgba(255,255,255,.80);
+      backdrop-filter: blur(12px);
+      color: rgba(18,16,24,.82);
+      will-change: transform;
+    }
 
-/* Hero */
-.heroWrap{
-  border-radius: 34px;
-  overflow:hidden;
-  position:relative;
-  min-height: 72vh;
-  box-shadow: var(--shadow);
-  background: rgba(255,255,255,.40);
-}
-.heroGrid{
-  display:grid;
-  gap:0;
-  min-height: 72vh;
-}
-@media(min-width:980px){
-  .heroGrid{ grid-template-columns: 1.05fr .95fr; }
-}
-.heroLeft{
-  padding: 28px 22px 26px;
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-end;
-  position:relative;
-  z-index:2;
-}
-.heroLeft .meta{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  margin-bottom:14px;
-}
-.badge{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  padding:7px 12px;
-  border-radius:999px;
-  border:1px solid rgba(18,16,24,.10);
-  background: rgba(255,255,255,.66);
-  font-size:12px;
-  font-weight:950;
-  color: rgba(18,16,24,.70);
-}
-.heroRight{ position:relative; min-height: 52vh; background: #ddd; }
-.heroMedia{ position:absolute; inset:0; overflow:hidden; }
-.heroMedia img{
-  width:100%; height:100%;
-  object-fit:cover;
-  transform: translate3d(0,0,0) scale(1.16);
-  will-change: transform, filter;
-  filter: contrast(1.02) saturate(1.04);
-}
-.heroMask{
-  position:absolute; inset:0;
-  pointer-events:none;
-  background:
-    radial-gradient(850px 620px at 35% 15%, rgba(255,255,255,.18), transparent 58%),
-    linear-gradient(180deg, rgba(251,247,242,.05), rgba(18,16,24,.62));
-  will-change: transform;
-}
-.sweep{
-  position:absolute;
-  top:-40%;
-  left:-30%;
-  width: 60%;
-  height: 220%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,.25), transparent);
-  transform: rotate(18deg);
-  opacity:.35;
-  mix-blend-mode: screen;
-  animation: sweep 7.5s var(--ease) infinite;
-}
-@keyframes sweep{
-  0%{ transform: translateX(-40%) rotate(18deg); opacity:.18; }
-  40%{ opacity:.38; }
-  100%{ transform: translateX(220%) rotate(18deg); opacity:.18; }
-}
-.heroCaption{
-  position:absolute;
-  left:16px; right:16px; bottom:16px;
-  padding:12px 12px;
-  border-radius: 18px;
-  border:1px solid rgba(255,255,255,.22);
-  background: rgba(255,255,255,.80);
-  backdrop-filter: blur(12px);
-  color: rgba(18,16,24,.82);
-  transform: translate3d(0,0,0);
-  will-change: transform, opacity;
-}
-.heroCaption small{
-  display:block;
-  margin-top:4px;
-  color: rgba(18,16,24,.62);
-  line-height:1.45;
-}
+    /* Market bits */
+    .kdot{ width:10px;height:10px;border-radius:999px;background:rgba(18,16,24,.20); }
+    .kdot.good{ background: rgba(31,157,110,.72); }
+    .kdot.mid{ background: rgba(210,174,114,.72); }
+    .kdot.bad{ background: rgba(181,74,90,.72); }
 
-/* Chips */
-.list{ display:flex; flex-wrap:wrap; gap:10px; margin-top:14px; }
-.chip2{
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
-  padding:10px 12px;
-  border-radius:999px;
-  border:1px solid rgba(18,16,24,.10);
-  background: rgba(255,255,255,.72);
-  font-weight:950;
-  font-size:13px;
-  color: rgba(18,16,24,.78);
-}
-.bul{ width:10px;height:10px;border-radius:999px;background:rgba(18,16,24,.20) }
-.good .bul{ background:rgba(31,157,110,.75) }
-.bad  .bul{ background:rgba(181,74,90,.75) }
+    .score{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(18,16,24,.10);
+      background: rgba(255,255,255,.78);
+      font-size:12px;
+      font-weight:950;
+      color: rgba(18,16,24,.72);
+      white-space:nowrap;
+    }
+    .sIcon{ width:10px;height:10px;border-radius:999px;background:rgba(18,16,24,.20); }
+    .sIcon.g{ background: rgba(31,157,110,.78); }
+    .sIcon.m{ background: rgba(210,174,114,.78); }
+    .sIcon.r{ background: rgba(181,74,90,.78); }
 
-/* Grid + tiles */
-.grid{ display:grid; gap:14px; margin-top:16px; }
-@media(min-width:980px){
-  .grid.two{ grid-template-columns: 1fr 1fr; }
-  .grid.three{ grid-template-columns: 1fr 1fr 1fr; }
-  .grid.four{ grid-template-columns: 1fr 1fr 1fr 1fr; }
-}
-.tile{
-  border-radius: 22px;
-  background: rgba(255,255,255,.70);
-  border:1px solid rgba(18,16,24,.10);
-  padding: 18px;
-  box-shadow: 0 10px 26px rgba(18,16,24,.06);
-}
-.tile h3{
-  margin:0 0 10px;
-  font-size:12px;
-  letter-spacing:.24px;
-  text-transform:uppercase;
-  color: rgba(18,16,24,.74);
-  font-weight:950;
-}
+    .matrixWrap{
+      margin-top: 14px;
+      border-radius: 26px;
+      border:1px solid rgba(18,16,24,.10);
+      background: rgba(255,255,255,.72);
+      box-shadow: 0 18px 50px rgba(18,16,24,.08);
+      overflow:hidden;
+    }
+    .matrixWrap table th{
+      font-size:12px;
+      letter-spacing:.24px;
+      text-transform:uppercase;
+      color: rgba(18,16,24,.70);
+      font-weight:980;
+      background: rgba(255,255,255,.60);
+    }
+    @media(max-width:860px){
+      .matrixWrap{ overflow:auto; -webkit-overflow-scrolling: touch; }
+      .matrixWrap table th, .matrixWrap table td{ min-width: 160px; }
+      .matrixWrap table td:first-child{ min-width: 220px; }
+    }
 
-/* Metrics */
-.metrics{ display:grid; gap:12px; margin-top:14px; }
-@media(min-width:980px){
-  .metrics{ grid-template-columns: 1fr 1fr 1fr 1fr; }
-}
-.metric{
-  border-radius:22px;
-  border:1px solid rgba(18,16,24,.10);
-  background: rgba(255,255,255,.72);
-  padding:14px;
-}
-.metric .label{ font-size:12px; font-weight:950; letter-spacing:.2px; color:rgba(18,16,24,.62); }
-.metric .value{ margin-top:6px; font-size:22px; font-weight:980; letter-spacing:-0.2px; color:rgba(18,16,24,.92); }
-.metric .sub{ margin-top:6px; font-size:12px; color:rgba(18,16,24,.62); }
-
-/* Quote */
-.quote{
-  border-radius: 28px;
-  border:1px solid rgba(18,16,24,.10);
-  background: linear-gradient(135deg, rgba(255,255,255,.80), rgba(255,255,255,.66));
-  padding: 18px 18px 16px;
-  box-shadow: 0 18px 50px rgba(18,16,24,.08);
-  position:relative;
-  overflow:hidden;
-}
-.quote::after{
-  content:"";
-  position:absolute;
-  right:-20%;
-  top:-30%;
-  width:60%;
-  height:140%;
-  background: radial-gradient(circle at 30% 30%, rgba(210,174,114,.18), transparent 60%);
-  transform: rotate(12deg);
-}
-.quote blockquote{
-  margin:0;
-  font-family: var(--serif);
-  font-weight:800;
-  font-size: clamp(18px, 3.2vw, 30px);
-  line-height:1.22;
-  letter-spacing:-0.25px;
-  color: rgba(18,16,24,.92);
-  position:relative;
-  z-index:1;
-}
-.quote .sub{
-  margin-top:10px;
-  font-size:13px;
-  color: rgba(18,16,24,.60);
-  line-height:1.6;
-  position:relative;
-  z-index:1;
-}
-
-/* Buttons */
-.controls{
-  display:grid;
-  grid-template-columns: 1fr 1fr;
-  gap:10px;
-  margin-top:12px;
-}
-button.btn{
-  appearance:none;
-  border:1px solid rgba(18,16,24,.10);
-  border-radius: 18px;
-  padding:14px 12px;
-  font-weight:980;
-  cursor:pointer;
-  color: rgba(18,16,24,.92);
-  background: rgba(255,255,255,.86);
-  box-shadow: 0 14px 28px rgba(18,16,24,.10);
-  transition: transform .15s var(--ease), background .2s var(--ease), box-shadow .2s var(--ease);
-}
-button.btn.alt{ background: linear-gradient(90deg, rgba(210,174,114,.22), rgba(200,143,149,.16)); }
-button.btn:hover{ background: rgba(255,255,255,.96); }
-button.btn:active{ transform: translateY(1px); }
-button.btn.small{ padding:11px 12px; border-radius: 16px; font-size:12px; }
-button.btn.on{
-  background: linear-gradient(90deg, rgba(210,174,114,.24), rgba(200,143,149,.18));
-  box-shadow: 0 18px 40px rgba(18,16,24,.12);
-}
-
-/* Reveal */
-.reveal{
-  opacity:0;
-  transform: translate3d(0,14px,0);
-  transition: opacity .55s ease, transform .75s var(--ease);
-}
-.reveal.in{ opacity:1; transform: translate3d(0,0,0); }
-.stagger > *{
-  opacity:0;
-  transform: translate3d(0,10px,0);
-  transition: opacity .55s ease, transform .75s var(--ease);
-}
-.reveal.in .stagger > *{ opacity:1; transform: translate3d(0,0,0); }
-.reveal.in .stagger > *:nth-child(1){ transition-delay:.04s }
-.reveal.in .stagger > *:nth-child(2){ transition-delay:.10s }
-.reveal.in .stagger > *:nth-child(3){ transition-delay:.16s }
-.reveal.in .stagger > *:nth-child(4){ transition-delay:.22s }
-
-/* ===== MARKET CHAPTER ===== */
-.marketTop{
-  display:flex;
-  gap:12px;
-  align-items:flex-start;
-  justify-content:space-between;
-  flex-wrap:wrap;
-  margin-top: 10px;
-}
-.marketActions{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  align-items:center;
-}
-.marketHint{
-  font-size:12px;
-  color: rgba(18,16,24,.58);
-  line-height:1.55;
-  max-width: 52ch;
-}
-
-.marketType{
-  position:relative;
-  overflow:hidden;
-}
-.marketType::after{
-  content:"";
-  position:absolute;
-  top:-40%;
-  left:-35%;
-  width:60%;
-  height:220%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,.24), transparent);
-  transform: rotate(18deg);
-  opacity:.18;
-  animation: sweep2 8.4s var(--ease) infinite;
-  pointer-events:none;
-}
-@keyframes sweep2{
-  0%{ transform: translateX(-40%) rotate(18deg); opacity:.10; }
-  45%{ opacity:.20; }
-  100%{ transform: translateX(230%) rotate(18deg); opacity:.10; }
-}
-.marketType .kicker{
-  display:flex;
-  gap:8px;
-  align-items:center;
-  margin-bottom:10px;
-}
-.kdot{ width:10px;height:10px;border-radius:999px;background:rgba(18,16,24,.20); }
-.kdot.good{ background: rgba(31,157,110,.72); }
-.kdot.mid{ background: rgba(210,174,114,.72); }
-.kdot.bad{ background: rgba(181,74,90,.72); }
-.marketType .title{
-  font-weight:980;
-  color: rgba(18,16,24,.90);
-}
-.marketType p{
-  color: rgba(18,16,24,.62);
-  line-height:1.75;
-}
-
-/* Comparison matrix */
-.matrixWrap{
-  margin-top: 14px;
-  border-radius: 26px;
-  border:1px solid rgba(18,16,24,.10);
-  background: rgba(255,255,255,.72);
-  box-shadow: 0 18px 50px rgba(18,16,24,.08);
-  overflow:hidden;
-}
-.matrixHead{
-  padding:14px 16px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-  border-bottom:1px solid rgba(18,16,24,.10);
-  background: linear-gradient(90deg, rgba(210,174,114,.10), rgba(200,143,149,.08), rgba(255,255,255,.70));
-}
-.matrixHead .left{
-  display:flex;
-  gap:10px;
-  align-items:center;
-}
-.matrixBadge{
-  font-size:12px;
-  font-weight:980;
-  padding:7px 10px;
-  border-radius:999px;
-  border:1px solid rgba(18,16,24,.10);
-  background: rgba(255,255,255,.74);
-  color: rgba(18,16,24,.72);
-}
-.matrixNote{
-  font-size:12px;
-  color: rgba(18,16,24,.58);
-}
-
-.matrix{
-  width:100%;
-  border-collapse:separate;
-  border-spacing:0;
-}
-.matrix th, .matrix td{
-  padding: 12px 12px;
-  vertical-align:middle;
-  border-bottom:1px solid rgba(18,16,24,.08);
-}
-.matrix th{
-  font-size:12px;
-  letter-spacing:.24px;
-  text-transform:uppercase;
-  color: rgba(18,16,24,.70);
-  font-weight:980;
-  background: rgba(255,255,255,.60);
-  position:sticky;
-  top:0;
-  z-index:1;
-}
-.matrix td:first-child{
-  width: 26%;
-  font-weight:950;
-  color: rgba(18,16,24,.82);
-}
-@media(max-width:860px){
-  .matrixWrap{ overflow:auto; -webkit-overflow-scrolling: touch; }
-  .matrix th, .matrix td{ min-width: 160px; }
-  .matrix td:first-child{ min-width: 220px; }
-}
-
-.score{
-  display:inline-flex;
-  gap:8px;
-  align-items:center;
-  padding:8px 10px;
-  border-radius:999px;
-  border:1px solid rgba(18,16,24,.10);
-  background: rgba(255,255,255,.78);
-  font-size:12px;
-  font-weight:950;
-  color: rgba(18,16,24,.72);
-  white-space:nowrap;
-}
-.sIcon{
-  width:10px;height:10px;border-radius:999px;background:rgba(18,16,24,.20);
-}
-.sIcon.g{ background: rgba(31,157,110,.78); }
-.sIcon.m{ background: rgba(210,174,114,.78); }
-.sIcon.r{ background: rgba(181,74,90,.78); }
-
-.matrixRow{
-  opacity:0;
-  transform: translate3d(0,10px,0);
-}
-.matrixLive .matrixRow{
-  opacity:1;
-  transform: translate3d(0,0,0);
-  transition: opacity .55s ease, transform .75s var(--ease);
-}
-.matrixLive .matrixRow:nth-child(1){ transition-delay: .05s; }
-.matrixLive .matrixRow:nth-child(2){ transition-delay: .11s; }
-.matrixLive .matrixRow:nth-child(3){ transition-delay: .17s; }
-.matrixLive .matrixRow:nth-child(4){ transition-delay: .23s; }
-.matrixLive .matrixRow:nth-child(5){ transition-delay: .29s; }
-.matrixLive .matrixRow:nth-child(6){ transition-delay: .35s; }
-.matrixLive .matrixRow:nth-child(7){ transition-delay: .41s; }
-.matrixLive .matrixRow:nth-child(8){ transition-delay: .47s; }
-
-.matrix tr:last-child td{ border-bottom:none; }
-
-.matrix tr.usRow{
-  background: linear-gradient(90deg, rgba(210,174,114,.08), rgba(200,143,149,.06), rgba(255,255,255,.0));
-}
-.usPill{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  margin-left:10px;
-  padding:6px 10px;
-  border-radius:999px;
-  border:1px solid rgba(18,16,24,.10);
-  background: rgba(255,255,255,.76);
-  font-size:11px;
-  font-weight:980;
-  color: rgba(18,16,24,.70);
-}
-.usPill .spark{
-  width:10px;height:10px;border-radius:999px;
-  background: linear-gradient(135deg, rgba(210,174,114,.95), rgba(200,143,149,.85));
-}
-
-/* Highlight mode toggles */
-.matrixWrap[data-mode="fit"] .row-fit,
-.matrixWrap[data-mode="hygiene"] .row-hygiene,
-.matrixWrap[data-mode="disputes"] .row-disputes,
-.matrixWrap[data-mode="weekday"] .row-weekday,
-.matrixWrap[data-mode="proof"] .row-proof,
-.matrixWrap[data-mode="price"] .row-price{
-  background: rgba(210,174,114,.10);
-}
-.matrixWrap[data-mode="none"] .matrix tr{ background: transparent; }
-.matrixWrap[data-mode="none"] .matrix tr.usRow{
-  background: linear-gradient(90deg, rgba(210,174,114,.08), rgba(200,143,149,.06), rgba(255,255,255,.0));
-}
-
-/* Footer */
-footer{
-  padding: 34px 14px calc(34px + env(safe-area-inset-bottom));
-  text-align:center;
-  color: rgba(18,16,24,.60);
-  font-size:13px;
-}
-
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce){
-  html{scroll-behavior:auto}
-  .reveal, .stagger > *{transition:none}
-  .progress > div{transition:none}
-  .sweep,.marketType::after{animation:none}
-}
-</style>
+    /* Sticky ribbon line under nav, purely decorative */
+    .ribbon{
+      position:fixed;
+      left:0; right:0;
+      top:72px;
+      height:1px;
+      z-index:1029;
+      pointer-events:none;
+      background: linear-gradient(90deg, transparent, rgba(210,174,114,.55), rgba(200,143,149,.40), transparent);
+      opacity:.85;
+    }
+  </style>
 </head>
 
 <body>
-<div class="grain"></div>
-<div class="fibers"></div>
-<div class="ribbon" aria-hidden="true"></div>
+  <div class="grain"></div>
+  <div class="fibers"></div>
+  <div class="ribbon" aria-hidden="true"></div>
 
-<header>
-  <div class="nav">
-    <div class="brand">
-      <div class="monogram">BR</div>
-      <div class="brandText">
-        <strong>Bridal Rental Studio</strong>
-        <span>Editorial pitch • modern chic • ops-led moat</span>
-      </div>
-    </div>
+  <!-- NAVBAR -->
+  <div class="navShell">
+    <div class="container-xl px-3">
+      <nav class="navbar navbar-expand-lg p-0">
+        <a class="navbar-brand d-flex align-items-center gap-2 m-0" href="#top" style="text-decoration:none;">
+          <div class="brandWrap">
+            <div class="monogram">BR</div>
+            <div class="brandText">
+              <strong>Bridal Rental Studio</strong>
+              <span>Editorial pitch • modern chic • ops-led moat</span>
+            </div>
+          </div>
+        </a>
 
-    <div class="navRight">
-      <a class="navLink" href="#model">Model</a>
-      <a class="navLink" href="#market">Market</a>
-      <a class="navLink" href="#stress">Stress</a>
-      <a class="navLink" href="#funding">Funding</a>
-      <div class="pill"><span class="dot"></span><span id="readPct">0%</span></div>
+        <div class="ms-auto d-flex align-items-center gap-2">
+          <span class="pill d-none d-sm-inline-flex"><span class="dot"></span><span id="readPct">0%</span></span>
+
+          <!-- Mobile hamburger -->
+          <button class="navbar-toggler border-0 shadow-sm"
+                  style="border-radius:14px;background:rgba(255,255,255,.72);"
+                  type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu"
+                  aria-controls="mobileMenu" aria-label="Open menu">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <!-- Desktop menu -->
+          <div class="collapse navbar-collapse d-none d-lg-flex justify-content-end">
+            <ul class="navbar-nav align-items-center gap-2">
+              <li class="nav-item"><a class="btn btn-sm" href="#model" style="border-radius:999px;border:1px solid rgba(18,16,24,.10);background:rgba(255,255,255,.72);font-weight:900;">Model</a></li>
+              <li class="nav-item"><a class="btn btn-sm" href="#market" style="border-radius:999px;border:1px solid rgba(18,16,24,.10);background:rgba(255,255,255,.72);font-weight:900;">Market</a></li>
+              <li class="nav-item"><a class="btn btn-sm" href="#stress" style="border-radius:999px;border:1px solid rgba(18,16,24,.10);background:rgba(255,255,255,.72);font-weight:900;">Stress</a></li>
+              <li class="nav-item"><a class="btn btn-sm" href="#funding" style="border-radius:999px;border:1px solid rgba(18,16,24,.10);background:rgba(255,255,255,.72);font-weight:900;">Funding</a></li>
+              <li class="nav-item"><span class="pill d-inline-flex"><span class="dot"></span><span id="readPct2">0%</span></span></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <div class="progressBarWrap"><div id="prog"></div></div>
     </div>
   </div>
-  <div class="progress"><div id="prog"></div></div>
-</header>
 
-<main>
+  <!-- Offcanvas Mobile Menu -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel"
+       style="background:rgba(251,247,242,.98);backdrop-filter:blur(14px);">
+    <div class="offcanvas-header">
+      <div class="d-flex align-items-center gap-2">
+        <div class="monogram" style="width:38px;height:38px;border-radius:16px;">BR</div>
+        <div>
+          <div id="mobileBrand" style="font-weight:950;">Bridal Rental Studio</div>
+          <div id="mobileTagline" style="font-size:12px;color:rgba(18,16,24,.62);">Editorial pitch • modern chic</div>
+        </div>
+      </div>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
 
-  <!-- HERO -->
-  <section class="section" id="top">
-    <div class="container">
-      <div class="heroWrap reveal" id="heroWrap">
+    <div class="offcanvas-body">
+      <div class="d-grid gap-2">
+        <a class="btn btn-lg" href="#model" data-bs-dismiss="offcanvas"
+           style="border-radius:18px;border:1px solid rgba(18,16,24,.10);background:rgba(255,255,255,.80);font-weight:950;">Model</a>
+        <a class="btn btn-lg" href="#market" data-bs-dismiss="offcanvas"
+           style="border-radius:18px;border:1px solid rgba(18,16,24,.10);background:rgba(255,255,255,.80);font-weight:950;">Market</a>
+        <a class="btn btn-lg" href="#stress" data-bs-dismiss="offcanvas"
+           style="border-radius:18px;border:1px solid rgba(18,16,24,.10);background:rgba(255,255,255,.80);font-weight:950;">Stress</a>
+        <a class="btn btn-lg" href="#funding" data-bs-dismiss="offcanvas"
+           style="border-radius:18px;border:1px solid rgba(18,16,24,.10);background:rgba(255,255,255,.80);font-weight:950;">Funding</a>
+
+        <div class="mt-3">
+          <div class="pill w-100 justify-content-center"><span class="dot"></span><span id="readPctMobile">0%</span></div>
+        </div>
+      </div>
+
+      <hr class="my-4" style="border-color: rgba(18,16,24,.12);">
+      <div style="font-size:12px;color:rgba(18,16,24,.62);line-height:1.6;">
+        Tip: this menu is Bootstrap Offcanvas — it prevents the header from squeezing on mobile.
+      </div>
+    </div>
+  </div>
+
+  <main id="top">
+    <div class="container-xl px-3 py-4">
+
+      <!-- HERO -->
+      <section class="cardEditorial mb-4">
         <div class="heroGrid">
           <div class="heroLeft">
-            <div class="meta stagger">
-              <div class="badge"><span class="dot"></span> Malaysia • 20–30 outfits</div>
-              <div class="badge">Appointment-first</div>
-              <div class="badge">Consistency > hype</div>
+            <div class="mb-3">
+              <span class="badgeX"><span class="dot"></span> Malaysia • 20–30 outfits</span>
+              <span class="badgeX">Appointment-first</span>
+              <span class="badgeX">Consistency > hype</span>
             </div>
 
             <h1 id="heroTitle">
@@ -793,470 +424,408 @@ footer{
               Bridal, built to last.
             </h1>
 
-            <p style="max-width:52ch">
+            <p class="mt-2" style="max-width:52ch">
               A curated bridal + groom rental studio designed for predictable monthly bookings and controlled costs.
-              We compete on <strong class="em">fit</strong>, <strong class="em">hygiene</strong>, and <strong class="em">process</strong> — not price wars.
+              We compete on <span class="em">fit</span>, <span class="em">hygiene</span>, and <span class="em">process</span> — not price wars.
             </p>
-
-            <div class="list stagger">
-              <div class="chip2 good"><span class="bul"></span> Private fittings</div>
-              <div class="chip2 good"><span class="bul"></span> Clear policies</div>
-              <div class="chip2 good"><span class="bul"></span> Vendor-based back-end</div>
-              <div class="chip2 good"><span class="bul"></span> Partner-led demand</div>
-            </div>
-
-            <div class="subline">
-              This proposal is designed to feel like the brand: warm, elegant, and structured underneath.
-            </div>
           </div>
 
-          <div class="heroRight" aria-label="Hero image">
+          <div class="heroRight">
             <div class="heroMedia">
-              <img id="heroImg" src="hero.jpg" alt="Editorial bridal hero image">
+              <img id="heroImg" src="hero.jpg" alt="Hero image">
             </div>
             <div class="heroMask" id="heroMask"></div>
-            <div class="sweep" aria-hidden="true"></div>
 
             <div class="heroCaption" id="heroCaption">
               <b>Positioning:</b> Ops-led boutique — premium experience, standardized system.
-              <small>Elegant for the bride. Consistent for the business.</small>
+              <div style="font-size:12px;color:rgba(18,16,24,.62);margin-top:4px;line-height:1.45;">
+                Elegant for the bride. Consistent for the business.
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
+      </section>
 
-  <!-- MODEL (kept simple) -->
-  <section class="section" id="model">
-    <div class="container">
-      <div class="chapter">
-        <div class="num">01</div><div class="line"></div><div class="tag">Business model</div>
-      </div>
-
-      <div class="card reveal">
-        <div class="cardInner">
+      <!-- MODEL -->
+      <section id="model" class="mb-4">
+        <div class="p-4" style="border-radius:28px;background:rgba(255,255,255,.72);border:1px solid rgba(18,16,24,.10);box-shadow:var(--shadow2);">
           <h2>We sell packages, not just rentals.</h2>
           <p>Bundles lift average order value and reduce the number of bookings needed to hit profitability.</p>
 
-          <div class="metrics stagger">
-            <div class="metric">
-              <div class="label">Monthly fixed cost (burn)</div>
-              <div class="value">RM 7,500</div>
-              <div class="sub">lean studio strategy</div>
+          <div class="row g-3 mt-3">
+            <div class="col-12 col-md-6 col-lg-3">
+              <div class="p-3" style="border-radius:22px;border:1px solid rgba(18,16,24,.10);background:rgba(255,255,255,.78);">
+                <div style="font-size:12px;font-weight:950;color:rgba(18,16,24,.62)">Monthly fixed cost (burn)</div>
+                <div style="font-size:22px;font-weight:980;margin-top:6px">RM 7,500</div>
+                <div style="font-size:12px;color:rgba(18,16,24,.62);margin-top:6px">lean studio strategy</div>
+              </div>
             </div>
-            <div class="metric">
-              <div class="label">Average rental (blended)</div>
-              <div class="value">RM 850</div>
-              <div class="sub">gown + suit + add-ons</div>
+
+            <div class="col-12 col-md-6 col-lg-3">
+              <div class="p-3" style="border-radius:22px;border:1px solid rgba(18,16,24,.10);background:rgba(255,255,255,.78);">
+                <div style="font-size:12px;font-weight:950;color:rgba(18,16,24,.62)">Average rental (blended)</div>
+                <div style="font-size:22px;font-weight:980;margin-top:6px">RM 850</div>
+                <div style="font-size:12px;color:rgba(18,16,24,.62);margin-top:6px">gown + suit + add-ons</div>
+              </div>
             </div>
-            <div class="metric">
-              <div class="label">Breakeven target</div>
-              <div class="value">~10 / month</div>
-              <div class="sub">~2–3 per week</div>
+
+            <div class="col-12 col-md-6 col-lg-3">
+              <div class="p-3" style="border-radius:22px;border:1px solid rgba(18,16,24,.10);background:rgba(255,255,255,.78);">
+                <div style="font-size:12px;font-weight:950;color:rgba(18,16,24,.62)">Breakeven target</div>
+                <div style="font-size:22px;font-weight:980;margin-top:6px">~10 / month</div>
+                <div style="font-size:12px;color:rgba(18,16,24,.62);margin-top:6px">~2–3 per week</div>
+              </div>
             </div>
-            <div class="metric">
-              <div class="label">Peak season upside</div>
-              <div class="value">15+ / month</div>
-              <div class="sub">profit compounds</div>
+
+            <div class="col-12 col-md-6 col-lg-3">
+              <div class="p-3" style="border-radius:22px;border:1px solid rgba(18,16,24,.10);background:rgba(255,255,255,.78);">
+                <div style="font-size:12px;font-weight:950;color:rgba(18,16,24,.62)">Peak season upside</div>
+                <div style="font-size:22px;font-weight:980;margin-top:6px">15+ / month</div>
+                <div style="font-size:12px;color:rgba(18,16,24,.62);margin-top:6px">profit compounds</div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
+      </section>
 
-  <!-- MARKET (CONTENT LOADED FROM JSON) -->
-  <section class="section" id="market">
-    <div class="container">
-      <div class="chapter">
-        <div class="num">02</div><div class="line"></div><div class="tag">Market</div>
-      </div>
-
-      <div class="card reveal" id="marketCard">
-        <div class="cardInner">
+      <!-- MARKET (still loaded from JSON like before) -->
+      <section id="market" class="mb-4">
+        <div class="p-4" style="border-radius:28px;background:rgba(255,255,255,.72);border:1px solid rgba(18,16,24,.10);box-shadow:var(--shadow2);">
           <h2 id="marketTitle">Competitive landscape & our edge</h2>
-          <p id="marketIntro">
-            (This text will be replaced by content/market.json)
-          </p>
+          <p id="marketIntro">(Loaded from content/market.json)</p>
 
-          <!-- Market type cards (populated from JSON) -->
-          <div class="grid four stagger" style="margin-top:14px" id="marketTypes">
-            <div class="tile marketType">
-              <div class="kicker"><span class="kdot mid"></span><div class="title">Loading…</div></div>
-              <p>Loading…</p>
-              <div class="subline"><b>Note:</b> Loading…</div>
-            </div>
-            <div class="tile marketType">
-              <div class="kicker"><span class="kdot mid"></span><div class="title">Loading…</div></div>
-              <p>Loading…</p>
-              <div class="subline"><b>Note:</b> Loading…</div>
-            </div>
-            <div class="tile marketType">
-              <div class="kicker"><span class="kdot mid"></span><div class="title">Loading…</div></div>
-              <p>Loading…</p>
-              <div class="subline"><b>Note:</b> Loading…</div>
-            </div>
-            <div class="tile marketType">
-              <div class="kicker"><span class="kdot mid"></span><div class="title">Loading…</div></div>
-              <p>Loading…</p>
-              <div class="subline"><b>Note:</b> Loading…</div>
-            </div>
+          <div class="row g-3 mt-3" id="marketTypes">
+            <!-- 4 cards injected -->
           </div>
 
-          <div class="marketTop">
-            <div class="marketHint">
+          <div class="d-flex flex-wrap gap-2 align-items-center justify-content-between mt-3">
+            <div style="font-size:12px;color:rgba(18,16,24,.58);max-width:60ch;line-height:1.55;">
               Tap a focus button to highlight what we’re deliberately better at — without sounding arrogant.
             </div>
 
-            <div class="marketActions">
-              <button class="btn small on" data-mode="none" type="button">All</button>
-              <button class="btn small" data-mode="fit" type="button">Fit</button>
-              <button class="btn small" data-mode="hygiene" type="button">Hygiene</button>
-              <button class="btn small" data-mode="disputes" type="button">Disputes</button>
-              <button class="btn small" data-mode="weekday" type="button">Weekdays</button>
-              <button class="btn small" data-mode="proof" type="button">Reviews</button>
-              <button class="btn small" data-mode="price" type="button">Price</button>
+            <div class="d-flex flex-wrap gap-2">
+              <button class="btn btn-sm btn-light border" data-mode="none" type="button">All</button>
+              <button class="btn btn-sm btn-light border" data-mode="fit" type="button">Fit</button>
+              <button class="btn btn-sm btn-light border" data-mode="hygiene" type="button">Hygiene</button>
+              <button class="btn btn-sm btn-light border" data-mode="disputes" type="button">Disputes</button>
+              <button class="btn btn-sm btn-light border" data-mode="weekday" type="button">Weekdays</button>
+              <button class="btn btn-sm btn-light border" data-mode="proof" type="button">Reviews</button>
+              <button class="btn btn-sm btn-light border" data-mode="price" type="button">Price</button>
             </div>
           </div>
 
-          <div class="matrixWrap" id="matrixWrap" data-animate="matrix" data-mode="none">
-            <div class="matrixHead">
-              <div class="left">
-                <div class="matrixBadge">Comparison matrix</div>
-                <div class="matrixNote">We compete on reliability, not chaos pricing.</div>
+          <div class="matrixWrap mt-3" id="matrixWrap" data-mode="none">
+            <div class="p-3 d-flex flex-wrap gap-2 align-items-center justify-content-between"
+                 style="border-bottom:1px solid rgba(18,16,24,.10);
+                        background:linear-gradient(90deg, rgba(210,174,114,.10), rgba(200,143,149,.08), rgba(255,255,255,.70));">
+              <div class="d-flex gap-2 align-items-center">
+                <span class="badge rounded-pill text-dark border" style="background:rgba(255,255,255,.74);font-weight:950;">Comparison matrix</span>
+                <span style="font-size:12px;color:rgba(18,16,24,.58)">We compete on reliability, not chaos pricing.</span>
               </div>
-              <div class="matrixNote">Legend: ● strong • ● medium • ● weak</div>
+              <span style="font-size:12px;color:rgba(18,16,24,.58)">Legend: ● strong • ● medium • ● weak</span>
             </div>
 
-            <table class="matrix" aria-label="Competitive comparison matrix">
-              <thead>
-                <tr>
-                  <th>Battlefield</th>
-                  <th>Budget Rack</th>
-                  <th>Typical Boutique</th>
-                  <th>Studio Bundle</th>
-                  <th>Us (Ops-led Boutique)</th>
-                </tr>
-              </thead>
-
-              <tbody id="matrixBody">
-                <!-- Rebuilt from JSON -->
-              </tbody>
-            </table>
+            <div class="table-responsive">
+              <table class="table align-middle mb-0">
+                <thead>
+                  <tr>
+                    <th>Battlefield</th>
+                    <th>Budget Rack</th>
+                    <th>Typical Boutique</th>
+                    <th>Studio Bundle</th>
+                    <th>Us (Ops-led Boutique)</th>
+                  </tr>
+                </thead>
+                <tbody id="matrixBody"></tbody>
+              </table>
+            </div>
           </div>
 
-          <div class="grid two" style="margin-top:14px" id="marketBottomCards">
-            <div class="tile" id="standoutLeft">
-              <h3>Loading…</h3>
+          <div class="row g-3 mt-3">
+            <div class="col-12 col-lg-6">
+              <div class="p-3" id="standoutLeft"
+                   style="border-radius:22px;border:1px solid rgba(18,16,24,.10);background:rgba(255,255,255,.78);"></div>
             </div>
-            <div class="tile" id="chinaRight">
-              <h3>Loading…</h3>
+            <div class="col-12 col-lg-6">
+              <div class="p-3" id="chinaRight"
+                   style="border-radius:22px;border:1px solid rgba(18,16,24,.10);background:rgba(255,255,255,.78);"></div>
             </div>
           </div>
 
         </div>
-      </div>
-    </div>
-  </section>
+      </section>
 
-  <!-- STRESS TEST (NUMBERS LOADED FROM JSON) -->
-  <section class="section" id="stress">
-    <div class="container">
-      <div class="chapter">
-        <div class="num">03</div><div class="line"></div><div class="tag">Stress test</div>
-      </div>
-
-      <div class="card reveal">
-        <div class="cardInner">
+      <!-- STRESS -->
+      <section id="stress" class="mb-4">
+        <div class="p-4" style="border-radius:28px;background:rgba(255,255,255,.72);border:1px solid rgba(18,16,24,.10);box-shadow:var(--shadow2);">
           <h2>Adjust bookings and see profitability.</h2>
           <p id="stressAssumptionText">
-            Assumptions: Avg rental <strong class="em">RM 850</strong>, monthly burn <strong class="em">RM 7,500</strong>, capital buffer <strong class="em">RM 190,000</strong>.
+            Assumptions: Avg rental <span class="em">RM 850</span>, monthly burn <span class="em">RM 7,500</span>, capital buffer <span class="em">RM 190,000</span>.
           </p>
 
-          <div class="metrics stagger">
-            <div class="metric">
-              <div class="label">Bookings / month</div>
-              <div class="value"><span id="bookings">10</span></div>
-              <div class="sub">tap buttons</div>
+          <div class="row g-3 mt-3">
+            <div class="col-6 col-lg-3">
+              <div class="p-3" style="border-radius:22px;border:1px solid rgba(18,16,24,.10);background:rgba(255,255,255,.78);">
+                <div style="font-size:12px;font-weight:950;color:rgba(18,16,24,.62)">Bookings / month</div>
+                <div style="font-size:22px;font-weight:980;margin-top:6px"><span id="bookings">10</span></div>
+                <div style="font-size:12px;color:rgba(18,16,24,.62);margin-top:6px">tap buttons</div>
+              </div>
             </div>
-            <div class="metric">
-              <div class="label">Monthly revenue</div>
-              <div class="value">RM <span id="revenue">8,500</span></div>
-              <div class="sub">avg × bookings</div>
+            <div class="col-6 col-lg-3">
+              <div class="p-3" style="border-radius:22px;border:1px solid rgba(18,16,24,.10);background:rgba(255,255,255,.78);">
+                <div style="font-size:12px;font-weight:950;color:rgba(18,16,24,.62)">Monthly revenue</div>
+                <div style="font-size:22px;font-weight:980;margin-top:6px">RM <span id="revenue">8,500</span></div>
+                <div style="font-size:12px;color:rgba(18,16,24,.62);margin-top:6px">avg × bookings</div>
+              </div>
             </div>
-            <div class="metric">
-              <div class="label">Monthly net</div>
-              <div class="value" id="net">RM +1,000</div>
-              <div class="sub">revenue − burn</div>
+            <div class="col-6 col-lg-3">
+              <div class="p-3" style="border-radius:22px;border:1px solid rgba(18,16,24,.10);background:rgba(255,255,255,.78);">
+                <div style="font-size:12px;font-weight:950;color:rgba(18,16,24,.62)">Monthly net</div>
+                <div style="font-size:22px;font-weight:980;margin-top:6px" id="net">RM +1,000</div>
+                <div style="font-size:12px;color:rgba(18,16,24,.62);margin-top:6px">revenue − burn</div>
+              </div>
             </div>
-            <div class="metric">
-              <div class="label">Runway (months)</div>
-              <div class="value"><span id="runway">999</span></div>
-              <div class="sub">buffer ÷ loss</div>
+            <div class="col-6 col-lg-3">
+              <div class="p-3" style="border-radius:22px;border:1px solid rgba(18,16,24,.10);background:rgba(255,255,255,.78);">
+                <div style="font-size:12px;font-weight:950;color:rgba(18,16,24,.62)">Runway (months)</div>
+                <div style="font-size:22px;font-weight:980;margin-top:6px"><span id="runway">999</span></div>
+                <div style="font-size:12px;color:rgba(18,16,24,.62);margin-top:6px">buffer ÷ loss</div>
+              </div>
             </div>
           </div>
 
-          <div class="controls">
-            <button class="btn" id="minus">−1 booking</button>
-            <button class="btn alt" id="plus">+1 booking</button>
+          <div class="row g-2 mt-3">
+            <div class="col-6"><button class="btn w-100 btn-light border" id="minus" style="border-radius:18px;font-weight:950;">−1 booking</button></div>
+            <div class="col-6"><button class="btn w-100 btn-light border" id="plus" style="border-radius:18px;font-weight:950;background:linear-gradient(90deg, rgba(210,174,114,.18), rgba(200,143,149,.14));">+1 booking</button></div>
           </div>
 
-          <p class="subline">
+          <div class="mt-3" style="font-size:12px;color:rgba(18,16,24,.58);line-height:1.6;">
             “Runway months” = how long you survive losses while rebuilding utilization. If net is positive, runway shows 999.
-          </p>
+          </div>
         </div>
-      </div>
-    </div>
-  </section>
+      </section>
 
-  <!-- FUNDING (CONTACT LOADED FROM site.json) -->
-  <section class="section" id="funding">
-    <div class="container">
-      <div class="chapter">
-        <div class="num">04</div><div class="line"></div><div class="tag">Funding</div>
-      </div>
-
-      <div class="card reveal">
-        <div class="cardInner">
+      <!-- FUNDING -->
+      <section id="funding" class="mb-5">
+        <div class="p-4" style="border-radius:28px;background:rgba(255,255,255,.72);border:1px solid rgba(18,16,24,.10);box-shadow:var(--shadow2);">
           <h2>Seeking RM 200,000 for stability and curated inventory.</h2>
           <p>Funds allocated toward inventory, operational buffer, and systems — not expensive rent or early headcount.</p>
-
-          <div class="subline" id="contactLine">
+          <div class="mt-3" id="contactLine" style="font-size:12px;color:rgba(18,16,24,.56);line-height:1.6;">
             Contact: <b>[Your Name]</b> • WhatsApp: <b>[+60…]</b> • Email: <b>[…]</b> • IG: <b>@[handle]</b>
           </div>
         </div>
+      </section>
+
+      <div class="text-center pb-5" style="font-size:13px;color:rgba(18,16,24,.60);">
+        © Bridal Rental Studio Proposal • Bootstrap navbar fixed for mobile
       </div>
     </div>
-  </section>
+  </main>
 
-  <footer>
-    © Bridal Rental Studio Proposal • Designed in modern editorial style
-  </footer>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+          crossorigin="anonymous"></script>
 
-</main>
+  <script>
+    // Progress bar + read %
+    const prog = document.getElementById('prog');
+    const readPct = document.getElementById('readPct');
+    const readPct2 = document.getElementById('readPct2');
+    const readPctMobile = document.getElementById('readPctMobile');
 
-<script>
-/* Progress bar + read % */
-const prog = document.getElementById('prog');
-const readPct = document.getElementById('readPct');
-function updateProgress(){
-  const doc = document.documentElement;
-  const max = (doc.scrollHeight - doc.clientHeight) || 1;
-  const pct = Math.max(0, Math.min(100, Math.round((doc.scrollTop / max) * 100)));
-  prog.style.width = pct + '%';
-  readPct.textContent = pct + '%';
-}
-window.addEventListener('scroll', updateProgress, {passive:true});
-updateProgress();
-
-/* Reveal */
-const reveals = Array.from(document.querySelectorAll('.reveal'));
-const io = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in'); });
-},{threshold:0.12});
-reveals.forEach(el=>io.observe(el));
-
-/* Simple parallax */
-const heroImg = document.getElementById('heroImg');
-const heroCaption = document.getElementById('heroCaption');
-const heroMask = document.getElementById('heroMask');
-const heroTitle = document.getElementById('heroTitle');
-const heroWrap = document.getElementById('heroWrap');
-let ticking=false;
-function parallax(){
-  ticking=false;
-  const rect = heroWrap.getBoundingClientRect();
-  const center = rect.top + rect.height * 0.5;
-  const vh = window.innerHeight || 800;
-  const strength = Math.max(-1, Math.min(1, (center - vh*0.5) / (vh*0.7)));
-  const imgY = strength * 22;
-  const capY = strength * 10;
-  const maskY = strength * 8;
-  const titleY = strength * -8;
-  heroImg.style.transform = `translate3d(0, ${imgY.toFixed(2)}px, 0) scale(1.16)`;
-  heroCaption.style.transform = `translate3d(0, ${capY.toFixed(2)}px, 0)`;
-  heroMask.style.transform = `translate3d(0, ${maskY.toFixed(2)}px, 0)`;
-  heroTitle.style.transform = `translate3d(0, ${titleY.toFixed(2)}px, 0)`;
-}
-function onScroll(){
-  if(!ticking){
-    ticking=true;
-    requestAnimationFrame(parallax);
-  }
-}
-window.addEventListener('scroll', onScroll, {passive:true});
-parallax();
-
-/* ===== CMS JSON LOADER (THIS IS THE PART YOU WANTED) ===== */
-async function loadJSON(path){
-  const res = await fetch(path, { cache: "no-store" });
-  if(!res.ok) throw new Error(`Failed to load ${path}: ${res.status}`);
-  return res.json();
-}
-
-function scoreChip(val){
-  const map = { strong:["g","strong"], medium:["m","medium"], weak:["r","weak"] };
-  const [cls, label] = map[val] || map.medium;
-  return `<span class="score"><span class="sIcon ${cls}"></span> ${label}</span>`;
-}
-
-function setBullets(tileId, obj){
-  const tile = document.getElementById(tileId);
-  if(!tile || !obj) return;
-  tile.innerHTML = ""; // clear
-  const h3 = document.createElement("h3");
-  h3.textContent = obj.title || "";
-  tile.appendChild(h3);
-  (obj.bullets || []).forEach((b, idx)=>{
-    const p = document.createElement("p");
-    p.style.marginTop = idx ? "10px" : "0";
-    p.innerHTML = `<strong class="em">${b.split(":")[0]}:</strong> ${b.includes(":") ? b.split(":").slice(1).join(":").trim() : ""}`;
-    tile.appendChild(p);
-  });
-}
-
-function setContactLine(site){
-  const el = document.getElementById("contactLine");
-  if(!el) return;
-  el.innerHTML = `Contact: <b>${site.contactName || "[Your Name]"}</b> • WhatsApp: <b>${site.contactWhatsapp || "[+60…]"}</b> • Email: <b>${site.contactEmail || "[…]"}</b> • IG: <b>${site.contactIg || "@[handle]"}</b>`;
-}
-
-function hydrateMarket(market){
-  document.getElementById("marketTitle").textContent = market.title || "Competitive landscape & our edge";
-  document.getElementById("marketIntro").textContent = market.intro || "";
-
-  // 4 market type cards
-  const tiles = document.querySelectorAll("#marketTypes .marketType");
-  (market.types || []).slice(0,4).forEach((t, i)=>{
-    const tile = tiles[i];
-    if(!tile) return;
-    const title = tile.querySelector(".title");
-    const summary = tile.querySelector("p");
-    const risk = tile.querySelector(".subline");
-    const dot = tile.querySelector(".kdot");
-    if(title) title.textContent = t.title || "";
-    if(summary) summary.textContent = t.summary || "";
-    if(risk){
-      const parts = (t.risk || "").split(":");
-      const k = parts[0] || "Note";
-      const v = parts.slice(1).join(":").trim() || "";
-      risk.innerHTML = `<b>${k}:</b> ${v || t.risk || ""}`;
+    function updateProgress(){
+      const doc = document.documentElement;
+      const max = (doc.scrollHeight - doc.clientHeight) || 1;
+      const pct = Math.max(0, Math.min(100, Math.round((doc.scrollTop / max) * 100)));
+      prog.style.width = pct + '%';
+      if(readPct) readPct.textContent = pct + '%';
+      if(readPct2) readPct2.textContent = pct + '%';
+      if(readPctMobile) readPctMobile.textContent = pct + '%';
     }
-    if(dot){
-      dot.classList.remove("good","mid","bad");
-      dot.classList.add(t.tone || "mid");
+    window.addEventListener('scroll', updateProgress, {passive:true});
+    updateProgress();
+
+    // Parallax (lightweight)
+    const heroImg = document.getElementById('heroImg');
+    const heroCaption = document.getElementById('heroCaption');
+    const heroMask = document.getElementById('heroMask');
+
+    let ticking=false;
+    function parallax(){
+      ticking=false;
+      const rect = document.getElementById('top').getBoundingClientRect();
+      const center = rect.top + rect.height * 0.5;
+      const vh = window.innerHeight || 800;
+      const strength = Math.max(-1, Math.min(1, (center - vh*0.5) / (vh*0.7)));
+      const imgY = strength * 20;
+      const capY = strength * 10;
+      const maskY = strength * 8;
+      heroImg.style.transform = `translate3d(0, ${imgY.toFixed(2)}px, 0) scale(1.16)`;
+      heroCaption.style.transform = `translate3d(0, ${capY.toFixed(2)}px, 0)`;
+      heroMask.style.transform = `translate3d(0, ${maskY.toFixed(2)}px, 0)`;
     }
-  });
+    function onScroll(){
+      if(!ticking){
+        ticking=true;
+        requestAnimationFrame(parallax);
+      }
+    }
+    window.addEventListener('scroll', onScroll, {passive:true});
+    parallax();
 
-  // Matrix rows
-  const tbody = document.getElementById("matrixBody");
-  tbody.innerHTML = (market.matrixRows || []).map((r)=>{
-    const rowClass = `matrixRow row-${r.key || ""} ${r.highlight ? "usRow row-proof" : ""}`;
-    const extra = r.highlight ? ` <span class="usPill"><span class="spark"></span> review flywheel</span>` : "";
-    return `
-      <tr class="${rowClass}">
-        <td>${r.label || ""}${extra}</td>
-        <td>${scoreChip(r.budget)}</td>
-        <td>${scoreChip(r.boutique)}</td>
-        <td>${scoreChip(r.studio)}</td>
-        <td>${scoreChip(r.us)}</td>
-      </tr>
-    `;
-  }).join("");
+    // CMS JSON loader
+    async function loadJSON(path){
+      const res = await fetch(path, { cache: "no-store" });
+      if(!res.ok) throw new Error(`Failed to load ${path}: ${res.status}`);
+      return res.json();
+    }
+    function scoreChip(val){
+      const map = { strong:["g","strong"], medium:["m","medium"], weak:["r","weak"] };
+      const [cls, label] = map[val] || map.medium;
+      return `<span class="score"><span class="sIcon ${cls}"></span> ${label}</span>`;
+    }
+    function setBullets(tileId, obj){
+      const tile = document.getElementById(tileId);
+      if(!tile || !obj) return;
+      tile.innerHTML = "";
+      const h3 = document.createElement("div");
+      h3.style.fontWeight = "950";
+      h3.style.letterSpacing = ".2px";
+      h3.style.marginBottom = "8px";
+      h3.textContent = obj.title || "";
+      tile.appendChild(h3);
 
-  // bottom cards
-  setBullets("standoutLeft", market.standoutLeft);
-  setBullets("chinaRight", market.chinaRight);
-}
+      (obj.bullets || []).forEach((b, idx)=>{
+        const p = document.createElement("div");
+        p.style.marginTop = idx ? "10px" : "0";
+        p.style.color = "rgba(18,16,24,.62)";
+        p.style.lineHeight = "1.7";
+        const parts = b.split(":");
+        const k = parts[0] || "";
+        const v = parts.slice(1).join(":").trim() || "";
+        p.innerHTML = `<span class="em">${k}:</span> ${v}`;
+        tile.appendChild(p);
+      });
+    }
+    function setContactLine(site){
+      const el = document.getElementById("contactLine");
+      if(!el) return;
+      el.innerHTML = `Contact: <b>${site.contactName || "[Your Name]"}</b> • WhatsApp: <b>${site.contactWhatsapp || "[+60…]"}</b> • Email: <b>${site.contactEmail || "[…]"}</b> • IG: <b>${site.contactIg || "@[handle]"}</b>`;
+    }
+    function hydrateMarket(market){
+      document.getElementById("marketTitle").textContent = market.title || "Competitive landscape & our edge";
+      document.getElementById("marketIntro").textContent = market.intro || "";
 
-let AVG = 850, BURN = 7500, CAPITAL = 190000;
-let bookings = 10;
+      // Types
+      const container = document.getElementById("marketTypes");
+      container.innerHTML = "";
+      (market.types || []).slice(0,4).forEach((t)=>{
+        const col = document.createElement("div");
+        col.className = "col-12 col-md-6 col-lg-3";
+        col.innerHTML = `
+          <div class="p-3 h-100" style="border-radius:22px;border:1px solid rgba(18,16,24,.10);background:rgba(255,255,255,.78);">
+            <div class="d-flex align-items-center gap-2 mb-2">
+              <span class="kdot ${t.tone || "mid"}"></span>
+              <div style="font-weight:950;color:rgba(18,16,24,.90)">${t.title || ""}</div>
+            </div>
+            <div style="color:rgba(18,16,24,.62);line-height:1.75;">${t.summary || ""}</div>
+            <div class="mt-2" style="font-size:12px;color:rgba(18,16,24,.56);line-height:1.6;">
+              <b>${(t.risk||"Note").split(":")[0]}:</b> ${(t.risk||"").split(":").slice(1).join(":").trim() || ""}
+            </div>
+          </div>
+        `;
+        container.appendChild(col);
+      });
 
-const fmt = new Intl.NumberFormat('en-MY');
-const elBookings = document.getElementById('bookings');
-const elRevenue  = document.getElementById('revenue');
-const elNet      = document.getElementById('net');
-const elRunway   = document.getElementById('runway');
+      // Matrix
+      const tbody = document.getElementById("matrixBody");
+      tbody.innerHTML = (market.matrixRows || []).map((r)=>{
+        return `
+          <tr class="row-${r.key || ""}">
+            <td style="font-weight:950;color:rgba(18,16,24,.82)">${r.label || ""}</td>
+            <td>${scoreChip(r.budget)}</td>
+            <td>${scoreChip(r.boutique)}</td>
+            <td>${scoreChip(r.studio)}</td>
+            <td>${scoreChip(r.us)}</td>
+          </tr>
+        `;
+      }).join("");
 
-function clamp(n,a,b){ return Math.max(a, Math.min(b,n)); }
+      setBullets("standoutLeft", market.standoutLeft);
+      setBullets("chinaRight", market.chinaRight);
+    }
 
-function renderStress(){
-  const revenue = AVG * bookings;
-  const net = revenue - BURN;
+    // Stress
+    let AVG = 850, BURN = 7500, CAPITAL = 190000;
+    let bookings = 10;
+    const fmt = new Intl.NumberFormat('en-MY');
+    const elBookings = document.getElementById('bookings');
+    const elRevenue  = document.getElementById('revenue');
+    const elNet      = document.getElementById('net');
+    const elRunway   = document.getElementById('runway');
 
-  elBookings.textContent = bookings;
-  elRevenue.textContent = fmt.format(revenue);
+    function clamp(n,a,b){ return Math.max(a, Math.min(b,n)); }
+    function renderStress(){
+      const revenue = AVG * bookings;
+      const net = revenue - BURN;
 
-  const sign = net >= 0 ? '+' : '−';
-  elNet.textContent = `RM ${sign}${fmt.format(Math.abs(net))}`;
-  elNet.style.color = net >= 0 ? 'rgba(31,157,110,.95)' : 'rgba(181,74,90,.95)';
+      elBookings.textContent = bookings;
+      elRevenue.textContent = fmt.format(revenue);
 
-  const runway = net < 0 ? Math.floor(CAPITAL / Math.abs(net)) : 999;
-  elRunway.textContent = runway;
+      const sign = net >= 0 ? '+' : '−';
+      elNet.textContent = `RM ${sign}${fmt.format(Math.abs(net))}`;
+      elNet.style.color = net >= 0 ? 'rgba(31,157,110,.95)' : 'rgba(181,74,90,.95)';
 
-  const stressText = document.getElementById("stressAssumptionText");
-  stressText.innerHTML =
-    `Assumptions: Avg rental <strong class="em">RM ${fmt.format(AVG)}</strong>, monthly burn <strong class="em">RM ${fmt.format(BURN)}</strong>, capital buffer <strong class="em">RM ${fmt.format(CAPITAL)}</strong>.`;
-}
+      const runway = net < 0 ? Math.floor(CAPITAL / Math.abs(net)) : 999;
+      elRunway.textContent = runway;
 
-document.getElementById('plus').addEventListener('click', ()=>{ bookings = clamp(bookings+1,0,40); renderStress(); });
-document.getElementById('minus').addEventListener('click', ()=>{ bookings = clamp(bookings-1,0,40); renderStress(); });
+      document.getElementById("stressAssumptionText").innerHTML =
+        `Assumptions: Avg rental <span class="em">RM ${fmt.format(AVG)}</span>, monthly burn <span class="em">RM ${fmt.format(BURN)}</span>, capital buffer <span class="em">RM ${fmt.format(CAPITAL)}</span>.`;
+    }
+    document.getElementById('plus').addEventListener('click', ()=>{ bookings = clamp(bookings+1,0,40); renderStress(); });
+    document.getElementById('minus').addEventListener('click', ()=>{ bookings = clamp(bookings-1,0,40); renderStress(); });
 
-async function hydrateCMS(){
-  const [site, market, stress] = await Promise.all([
-    loadJSON("./content/site.json"),
-    loadJSON("./content/market.json"),
-    loadJSON("./content/stress.json")
-  ]);
-
-  // header brand
-  const brandStrong = document.querySelector(".brandText strong");
-  const brandSpan = document.querySelector(".brandText span");
-  if(brandStrong) brandStrong.textContent = site.brandName || "Bridal Rental Studio";
-  if(brandSpan) brandSpan.textContent = site.tagline || brandSpan.textContent;
-
-  // funding contact
-  setContactLine(site);
-
-  // market
-  hydrateMarket(market);
-
-  // stress values
-  AVG = Number(stress.avgRental ?? AVG);
-  BURN = Number(stress.burn ?? BURN);
-  CAPITAL = Number(stress.capital ?? CAPITAL);
-  bookings = Number(stress.defaultBookings ?? bookings);
-
-  renderStress();
-
-  // Start matrix row reveal when market enters view
-  const matrixBody = document.getElementById("matrixBody");
-  const marketCard = document.getElementById("marketCard");
-  const matrixIO = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting) matrixBody.classList.add("matrixLive");
+    // Matrix highlight
+    const matrixWrap = document.getElementById('matrixWrap');
+    document.querySelectorAll('[data-mode]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const mode = btn.getAttribute('data-mode');
+        matrixWrap.setAttribute('data-mode', mode);
+      });
     });
-  }, { threshold: 0.18 });
-  matrixIO.observe(marketCard);
-}
 
-// Market highlight toggles
-const matrixWrap = document.getElementById('matrixWrap');
-const modeButtons = document.querySelectorAll('[data-mode]');
-modeButtons.forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    const mode = btn.getAttribute('data-mode');
-    matrixWrap.setAttribute('data-mode', mode);
-    modeButtons.forEach(b=>b.classList.remove('on'));
-    btn.classList.add('on');
-  });
-});
+    async function hydrateCMS(){
+      const [site, market, stress] = await Promise.all([
+        loadJSON("./content/site.json"),
+        loadJSON("./content/market.json"),
+        loadJSON("./content/stress.json")
+      ]);
 
-// Boot
-renderStress(); // show something immediately
-hydrateCMS().catch(err => console.error("CMS hydrate failed:", err));
-</script>
+      // Header branding
+      const brandStrong = document.querySelector(".brandText strong");
+      const brandSpan = document.querySelector(".brandText span");
+      if(brandStrong) brandStrong.textContent = site.brandName || "Bridal Rental Studio";
+      if(brandSpan) brandSpan.textContent = site.tagline || brandSpan.textContent;
 
+      // Offcanvas header branding
+      const mb = document.getElementById("mobileBrand");
+      const mt = document.getElementById("mobileTagline");
+      if(mb) mb.textContent = site.brandName || "Bridal Rental Studio";
+      if(mt) mt.textContent = site.tagline || "Editorial pitch";
+
+      setContactLine(site);
+      hydrateMarket(market);
+
+      AVG = Number(stress.avgRental ?? AVG);
+      BURN = Number(stress.burn ?? BURN);
+      CAPITAL = Number(stress.capital ?? CAPITAL);
+      bookings = Number(stress.defaultBookings ?? bookings);
+      renderStress();
+    }
+
+    renderStress();
+    hydrateCMS().catch(err=>console.error("CMS hydrate failed:", err));
+  </script>
 </body>
 </html>
