@@ -11,7 +11,6 @@
 
 <style>
 :root{
-  /* Art direction: bridal editorial, modern chic */
   --ivory:#fbf7f2;
   --paper:#f4ede5;
   --ink:#121018;
@@ -19,7 +18,6 @@
 
   --champ:#d2ae72;
   --rose:#c88f95;
-  --black:rgba(0,0,0,.85);
 
   --line:rgba(18,16,24,.11);
   --glass:rgba(255,255,255,.78);
@@ -37,7 +35,6 @@
   --ease:cubic-bezier(.2,.9,.2,1);
 }
 
-/* Base */
 *{box-sizing:border-box}
 html,body{height:100%}
 html{scroll-behavior:smooth}
@@ -52,7 +49,7 @@ body{
   overflow-x:hidden;
 }
 
-/* Film grain + paper fibers */
+/* Grain + fibers */
 .grain, .fibers{
   position:fixed; inset:0;
   pointer-events:none;
@@ -74,7 +71,7 @@ body{
   mix-blend-mode:multiply;
 }
 
-/* Ribbon line motif (signature) */
+/* Ribbon motif */
 .ribbon{
   position:fixed;
   left:0; right:0;
@@ -86,7 +83,7 @@ body{
   opacity:.85;
 }
 
-/* Header: more editorial, less app */
+/* Header */
 header{
   position:fixed;
   top:0; left:0; right:0;
@@ -96,7 +93,6 @@ header{
   backdrop-filter: blur(14px);
   border-bottom:1px solid var(--line);
 }
-
 .nav{
   max-width:1120px;
   margin:0 auto;
@@ -105,14 +101,12 @@ header{
   justify-content:space-between;
   gap:12px;
 }
-
 .brand{
   display:flex;
   align-items:center;
   gap:12px;
   min-width:0;
 }
-
 .monogram{
   width:42px; height:42px;
   border-radius:18px;
@@ -128,7 +122,6 @@ header{
   letter-spacing:.5px;
   color: rgba(18,16,24,.86);
 }
-
 .brandText strong{
   display:block;
   font-weight:950;
@@ -145,13 +138,11 @@ header{
   text-overflow:ellipsis;
   max-width: 56vw;
 }
-
 .navRight{
   display:flex;
   gap:8px;
   align-items:center;
 }
-
 a.navLink{
   text-decoration:none;
   color: rgba(18,16,24,.82);
@@ -179,7 +170,6 @@ a.navLink:active{ transform: translateY(1px); }
   font-weight:950;
   font-size:12px;
 }
-
 .dot{
   width:10px; height:10px;
   border-radius:999px;
@@ -204,22 +194,11 @@ a.navLink:active{ transform: translateY(1px); }
 }
 
 /* Layout */
-main{
-  padding-top: 96px;
-  position:relative;
-  z-index:2;
-}
+main{ padding-top: 96px; position:relative; z-index:2; }
+.section{ padding: 46px 14px; }
+.container{ max-width:1120px; margin:0 auto; }
 
-.section{
-  padding: 46px 14px;
-}
-
-.container{
-  max-width:1120px;
-  margin:0 auto;
-}
-
-/* Chapter label (editorial) */
+/* Chapter */
 .chapter{
   display:flex;
   align-items:center;
@@ -249,7 +228,7 @@ main{
   background: rgba(255,255,255,.62);
 }
 
-/* Cards: custom border gradient (non-generic) */
+/* Cards */
 .card{
   border-radius: var(--radius);
   background: rgba(255,255,255,.74);
@@ -297,7 +276,6 @@ p{
   color: var(--muted);
 }
 strong.em{ color: rgba(18,16,24,.92); font-weight:950; }
-
 .subline{
   margin-top:14px;
   font-size:12px;
@@ -305,7 +283,7 @@ strong.em{ color: rgba(18,16,24,.92); font-weight:950; }
   line-height:1.6;
 }
 
-/* Hero: full bleed + masked image + parallax */
+/* Hero */
 .heroWrap{
   border-radius: 34px;
   overflow:hidden;
@@ -322,7 +300,6 @@ strong.em{ color: rgba(18,16,24,.92); font-weight:950; }
 @media(min-width:980px){
   .heroGrid{ grid-template-columns: 1.05fr .95fr; }
 }
-
 .heroLeft{
   padding: 28px 22px 26px;
   display:flex;
@@ -349,18 +326,8 @@ strong.em{ color: rgba(18,16,24,.92); font-weight:950; }
   font-weight:950;
   color: rgba(18,16,24,.70);
 }
-
-.heroRight{
-  position:relative;
-  min-height: 52vh;
-  background: #ddd;
-}
-
-/* Masked editorial image panel */
-.heroMedia{
-  position:absolute; inset:0;
-  overflow:hidden;
-}
+.heroRight{ position:relative; min-height: 52vh; background: #ddd; }
+.heroMedia{ position:absolute; inset:0; overflow:hidden; }
 .heroMedia img{
   width:100%; height:100%;
   object-fit:cover;
@@ -368,17 +335,14 @@ strong.em{ color: rgba(18,16,24,.92); font-weight:950; }
   will-change: transform, filter;
   filter: contrast(1.02) saturate(1.04);
 }
-
-/* Unique shape mask effect */
 .heroMask{
   position:absolute; inset:0;
   pointer-events:none;
   background:
     radial-gradient(850px 620px at 35% 15%, rgba(255,255,255,.18), transparent 58%),
     linear-gradient(180deg, rgba(251,247,242,.05), rgba(18,16,24,.62));
+  will-change: transform;
 }
-
-/* “Light sweep” highlight (premium) */
 .sweep{
   position:absolute;
   top:-40%;
@@ -396,8 +360,6 @@ strong.em{ color: rgba(18,16,24,.92); font-weight:950; }
   40%{ opacity:.38; }
   100%{ transform: translateX(220%) rotate(18deg); opacity:.18; }
 }
-
-/* Hero caption chip */
 .heroCaption{
   position:absolute;
   left:16px; right:16px; bottom:16px;
@@ -418,12 +380,7 @@ strong.em{ color: rgba(18,16,24,.92); font-weight:950; }
 }
 
 /* Chips */
-.list{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  margin-top:14px;
-}
+.list{ display:flex; flex-wrap:wrap; gap:10px; margin-top:14px; }
 .chip2{
   display:inline-flex;
   align-items:center;
@@ -440,12 +397,8 @@ strong.em{ color: rgba(18,16,24,.92); font-weight:950; }
 .good .bul{ background:rgba(31,157,110,.75) }
 .bad  .bul{ background:rgba(181,74,90,.75) }
 
-/* Grids */
-.grid{
-  display:grid;
-  gap:14px;
-  margin-top:16px;
-}
+/* Grid + tiles */
+.grid{ display:grid; gap:14px; margin-top:16px; }
 @media(min-width:980px){
   .grid.two{ grid-template-columns: 1fr 1fr; }
   .grid.three{ grid-template-columns: 1fr 1fr 1fr; }
@@ -467,11 +420,7 @@ strong.em{ color: rgba(18,16,24,.92); font-weight:950; }
 }
 
 /* Metrics */
-.metrics{
-  display:grid;
-  gap:12px;
-  margin-top:14px;
-}
+.metrics{ display:grid; gap:12px; margin-top:14px; }
 @media(min-width:980px){
   .metrics{ grid-template-columns: 1fr 1fr 1fr 1fr; }
 }
@@ -485,7 +434,7 @@ strong.em{ color: rgba(18,16,24,.92); font-weight:950; }
 .metric .value{ margin-top:6px; font-size:22px; font-weight:980; letter-spacing:-0.2px; color:rgba(18,16,24,.92); }
 .metric .sub{ margin-top:6px; font-size:12px; color:rgba(18,16,24,.62); }
 
-/* Operating philosophy quote block */
+/* Quote */
 .quote{
   border-radius: 28px;
   border:1px solid rgba(18,16,24,.10);
@@ -525,7 +474,7 @@ strong.em{ color: rgba(18,16,24,.92); font-weight:950; }
   z-index:1;
 }
 
-/* Stress test controls */
+/* Buttons */
 .controls{
   display:grid;
   grid-template-columns: 1fr 1fr;
@@ -544,13 +493,11 @@ button.btn{
   box-shadow: 0 14px 28px rgba(18,16,24,.10);
   transition: transform .15s var(--ease), background .2s var(--ease);
 }
-button.btn.alt{
-  background: linear-gradient(90deg, rgba(210,174,114,.22), rgba(200,143,149,.16));
-}
+button.btn.alt{ background: linear-gradient(90deg, rgba(210,174,114,.22), rgba(200,143,149,.16)); }
 button.btn:hover{ background: rgba(255,255,255,.96); }
 button.btn:active{ transform: translateY(1px); }
 
-/* Reveal + stagger */
+/* Reveal */
 .reveal{
   opacity:0;
   transform: translate3d(0,14px,0);
@@ -568,6 +515,281 @@ button.btn:active{ transform: translateY(1px); }
 .reveal.in .stagger > *:nth-child(3){ transition-delay:.16s }
 .reveal.in .stagger > *:nth-child(4){ transition-delay:.22s }
 
+/* ===== SOP LIVENESS UPGRADE ===== */
+.sopCard{ background: rgba(255,255,255,.72); }
+.sopInner{ padding: 26px; }
+
+.sopHeader{
+  display:flex;
+  gap:14px;
+  align-items:flex-start;
+  justify-content:space-between;
+  margin-bottom: 14px;
+}
+.sopTitle{ margin:0; }
+.sopSub{ margin-top:6px; max-width:70ch; }
+
+.sopStamp{
+  width:110px; height:110px;
+  border-radius:999px;
+  position:relative;
+  border:1px solid rgba(18,16,24,.12);
+  background: rgba(255,255,255,.65);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 18px 50px rgba(18,16,24,.10);
+  flex:0 0 auto;
+  overflow:hidden;
+}
+.sopStampRing{
+  position:absolute; inset:10px;
+  border-radius:999px;
+  border:1px dashed rgba(18,16,24,.22);
+  opacity:.7;
+  animation: stampSpin 12s linear infinite;
+}
+@keyframes stampSpin{ to{ transform: rotate(360deg); } }
+.sopStampText{
+  position:absolute; inset:0;
+  display:grid; place-items:center;
+  text-align:center;
+  padding:14px;
+}
+.sopStampTop{ font-size:10px; font-weight:900; letter-spacing:.22em; opacity:.72; }
+.sopStampMid{ font-family: var(--serif); font-weight:900; letter-spacing:.02em; font-size:18px; }
+.sopStampBot{ font-size:9px; font-weight:900; letter-spacing:.14em; opacity:.62; }
+
+.sopGrid{
+  display:grid;
+  gap:14px;
+  margin-top:12px;
+}
+@media(min-width:980px){
+  .sopGrid{ grid-template-columns: 1.05fr .95fr; }
+}
+
+.sopPanel{
+  border-radius: 24px;
+  border:1px solid rgba(18,16,24,.10);
+  background: rgba(255,255,255,.72);
+  box-shadow: 0 12px 30px rgba(18,16,24,.07);
+  padding: 16px;
+  position:relative;
+  overflow:hidden;
+}
+.sopPanelTop{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom: 10px;
+}
+.sopTag{
+  font-size:12px;
+  font-weight:900;
+  color: rgba(18,16,24,.62);
+  padding:7px 10px;
+  border-radius:999px;
+  border:1px solid rgba(18,16,24,.10);
+  background: rgba(255,255,255,.72);
+}
+
+/* Flow stepper with thread */
+.flowWrap{ position:relative; padding: 6px 6px 0; }
+.flowSteps{ display:grid; gap:12px; padding-left: 4px; }
+.flowStep{
+  display:grid;
+  grid-template-columns: 34px 1fr;
+  gap:12px;
+  align-items:flex-start;
+  position:relative;
+}
+.node{
+  width:34px; height:34px;
+  border-radius: 14px;
+  display:grid; place-items:center;
+  font-weight:950;
+  border:1px solid rgba(18,16,24,.10);
+  background: rgba(255,255,255,.85);
+  box-shadow: 0 10px 24px rgba(18,16,24,.08);
+  color: rgba(18,16,24,.85);
+}
+.flowName{ font-weight:950; color: rgba(18,16,24,.86); }
+.flowNote{ margin-top:2px; font-size:13px; color: rgba(18,16,24,.60); line-height:1.6; }
+
+.thread{
+  position:absolute;
+  left: 22px;
+  top: 42px;
+  bottom: 42px;
+  width: 2px;
+  border-radius: 999px;
+  background: rgba(18,16,24,.10);
+  overflow:hidden;
+}
+.threadGlow{
+  position:absolute; inset:-40px 0;
+  background: linear-gradient(180deg, transparent, rgba(210,174,114,.65), rgba(200,143,149,.55), transparent);
+  opacity:.45;
+}
+.threadRunner{
+  position:absolute;
+  left:-10px;
+  width:22px;
+  height:46px;
+  border-radius: 18px;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.95), rgba(255,255,255,.10));
+  opacity:.0;
+  transform: translateY(-20px);
+}
+.flowWrap.isLive .threadRunner{
+  opacity:.75;
+  animation: runThread 2.4s var(--ease) infinite;
+}
+@keyframes runThread{
+  0%{ transform: translateY(-24px); opacity:.0; }
+  12%{ opacity:.80; }
+  88%{ opacity:.80; }
+  100%{ transform: translateY(calc(100% + 24px)); opacity:.0; }
+}
+
+.ruleCallout{
+  margin-top: 14px;
+  display:flex;
+  gap:10px;
+  align-items:center;
+  padding: 12px 12px;
+  border-radius: 18px;
+  border:1px solid rgba(18,16,24,.10);
+  background: linear-gradient(90deg, rgba(210,174,114,.12), rgba(200,143,149,.10), rgba(255,255,255,.70));
+}
+.ruleDot{
+  width:10px; height:10px; border-radius:999px;
+  background: linear-gradient(135deg, rgba(210,174,114,.95), rgba(200,143,149,.85));
+  box-shadow: 0 10px 18px rgba(18,16,24,.12);
+}
+
+/* Protection chips */
+.chipGrid{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap:10px;
+}
+@media(min-width:980px){
+  .chipGrid{ grid-template-columns: 1fr 1fr; }
+}
+.protChip{
+  text-align:left;
+  display:grid;
+  grid-template-columns: 34px 1fr;
+  gap:12px;
+  padding:12px 12px;
+  border-radius: 18px;
+  border:1px solid rgba(18,16,24,.10);
+  background: rgba(255,255,255,.82);
+  box-shadow: 0 10px 26px rgba(18,16,24,.07);
+  cursor:pointer;
+  position:relative;
+  overflow:hidden;
+  transition: transform .18s var(--ease), box-shadow .2s var(--ease);
+}
+.protChip:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px rgba(18,16,24,.10);
+}
+.chipIcon{
+  width:34px; height:34px;
+  border-radius: 14px;
+  display:grid; place-items:center;
+  border:1px solid rgba(18,16,24,.10);
+  background: linear-gradient(135deg, rgba(210,174,114,.16), rgba(200,143,149,.12), rgba(255,255,255,.82));
+  color: rgba(18,16,24,.78);
+}
+.chipIcon svg{ width:18px; height:18px; }
+.chipTitle{ display:block; font-weight:950; color: rgba(18,16,24,.86); }
+.chipDesc{
+  display:block;
+  margin-top:2px;
+  font-size:13px;
+  color: rgba(18,16,24,.60);
+  line-height:1.5;
+}
+.chipGlow{
+  position:absolute;
+  inset:-40% -60%;
+  background: radial-gradient(circle at 30% 30%, rgba(210,174,114,.25), transparent 55%);
+  transform: rotate(12deg);
+  opacity:.0;
+  transition: opacity .25s var(--ease);
+}
+.protChip:hover .chipGlow{ opacity:.9; }
+
+.sopMini{ margin-top: 12px; }
+.miniLine{
+  display:flex; gap:10px; align-items:center;
+  padding: 12px 12px;
+  border-radius: 18px;
+  border:1px solid rgba(18,16,24,.10);
+  background: rgba(255,255,255,.70);
+  color: rgba(18,16,24,.68);
+  font-size:13px;
+}
+.miniDot{
+  width:10px; height:10px; border-radius:999px;
+  background: rgba(31,157,110,.70);
+}
+
+/* Bottom illustrated cards */
+.sopBottomGrid{
+  display:grid;
+  gap:12px;
+  margin-top: 14px;
+}
+@media(min-width:980px){
+  .sopBottomGrid{ grid-template-columns: 1fr 1fr 1fr; }
+}
+.miniCard{
+  border-radius: 24px;
+  border:1px solid rgba(18,16,24,.10);
+  background: rgba(255,255,255,.72);
+  box-shadow: 0 12px 30px rgba(18,16,24,.07);
+  padding: 16px;
+  position:relative;
+  overflow:hidden;
+}
+.miniArt{
+  height: 74px;
+  border-radius: 20px;
+  border:1px solid rgba(18,16,24,.08);
+  background: linear-gradient(135deg, rgba(210,174,114,.10), rgba(200,143,149,.08), rgba(255,255,255,.70));
+  display:grid;
+  place-items:center;
+  margin-bottom: 10px;
+  position:relative;
+  overflow:hidden;
+}
+.miniArt::after{
+  content:"";
+  position:absolute;
+  top:-40%;
+  left:-30%;
+  width:60%;
+  height:220%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.22), transparent);
+  transform: rotate(18deg);
+  opacity:.28;
+  animation: miniSweep 7.8s var(--ease) infinite;
+}
+@keyframes miniSweep{
+  0%{ transform: translateX(-40%) rotate(18deg); opacity:.14; }
+  40%{ opacity:.30; }
+  100%{ transform: translateX(220%) rotate(18deg); opacity:.14; }
+}
+.miniArt svg{
+  width: 110px;
+  height: 70px;
+  color: rgba(18,16,24,.62);
+}
+
 /* Footer */
 footer{
   padding: 34px 14px calc(34px + env(safe-area-inset-bottom));
@@ -581,7 +803,7 @@ footer{
   html{scroll-behavior:auto}
   .reveal, .stagger > *{transition:none}
   .progress > div{transition:none}
-  .sweep{animation:none}
+  .sweep, .miniArt::after, .sopStampRing{animation:none}
 }
 </style>
 </head>
@@ -589,7 +811,6 @@ footer{
 <body>
 <div class="grain"></div>
 <div class="fibers"></div>
-
 <div class="ribbon" aria-hidden="true"></div>
 
 <header>
@@ -605,6 +826,7 @@ footer{
     <div class="navRight">
       <a class="navLink" href="#model">Model</a>
       <a class="navLink" href="#moat">Why Us</a>
+      <a class="navLink" href="#ops">SOP</a>
       <a class="navLink" href="#stress">Stress</a>
       <a class="navLink" href="#funding">Funding</a>
       <div class="pill"><span class="dot"></span><span id="readPct">0%</span></div>
@@ -615,7 +837,7 @@ footer{
 
 <main>
 
-  <!-- HERO (full bleed, not generic) -->
+  <!-- HERO -->
   <section class="section" id="top">
     <div class="container">
       <div class="heroWrap reveal" id="heroWrap">
@@ -729,7 +951,7 @@ footer{
     </div>
   </section>
 
-  <!-- WHY US + OPERATING PHILOSOPHY -->
+  <!-- WHY US -->
   <section class="section" id="moat">
     <div class="container">
       <div class="chapter">
@@ -770,74 +992,213 @@ footer{
             </div>
           </div>
 
-          <div class="grid two" style="margin-top:14px">
-            <div class="tile">
-              <h3>What customers feel</h3>
-              <div class="list">
-                <div class="chip2 good"><span class="bul"></span> Private calm fitting</div>
-                <div class="chip2 good"><span class="bul"></span> Clean & ready outfits</div>
-                <div class="chip2 good"><span class="bul"></span> Clear expectations</div>
-              </div>
-            </div>
-            <div class="tile">
-              <h3>What the business enforces</h3>
-              <div class="list">
-                <div class="chip2 good"><span class="bul"></span> Appointment discipline</div>
-                <div class="chip2 good"><span class="bul"></span> Photo checklist</div>
-                <div class="chip2 good"><span class="bul"></span> Standard alteration scope</div>
-                <div class="chip2 good"><span class="bul"></span> Return timing</div>
-              </div>
-            </div>
-          </div>
-
         </div>
       </div>
     </div>
   </section>
 
-  <!-- OPS SYSTEM -->
+  <!-- SOP (LIVELY) -->
   <section class="section" id="ops">
     <div class="container">
       <div class="chapter">
-        <div class="num">03</div><div class="line"></div><div class="tag">Operating system</div>
+        <div class="num">03</div><div class="line"></div><div class="tag">SOP</div>
       </div>
 
-      <div class="card reveal">
-        <div class="cardInner">
-          <h2>Our SOP prevents disputes before they happen.</h2>
-          <p>The goal: protect the schedule and the collection — while keeping the bride calm.</p>
-
-          <div class="grid two stagger">
-            <div class="tile">
-              <h3>Fitting flow</h3>
-              <p>1) Pre-education message → 2) Appointment slot → 3) Fit check → 4) Deposit & signature → 5) Pickup checklist.</p>
-              <p style="margin-top:10px"><strong class="em">Rule:</strong> empathize with emotions, never negotiate policies.</p>
+      <div class="card reveal sopCard">
+        <div class="cardInner sopInner">
+          <div class="sopHeader">
+            <div>
+              <h2 class="sopTitle">Our SOP prevents disputes before they happen.</h2>
+              <p class="sopSub">The goal: protect the schedule and the collection — while keeping the bride calm.</p>
             </div>
-            <div class="tile">
-              <h3>Inventory protection</h3>
-              <div class="list">
-                <div class="chip2 good"><span class="bul"></span> Before/after photos</div>
-                <div class="chip2 good"><span class="bul"></span> Damage tiers</div>
-                <div class="chip2 good"><span class="bul"></span> Cleaning SLA</div>
-                <div class="chip2 good"><span class="bul"></span> Lifecycle pricing</div>
+
+            <div class="sopStamp" aria-hidden="true">
+              <div class="sopStampRing"></div>
+              <div class="sopStampText">
+                <div class="sopStampTop">BRIDAL</div>
+                <div class="sopStampMid">SYSTEM</div>
+                <div class="sopStampBot">CALM • CLEAN • CONSISTENT</div>
               </div>
             </div>
           </div>
 
-          <div class="grid three" style="margin-top:14px">
-            <div class="tile">
-              <h3>Quality promise</h3>
+          <div class="sopGrid">
+            <!-- LEFT -->
+            <div class="sopPanel">
+              <div class="sopPanelTop">
+                <h3>FITTING FLOW</h3>
+                <span class="sopTag">Zero-surprise handover</span>
+              </div>
+
+              <div class="flowWrap" data-animate="flow">
+                <div class="thread" aria-hidden="true">
+                  <div class="threadGlow"></div>
+                  <div class="threadRunner"></div>
+                </div>
+
+                <div class="flowSteps">
+                  <div class="flowStep">
+                    <div class="node">1</div>
+                    <div class="flowText">
+                      <div class="flowName">Pre-education message</div>
+                      <div class="flowNote">Set expectations + sizing checklist before arrival.</div>
+                    </div>
+                  </div>
+
+                  <div class="flowStep">
+                    <div class="node">2</div>
+                    <div class="flowText">
+                      <div class="flowName">Appointment slot</div>
+                      <div class="flowNote">Time-boxed fitting to protect the schedule.</div>
+                    </div>
+                  </div>
+
+                  <div class="flowStep">
+                    <div class="node">3</div>
+                    <div class="flowText">
+                      <div class="flowName">Fit check</div>
+                      <div class="flowNote">Fit-first: if it doesn’t fit, it doesn’t leave.</div>
+                    </div>
+                  </div>
+
+                  <div class="flowStep">
+                    <div class="node">4</div>
+                    <div class="flowText">
+                      <div class="flowName">Deposit & signature</div>
+                      <div class="flowNote">Friendly language, firm standard.</div>
+                    </div>
+                  </div>
+
+                  <div class="flowStep">
+                    <div class="node">5</div>
+                    <div class="flowText">
+                      <div class="flowName">Pickup checklist</div>
+                      <div class="flowNote">Photos + condition check = fewer disputes.</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="ruleCallout">
+                  <span class="ruleDot"></span>
+                  <b>Rule:</b> empathize with emotions, never negotiate policies.
+                </div>
+              </div>
+            </div>
+
+            <!-- RIGHT -->
+            <div class="sopPanel">
+              <div class="sopPanelTop">
+                <h3>INVENTORY PROTECTION</h3>
+                <span class="sopTag">Protect collection ROI</span>
+              </div>
+
+              <div class="chipGrid" data-animate="chips">
+                <button class="protChip" type="button">
+                  <span class="chipIcon">
+                    <svg viewBox="0 0 24 24" fill="none">
+                      <path d="M8 7l1.2-2h5.6L16 7h2a3 3 0 013 3v7a3 3 0 01-3 3H6a3 3 0 01-3-3v-7a3 3 0 013-3h2z" stroke="currentColor" stroke-width="1.6"/>
+                      <path d="M12 17a4 4 0 100-8 4 4 0 000 8z" stroke="currentColor" stroke-width="1.6"/>
+                    </svg>
+                  </span>
+                  <span class="chipText">
+                    <span class="chipTitle">Before/after photos</span>
+                    <span class="chipDesc">Standard angles + timestamp.</span>
+                  </span>
+                  <span class="chipGlow" aria-hidden="true"></span>
+                </button>
+
+                <button class="protChip" type="button">
+                  <span class="chipIcon">
+                    <svg viewBox="0 0 24 24" fill="none">
+                      <path d="M12 3l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V7l8-4z" stroke="currentColor" stroke-width="1.6"/>
+                      <path d="M9.5 12l1.8 1.8L15.8 9.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                  <span class="chipText">
+                    <span class="chipTitle">Damage tiers</span>
+                    <span class="chipDesc">Clear tiers: minor → repair → replace.</span>
+                  </span>
+                  <span class="chipGlow" aria-hidden="true"></span>
+                </button>
+
+                <button class="protChip" type="button">
+                  <span class="chipIcon">
+                    <svg viewBox="0 0 24 24" fill="none">
+                      <path d="M12 22a10 10 0 110-20 10 10 0 010 20z" stroke="currentColor" stroke-width="1.6"/>
+                      <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                  <span class="chipText">
+                    <span class="chipTitle">Cleaning SLA</span>
+                    <span class="chipDesc">Guaranteed turnaround windows.</span>
+                  </span>
+                  <span class="chipGlow" aria-hidden="true"></span>
+                </button>
+
+                <button class="protChip" type="button">
+                  <span class="chipIcon">
+                    <svg viewBox="0 0 24 24" fill="none">
+                      <path d="M20 13l-7 7-11-11V2h7L20 13z" stroke="currentColor" stroke-width="1.6"/>
+                      <path d="M7.5 7.5h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                    </svg>
+                  </span>
+                  <span class="chipText">
+                    <span class="chipTitle">Lifecycle pricing</span>
+                    <span class="chipDesc">New → peak → mature pricing bands.</span>
+                  </span>
+                  <span class="chipGlow" aria-hidden="true"></span>
+                </button>
+              </div>
+
+              <div class="sopMini">
+                <div class="miniLine">
+                  <span class="miniDot"></span>
+                  <b>Principle:</b> softness in service, strictness in system.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom -->
+          <div class="sopBottomGrid" data-animate="bottom">
+            <div class="miniCard">
+              <div class="miniArt" aria-hidden="true">
+                <svg viewBox="0 0 120 80" fill="none">
+                  <path d="M20 60c18-18 32-28 40-28s22 10 40 28" stroke="currentColor" stroke-width="2" opacity=".35"/>
+                  <path d="M60 18c6 0 11 5 11 11s-5 11-11 11-11-5-11-11 5-11 11-11z" stroke="currentColor" stroke-width="2" opacity=".35"/>
+                  <path d="M44 62c5-9 10-14 16-14s11 5 16 14" stroke="currentColor" stroke-width="2" opacity=".55"/>
+                </svg>
+              </div>
+              <h3>QUALITY PROMISE</h3>
               <p>“If it doesn’t fit properly, we don’t let it leave.” Fit-first prevents disasters.</p>
             </div>
-            <div class="tile">
-              <h3>Weekday utilization</h3>
+
+            <div class="miniCard">
+              <div class="miniArt" aria-hidden="true">
+                <svg viewBox="0 0 120 80" fill="none">
+                  <path d="M18 56h84" stroke="currentColor" stroke-width="2" opacity=".35"/>
+                  <path d="M30 56c0-18 13-32 30-32s30 14 30 32" stroke="currentColor" stroke-width="2" opacity=".55"/>
+                  <path d="M52 44h16" stroke="currentColor" stroke-width="2" opacity=".35"/>
+                  <path d="M60 18v10" stroke="currentColor" stroke-width="2" opacity=".35"/>
+                </svg>
+              </div>
+              <h3>WEEKDAY UTILIZATION</h3>
               <p>Weekday packages for shoots & civil ceremonies to fill quiet days.</p>
             </div>
-            <div class="tile">
-              <h3>Trust compounding</h3>
+
+            <div class="miniCard">
+              <div class="miniArt" aria-hidden="true">
+                <svg viewBox="0 0 120 80" fill="none">
+                  <path d="M22 52c12-16 26-24 38-24s26 8 38 24" stroke="currentColor" stroke-width="2" opacity=".35"/>
+                  <path d="M34 52c7-9 16-14 26-14s19 5 26 14" stroke="currentColor" stroke-width="2" opacity=".55"/>
+                  <path d="M60 26l4 8 9 1-7 6 2 9-8-4-8 4 2-9-7-6 9-1 4-8z" stroke="currentColor" stroke-width="2" opacity=".35"/>
+                </svg>
+              </div>
+              <h3>TRUST COMPOUNDING</h3>
               <p>Review flywheel: every smooth experience becomes a future booking source.</p>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -1002,18 +1363,16 @@ function parallax(){
   ticking=false;
   const y = window.scrollY || 0;
 
-  // Only parallax strongly while hero is near viewport
   const rect = heroWrap.getBoundingClientRect();
   const center = rect.top + rect.height * 0.5;
   const vh = window.innerHeight || 800;
   const strength = Math.max(-1, Math.min(1, (center - vh*0.5) / (vh*0.7)));
 
-  const imgY = strength * 22;   // opposite-ish drift
+  const imgY = strength * 22;
   const capY = strength * 10;
   const maskY = strength * 8;
   const titleY = strength * -8;
 
-  // global gentle scale based on scroll
   const s = 1.16 + Math.min(0.10, Math.max(0, y/9000));
 
   heroImg.style.transform = `translate3d(0, ${imgY.toFixed(2)}px, 0) scale(${s.toFixed(3)})`;
@@ -1021,7 +1380,6 @@ function parallax(){
   heroMask.style.transform = `translate3d(0, ${maskY.toFixed(2)}px, 0)`;
   heroTitle.style.transform = `translate3d(0, ${titleY.toFixed(2)}px, 0)`;
 }
-
 function onScroll(){
   if(!ticking){
     ticking=true;
@@ -1030,6 +1388,19 @@ function onScroll(){
 }
 window.addEventListener('scroll', onScroll, {passive:true});
 parallax();
+
+/* SOP: activate thread animation only when visible */
+const sopAnimTargets = document.querySelectorAll('[data-animate]');
+const sopIO = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      if(e.target.dataset.animate === 'flow'){
+        e.target.classList.add('isLive');
+      }
+    }
+  });
+},{threshold:0.22});
+sopAnimTargets.forEach(el => sopIO.observe(el));
 </script>
 
 </body>
