@@ -1,11 +1,10 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: YOUR_GITHUB_USERNAME/YOUR_REPO_NAME
   branch: main
 
 media_folder: "assets/uploads"
 public_folder: "/assets/uploads"
-
-publish_mode: editorial_workflow
 
 collections:
   - name: "site"
@@ -19,82 +18,30 @@ collections:
           - { label: "Brand Name", name: "brandName", widget: "string" }
           - { label: "Tagline", name: "tagline", widget: "string" }
           - { label: "Contact Name", name: "contactName", widget: "string", required: false }
-          - { label: "Contact WhatsApp", name: "contactWhatsapp", widget: "string", required: false }
-          - { label: "Contact Email", name: "contactEmail", widget: "string", required: false }
-          - { label: "Contact IG", name: "contactIg", widget: "string", required: false }
+          - { label: "WhatsApp", name: "contactWhatsapp", widget: "string", required: false }
+          - { label: "Email", name: "contactEmail", widget: "string", required: false }
+          - { label: "IG", name: "contactIg", widget: "string", required: false }
 
   - name: "market"
     label: "Market Chapter"
     files:
       - file: "content/market.json"
-        label: "Market Content"
+        label: "Market"
         name: "market"
         format: "json"
         fields:
-          - { label: "Chapter Title", name: "title", widget: "string" }
+          - { label: "Title", name: "title", widget: "string" }
           - { label: "Intro", name: "intro", widget: "text" }
-
-          - label: "Market Types (4 cards)"
-            name: "types"
-            widget: "list"
-            min: 4
-            max: 4
-            fields:
-              - { label: "Title", name: "title", widget: "string" }
-              - { label: "Summary", name: "summary", widget: "text" }
-              - { label: "Risk Line", name: "risk", widget: "string" }
-              - label: "Tone Dot"
-                name: "tone"
-                widget: "select"
-                options: ["good","mid","bad"]
-
-          - label: "Matrix Rows"
-            name: "matrixRows"
-            widget: "list"
-            fields:
-              - { label: "Key", name: "key", widget: "string", hint: "e.g. fit, hygiene, disputes" }
-              - { label: "Battlefield Label", name: "label", widget: "string" }
-              - label: "Budget Rack"
-                name: "budget"
-                widget: "select"
-                options: ["strong","medium","weak"]
-              - label: "Typical Boutique"
-                name: "boutique"
-                widget: "select"
-                options: ["strong","medium","weak"]
-              - label: "Studio Bundle"
-                name: "studio"
-                widget: "select"
-                options: ["strong","medium","weak"]
-              - label: "Us (Ops-led Boutique)"
-                name: "us"
-                widget: "select"
-                options: ["strong","medium","weak"]
-              - { label: "Highlight Row", name: "highlight", widget: "boolean", required: false }
-
-          - label: "Standout Left Card"
-            name: "standoutLeft"
-            widget: "object"
-            fields:
-              - { label: "Title", name: "title", widget: "string" }
-              - { label: "Bullets", name: "bullets", widget: "list", field: {label: "Bullet", name: "bullet", widget: "string"} }
-
-          - label: "China Ideas Right Card"
-            name: "chinaRight"
-            widget: "object"
-            fields:
-              - { label: "Title", name: "title", widget: "string" }
-              - { label: "Bullets", name: "bullets", widget: "list", field: {label: "Bullet", name: "bullet", widget: "string"} }
 
   - name: "stress"
     label: "Stress Test"
     files:
       - file: "content/stress.json"
-        label: "Stress Assumptions"
+        label: "Stress"
         name: "stress"
         format: "json"
         fields:
-          - { label: "Average Rental (RM)", name: "avgRental", widget: "number", value_type: "int" }
-          - { label: "Monthly Burn (RM)", name: "burn", widget: "number", value_type: "int" }
-          - { label: "Capital Buffer (RM)", name: "capital", widget: "number", value_type: "int" }
+          - { label: "Average Rental", name: "avgRental", widget: "number", value_type: "int" }
+          - { label: "Monthly Burn", name: "burn", widget: "number", value_type: "int" }
+          - { label: "Capital Buffer", name: "capital", widget: "number", value_type: "int" }
           - { label: "Default Bookings", name: "defaultBookings", widget: "number", value_type: "int" }
