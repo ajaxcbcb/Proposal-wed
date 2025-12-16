@@ -1,0 +1,56 @@
+{
+  "title": "Competitive landscape & our edge",
+  "intro": "Most studios cluster into four models. The stable lane for consistent cashflow is Ops-led Boutique: premium experience with standardized systems so you can scale, reduce disputes, and protect margins.",
+  "types": [
+    {
+      "title": "Budget Rack / High-volume",
+      "summary": "Wins on low price + quantity. Weak on fit consistency, hygiene control, and disputes.",
+      "risk": "Risk: price wars + higher damage rate.",
+      "tone": "bad"
+    },
+    {
+      "title": "Typical Boutique",
+      "summary": "Wins on service and taste. Weak on operational throughput and fixed-cost sensitivity.",
+      "risk": "Risk: high rent/headcount early.",
+      "tone": "mid"
+    },
+    {
+      "title": "Studio Bundle / Photo-first",
+      "summary": "Wins via partner bundles. Weak if partners leave or promo-driven pricing dilutes brand.",
+      "risk": "Risk: dependence on referral funnels.",
+      "tone": "mid"
+    },
+    {
+      "title": "Ops-led Boutique (Us)",
+      "summary": "Wins on reliability: fit-first, hygiene SLA, dispute-proof handover, and weekday productization.",
+      "risk": "Result: consistent bookings without discounting.",
+      "tone": "good"
+    }
+  ],
+  "matrixRows": [
+    {"key":"price","label":"Price clarity","budget":"medium","boutique":"medium","studio":"medium","us":"strong"},
+    {"key":"fit","label":"Fit reliability","budget":"weak","boutique":"medium","studio":"medium","us":"strong"},
+    {"key":"hygiene","label":"Hygiene & readiness","budget":"weak","boutique":"medium","studio":"medium","us":"strong"},
+    {"key":"disputes","label":"Dispute frequency","budget":"weak","boutique":"medium","studio":"medium","us":"strong"},
+    {"key":"speed","label":"Turnaround speed","budget":"medium","boutique":"medium","studio":"strong","us":"strong"},
+    {"key":"bundles","label":"Bundle power","budget":"weak","boutique":"medium","studio":"strong","us":"strong"},
+    {"key":"weekday","label":"Weekday utilization","budget":"weak","boutique":"medium","studio":"medium","us":"strong"},
+    {"key":"proof","label":"Trust compounding (review flywheel)","budget":"weak","boutique":"medium","studio":"medium","us":"strong","highlight":true}
+  ],
+  "standoutLeft": {
+    "title": "How we stand out (high ROI)",
+    "bullets": [
+      "Calm Bride System: pre-education + reminders + fit checklist.",
+      "Quality seal: ready-to-wear checklist + timestamped cleaning.",
+      "Soft delivery, strict system: clear policies enforced kindly."
+    ]
+  },
+  "chinaRight": {
+    "title": "Borrow smart from China marketplace",
+    "bullets": [
+      "Package-first selling: fewer choices, clearer tiers, higher conversion.",
+      "Capacity pooling: partner tailors/cleaners for fast turnaround.",
+      "Content loop: sanitization + fit checks = trust building."
+    ]
+  }
+}
