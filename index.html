@@ -10,7 +10,6 @@
   /* Bridal luxe palette */
   --bg0:#070812;
   --bg1:#0a1030;
-  --ivory:#fff7ee;
   --ink:#f3edff;
   --muted:rgba(243,237,255,.72);
 
@@ -64,11 +63,10 @@ body{
   to  { transform: translate3d(12px,10px,0) scale(1.05)}
 }
 
-/* Floating floral bokeh */
+/* Floating bokeh */
 .bokeh{
   position:fixed; inset:-10%;
   pointer-events:none;
-  filter: blur(0.2px);
   opacity:.5;
   background:
     radial-gradient(circle at 10% 20%, rgba(255,183,200,.20), transparent 22%),
@@ -99,14 +97,14 @@ body{
   mix-blend-mode: screen;
 }
 
-/* Layout */
+/* Header */
 header{
   position:sticky;
   top:0;
   z-index:50;
   padding: env(safe-area-inset-top) 14px 10px;
   backdrop-filter: blur(10px);
-  background: linear-gradient(180deg, rgba(7,8,18,.85), rgba(7,8,18,.30));
+  background: linear-gradient(180deg, rgba(7,8,18,.88), rgba(7,8,18,.34));
   border-bottom: 1px solid rgba(255,255,255,.08);
 }
 
@@ -250,7 +248,7 @@ p{
 }
 @media(min-width:900px){
   .grid.two{ grid-template-columns: 1fr 1fr; }
-  .grid.three{ grid-template-columns: 1fr 1fr 1fr; }
+  .grid.hero{ grid-template-columns: 1.2fr .8fr; align-items: stretch; }
 }
 
 .item{
@@ -277,7 +275,6 @@ p{
   font-weight:650;
   color: rgba(243,237,255,.88);
 }
-.pchip small{font-weight:700;opacity:.85}
 .bul{ width:10px;height:10px;border-radius:999px; background: rgba(255,255,255,.16); }
 .pchip.good .bul{ background: rgba(52,211,153,.85); }
 .pchip.warn .bul{ background: rgba(251,191,36,.85); }
@@ -304,7 +301,7 @@ hr.sep{
   margin:16px 0;
 }
 
-/* Utilization chart (bridal pastel gradient) */
+/* Utilization chart */
 .bars{display:flex; gap:10px; align-items:flex-end; height:160px; margin-top:12px}
 .bar{
   flex:1;
@@ -365,7 +362,52 @@ hr.sep{
   line-height:1.5;
 }
 
-/* Footer */
+/* HERO image integration */
+.heroMedia{
+  position:relative;
+  border-radius: 18px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(7,8,18,.35);
+  box-shadow: var(--shadow2);
+  min-height: 320px;
+}
+.heroMedia img{
+  width:100%;
+  height:100%;
+  object-fit: cover;
+  display:block;
+  transform: scale(1.02);
+  filter: contrast(1.02) saturate(1.04);
+}
+.heroOverlay{
+  position:absolute; inset:0;
+  background:
+    radial-gradient(600px 400px at 20% 20%, rgba(255,183,200,.18), transparent 55%),
+    radial-gradient(700px 450px at 70% 10%, rgba(199,179,255,.16), transparent 60%),
+    linear-gradient(180deg, rgba(7,8,18,.10), rgba(7,8,18,.55));
+  pointer-events:none;
+}
+.heroCaption{
+  position:absolute;
+  left:14px; right:14px; bottom:14px;
+  padding:12px 12px;
+  border-radius: 16px;
+  border:1px solid rgba(255,255,255,.14);
+  background: rgba(7,8,18,.42);
+  backdrop-filter: blur(10px);
+}
+.heroCaption b{color: rgba(243,237,255,.92)}
+.heroCaption small{display:block; margin-top:4px; color: rgba(243,237,255,.70); line-height:1.45}
+
+/* Subtle “shimmer” divider */
+.shimmer{
+  height:1px;
+  margin:14px 0;
+  background: linear-gradient(90deg, transparent, rgba(255,217,166,.35), rgba(199,179,255,.35), rgba(125,230,255,.25), transparent);
+  opacity:.85;
+}
+
 footer{
   padding: 26px 14px calc(26px + env(safe-area-inset-bottom));
   text-align:center;
@@ -394,7 +436,7 @@ footer{
       <div class="mark"></div>
       <div class="t">
         <strong>Bridal Rental Studio</strong>
-        <span>Single-scroll pitch • Bridal-luxe theme • Investor-grade</span>
+        <span>Single-scroll proposal • Bridal-luxe theme • Investor-ready</span>
       </div>
     </div>
     <div class="pill"><span class="dot"></span><span id="readPct">0%</span></div>
@@ -402,7 +444,7 @@ footer{
   <div class="progress"><div id="prog"></div></div>
 </header>
 
-<!-- HERO -->
+<!-- HERO (with your image) -->
 <section>
   <div class="container">
     <div class="card reveal">
@@ -411,26 +453,48 @@ footer{
         <div class="badge">Funding-ready model</div>
       </div>
 
-      <h1>
-        A bridal rental studio built for
-        <span style="background:linear-gradient(90deg,var(--blush),var(--champ),var(--lilac),var(--aqua));-webkit-background-clip:text;background-clip:text;color:transparent;">
-          consistent cashflow
-        </span>
-        — with premium bridal experience.
-      </h1>
+      <div class="grid hero">
+        <div>
+          <h1>
+            A bridal rental studio built for
+            <span style="background:linear-gradient(90deg,var(--blush),var(--champ),var(--lilac),var(--aqua));-webkit-background-clip:text;background-clip:text;color:transparent;">
+              consistent cashflow
+            </span>
+            — with a premium bridal experience.
+          </h1>
 
-      <p>
-        We operate a curated bridal + groom rental studio designed to survive quiet months,
-        control costs, and generate predictable monthly bookings through partnerships and disciplined operations.
-      </p>
+          <p>
+            Curated bridal + groom rentals designed to survive quiet months, control costs, and generate predictable monthly bookings
+            through partnerships and disciplined operations.
+          </p>
 
-      <hr class="sep"/>
+          <div class="shimmer"></div>
 
-      <div class="row">
-        <div class="pchip good"><span class="bul"></span> Low fixed burn</div>
-        <div class="pchip good"><span class="bul"></span> Clear breakeven math</div>
-        <div class="pchip good"><span class="bul"></span> Ops-driven moat</div>
-        <div class="pchip good"><span class="bul"></span> Bridal-luxe positioning</div>
+          <div class="row">
+            <div class="pchip good"><span class="bul"></span> Low fixed burn</div>
+            <div class="pchip good"><span class="bul"></span> Clear breakeven math</div>
+            <div class="pchip good"><span class="bul"></span> Ops-driven moat</div>
+            <div class="pchip good"><span class="bul"></span> Bridal-luxe positioning</div>
+          </div>
+
+          <hr class="sep"/>
+          <p class="note">
+            Replace the contact line below with your details before sharing.
+          </p>
+        </div>
+
+        <div class="heroMedia" aria-label="Hero image">
+          <!-- IMPORTANT:
+               Put your image in the same folder and name it hero.jpg
+               OR change src="hero.jpg" to your real filename
+          -->
+          <img src="hero.jpg" alt="Editorial bridal theme image" />
+          <div class="heroOverlay"></div>
+          <div class="heroCaption">
+            <b>Positioning:</b> “Private fitting, calm process, consistent quality.”
+            <small>Elegant on the surface. Structured underneath. That’s how we scale without chaos.</small>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -566,143 +630,13 @@ footer{
   </div>
 </section>
 
-<!-- BUSINESS MODEL -->
-<section>
-  <div class="container">
-    <div class="card reveal">
-      <div class="kicker">
-        <div class="badge"><span class="dot"></span> Business model</div>
-        <div class="badge">Bundled pricing</div>
-      </div>
-
-      <h2>We sell packages, not just rentals.</h2>
-      <p>Bundles lift average order value and reduce the number of customers needed to be profitable.</p>
-
-      <div class="grid two">
-        <div class="item">
-          <h3>Revenue streams</h3>
-          <div class="row">
-            <div class="pchip good"><span class="bul"></span> Bridal rentals</div>
-            <div class="pchip good"><span class="bul"></span> Groom rentals</div>
-            <div class="pchip good"><span class="bul"></span> Bundles</div>
-            <div class="pchip good"><span class="bul"></span> Accessories</div>
-            <div class="pchip good"><span class="bul"></span> Rush fees</div>
-          </div>
-        </div>
-        <div class="item">
-          <h3>Pricing anchors</h3>
-          <div class="grid two">
-            <div class="metric">
-              <div class="label">Avg rental</div>
-              <div class="value">RM 850</div>
-              <div class="sub">blended</div>
-            </div>
-            <div class="metric">
-              <div class="label">Bundle avg</div>
-              <div class="value">RM 1,500–2,500</div>
-              <div class="sub">depends on styling</div>
-            </div>
-          </div>
-          <div class="note">Tip: Bundles also reduce “shopping fatigue” and increase conversion.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- OPERATIONS -->
-<section>
-  <div class="container">
-    <div class="card reveal">
-      <div class="kicker">
-        <div class="badge"><span class="dot"></span> Operations</div>
-        <div class="badge">This is the moat</div>
-      </div>
-
-      <h2>Operational discipline is what prevents losses.</h2>
-      <p>
-        Most failures are not demand issues. They’re operations issues: damage disputes, late returns,
-        inconsistent cleaning, and uncontrolled workflow.
-      </p>
-
-      <div class="grid two">
-        <div class="item">
-          <h3>Non-negotiables</h3>
-          <div class="row">
-            <div class="pchip good"><span class="bul"></span> Signed policy</div>
-            <div class="pchip good"><span class="bul"></span> Photo checklist</div>
-            <div class="pchip good"><span class="bul"></span> Damage tiers</div>
-            <div class="pchip good"><span class="bul"></span> Late fees</div>
-          </div>
-        </div>
-        <div class="item">
-          <h3>Lean team</h3>
-          <div class="grid two">
-            <div class="metric">
-              <div class="label">Front-end</div>
-              <div class="value">Owner-led</div>
-              <div class="sub">fittings + booking</div>
-            </div>
-            <div class="metric">
-              <div class="label">Back-end</div>
-              <div class="value">Vendors</div>
-              <div class="sub">tailor + cleaning</div>
-            </div>
-          </div>
-          <div class="note">Hiring happens only after bookings are consistently above breakeven.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FINANCIAL PLAN -->
-<section>
-  <div class="container">
-    <div class="card reveal">
-      <div class="kicker">
-        <div class="badge"><span class="dot"></span> 2-year financial plan</div>
-        <div class="badge">Capitalized stability</div>
-      </div>
-
-      <h2>Capital is used to protect runway and avoid panic decisions.</h2>
-      <p>We fund stability first. Growth comes from utilization and partnerships.</p>
-
-      <div class="grid two">
-        <div class="metric">
-          <div class="label">Inventory (20–30 outfits)</div>
-          <div class="value">RM 70,000</div>
-          <div class="sub">bridal + groom mix</div>
-        </div>
-        <div class="metric">
-          <div class="label">Setup & deposits</div>
-          <div class="value">RM 10,000</div>
-          <div class="sub">racks, mirrors, deposits</div>
-        </div>
-        <div class="metric">
-          <div class="label">24-month overhead buffer</div>
-          <div class="value">RM 90,000</div>
-          <div class="sub">lean burn strategy</div>
-        </div>
-        <div class="metric">
-          <div class="label">Total capital required</div>
-          <div class="value" style="background:linear-gradient(90deg,var(--blush),var(--champ),var(--lilac),var(--aqua));-webkit-background-clip:text;background-clip:text;color:transparent;">
-            RM 190,000
-          </div>
-          <div class="sub">runway + stability</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- STRESS TEST -->
 <section id="stress">
   <div class="container">
     <div class="card reveal">
       <div class="kicker">
         <div class="badge"><span class="dot"></span> Stress test</div>
-        <div class="badge">Worst-case survivability</div>
+        <div class="badge">Survivability check</div>
       </div>
 
       <h2>Adjust bookings and see profitability instantly.</h2>
@@ -729,7 +663,7 @@ footer{
         <div class="metric">
           <div class="label">Runway (months)</div>
           <div class="value"><span id="runway">999</span></div>
-          <div class="sub">if net negative, capital ÷ burn</div>
+          <div class="sub">if net negative, capital ÷ loss</div>
         </div>
       </div>
 
@@ -739,7 +673,7 @@ footer{
       </div>
 
       <div class="note">
-        What to look for: If bookings dip below breakeven (≈10/month), the business should still have enough runway to recover without cutting corners.
+        Interpretation: if bookings fall below breakeven (~10/month), runway months shows how long your buffer can sustain losses while you recover.
       </div>
     </div>
   </div>
@@ -789,7 +723,7 @@ footer{
         <div class="badge">Stable + elegant</div>
       </div>
 
-      <h2>Elegant customer experience + disciplined operations = durability.</h2>
+      <h2>Elegant experience + disciplined operations = durability.</h2>
       <p>
         Low burn, clear breakeven, strict policies, and a partner-led booking engine.
         That’s how this studio survives quiet months and grows consistently.
@@ -803,7 +737,7 @@ footer{
 </footer>
 
 <script>
-/* Pointer glow (lightweight) */
+/* Pointer glow */
 const glow = document.getElementById('glow');
 let gx = innerWidth * 0.5, gy = innerHeight * 0.2, tx = gx, ty = gy;
 window.addEventListener('pointermove', (e)=>{ tx = e.clientX; ty = e.clientY; }, {passive:true});
@@ -839,7 +773,6 @@ reveals.forEach(el=>io.observe(el));
 
 /* Stress test */
 const fmt = new Intl.NumberFormat('en-MY');
-
 const AVG = 850;
 const BURN = 7500;
 const CAPITAL = 190000;
