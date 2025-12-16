@@ -28,14 +28,12 @@
     }
   ],
   "matrixRows": [
-    {"key":"price","label":"Price clarity","budget":"medium","boutique":"medium","studio":"medium","us":"strong"},
-    {"key":"fit","label":"Fit reliability","budget":"weak","boutique":"medium","studio":"medium","us":"strong"},
-    {"key":"hygiene","label":"Hygiene & readiness","budget":"weak","boutique":"medium","studio":"medium","us":"strong"},
-    {"key":"disputes","label":"Dispute frequency","budget":"weak","boutique":"medium","studio":"medium","us":"strong"},
-    {"key":"speed","label":"Turnaround speed","budget":"medium","boutique":"medium","studio":"strong","us":"strong"},
-    {"key":"bundles","label":"Bundle power","budget":"weak","boutique":"medium","studio":"strong","us":"strong"},
-    {"key":"weekday","label":"Weekday utilization","budget":"weak","boutique":"medium","studio":"medium","us":"strong"},
-    {"key":"proof","label":"Trust compounding (review flywheel)","budget":"weak","boutique":"medium","studio":"medium","us":"strong","highlight":true}
+    { "key": "price", "label": "Price clarity", "budget": "medium", "boutique": "medium", "studio": "medium", "us": "strong" },
+    { "key": "fit", "label": "Fit reliability", "budget": "weak", "boutique": "medium", "studio": "medium", "us": "strong" },
+    { "key": "hygiene", "label": "Hygiene & readiness", "budget": "weak", "boutique": "medium", "studio": "medium", "us": "strong" },
+    { "key": "disputes", "label": "Dispute frequency", "budget": "weak", "boutique": "medium", "studio": "medium", "us": "strong" },
+    { "key": "weekday", "label": "Weekday utilization", "budget": "weak", "boutique": "medium", "studio": "medium", "us": "strong" },
+    { "key": "proof", "label": "Trust compounding (review flywheel)", "budget": "weak", "boutique": "medium", "studio": "medium", "us": "strong", "highlight": true }
   ],
   "standoutLeft": {
     "title": "How we stand out (high ROI)",
