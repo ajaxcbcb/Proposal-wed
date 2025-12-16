@@ -52,7 +52,6 @@
       overflow-x:hidden;
     }
 
-    /* Texture */
     .grain, .fibers{
       position:fixed; inset:0;
       pointer-events:none;
@@ -74,7 +73,6 @@
       mix-blend-mode:multiply;
     }
 
-    /* Navbar */
     .navShell{
       position:fixed;
       top:0; left:0; right:0;
@@ -165,7 +163,6 @@
       padding-top: 102px;
     }
 
-    /* Editorial */
     .cardEditorial{
       border-radius: 34px;
       overflow:hidden;
@@ -197,7 +194,6 @@
     }
     .em{ color: rgba(18,16,24,.92); font-weight:950; }
 
-    /* Hero */
     .heroGrid{
       display:grid;
       gap:0;
@@ -261,12 +257,6 @@
       will-change: transform;
     }
 
-    /* Chips */
-    .kdot{ width:10px;height:10px;border-radius:999px;background:rgba(18,16,24,.20); }
-    .kdot.good{ background: rgba(31,157,110,.72); }
-    .kdot.mid{ background: rgba(210,174,114,.72); }
-    .kdot.bad{ background: rgba(181,74,90,.72); }
-
     .score{
       display:inline-flex;
       gap:8px;
@@ -325,7 +315,6 @@
   <div class="fibers"></div>
   <div class="ribbon" aria-hidden="true"></div>
 
-  <!-- NAVBAR -->
   <div class="navShell">
     <div class="container-xl px-3">
       <nav class="navbar navbar-expand-lg p-0">
@@ -342,7 +331,6 @@
         <div class="ms-auto d-flex align-items-center gap-2">
           <span class="pill d-none d-sm-inline-flex"><span class="dot"></span><span id="readPct">0%</span></span>
 
-          <!-- Mobile hamburger -->
           <button class="navbar-toggler border-0 shadow-sm"
                   style="border-radius:14px;background:rgba(255,255,255,.72);"
                   type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu"
@@ -350,7 +338,6 @@
             <span class="navbar-toggler-icon"></span>
           </button>
 
-          <!-- Desktop menu -->
           <div class="collapse navbar-collapse d-none d-lg-flex justify-content-end">
             <ul class="navbar-nav align-items-center gap-2">
               <li class="nav-item"><a class="btn btn-sm" href="#model" style="border-radius:999px;border:1px solid rgba(18,16,24,.10);background:rgba(255,255,255,.72);font-weight:900;">Model</a></li>
@@ -367,7 +354,6 @@
     </div>
   </div>
 
-  <!-- Offcanvas Mobile Menu -->
   <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel"
        style="background:rgba(251,247,242,.98);backdrop-filter:blur(14px);">
     <div class="offcanvas-header">
@@ -399,7 +385,7 @@
 
       <hr class="my-4" style="border-color: rgba(18,16,24,.12);">
       <div style="font-size:12px;color:rgba(18,16,24,.62);line-height:1.6;">
-        Tip: edit your content in <b>/content/*.json</b> (Decap CMS can manage it later).
+        Tip: edit content in <b>/content/*.json</b> (Decap CMS can manage later).
       </div>
     </div>
   </div>
@@ -407,7 +393,6 @@
   <main id="top">
     <div class="container-xl px-3 py-4">
 
-      <!-- HERO -->
       <section class="cardEditorial mb-4">
         <div class="heroGrid">
           <div class="heroLeft">
@@ -431,7 +416,6 @@
 
           <div class="heroRight">
             <div class="heroMedia">
-              <!-- Put your image file beside index.html as hero.jpg OR change to your path -->
               <img id="heroImg" src="hero.jpg" alt="Hero image">
             </div>
             <div class="heroMask" id="heroMask"></div>
@@ -446,7 +430,6 @@
         </div>
       </section>
 
-      <!-- MODEL -->
       <section id="model" class="mb-4">
         <div class="p-4" style="border-radius:28px;background:rgba(255,255,255,.72);border:1px solid rgba(18,16,24,.10);box-shadow:var(--shadow2);">
           <h2>We sell packages, not just rentals.</h2>
@@ -488,7 +471,6 @@
         </div>
       </section>
 
-      <!-- MARKET -->
       <section id="market" class="mb-4">
         <div class="p-4" style="border-radius:28px;background:rgba(255,255,255,.72);border:1px solid rgba(18,16,24,.10);box-shadow:var(--shadow2);">
           <h2 id="marketTitle">Competitive landscape & our edge</h2>
@@ -497,7 +479,6 @@
             The battlefield is simple: cheaper shops absorb more disputes and rework. Our edge is operational certainty.
           </p>
 
-          <!-- NEW: Explain + Charts -->
           <div class="row g-3 mt-3" id="marketExplain"></div>
 
           <div class="row g-3 mt-3">
@@ -539,13 +520,12 @@
             <div class="col-12">
               <div class="p-3" style="border-radius:22px;border:1px solid rgba(18,16,24,.10);background:rgba(255,255,255,.78);">
                 <div style="font-weight:950;margin-bottom:8px;" id="chart3Title">Weekday utilization flywheel</div>
-                <canvas id="chartFlywheel" height="190" style="width:100%;"></canvas>
+                <canvas id="chartFlywheel" style="width:100%; height:auto;"></canvas>
                 <div style="font-size:12px;color:rgba(18,16,24,.58);line-height:1.6;margin-top:8px;" id="chart3Labels"></div>
               </div>
             </div>
           </div>
 
-          <!-- Optional: Matrix (you can keep/edit market.json later to drive this too) -->
           <div class="matrixWrap mt-4" id="matrixWrap" data-mode="none">
             <div class="p-3 d-flex flex-wrap gap-2 align-items-center justify-content-between"
                  style="border-bottom:1px solid rgba(18,16,24,.10);
@@ -587,7 +567,6 @@
         </div>
       </section>
 
-      <!-- STRESS -->
       <section id="stress" class="mb-4">
         <div class="p-4" style="border-radius:28px;background:rgba(255,255,255,.72);border:1px solid rgba(18,16,24,.10);box-shadow:var(--shadow2);">
           <h2>Stress test: bookings vs runway.</h2>
@@ -637,7 +616,6 @@
         </div>
       </section>
 
-      <!-- FUNDING -->
       <section id="funding" class="mb-5">
         <div class="p-4" style="border-radius:28px;background:rgba(255,255,255,.72);border:1px solid rgba(18,16,24,.10);box-shadow:var(--shadow2);">
           <h2>Funding ask: build inventory + stability buffer.</h2>
@@ -649,20 +627,16 @@
       </section>
 
       <div class="text-center pb-5" style="font-size:13px;color:rgba(18,16,24,.60);">
-        © Bridal Rental Studio Proposal • Bootstrap responsive navbar + Market charts
+        © Bridal Rental Studio Proposal • Mobile-safe flywheel
       </div>
     </div>
   </main>
 
-  <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
           integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
           crossorigin="anonymous"></script>
 
   <script>
-    /* --------------------------
-       Progress bar + read %
-    -------------------------- */
     const prog = document.getElementById('prog');
     const readPct = document.getElementById('readPct');
     const readPct2 = document.getElementById('readPct2');
@@ -680,9 +654,6 @@
     window.addEventListener('scroll', updateProgress, {passive:true});
     updateProgress();
 
-    /* --------------------------
-       Hero parallax (light)
-    -------------------------- */
     const heroImg = document.getElementById('heroImg');
     const heroCaption = document.getElementById('heroCaption');
     const heroMask = document.getElementById('heroMask');
@@ -710,9 +681,6 @@
     window.addEventListener('scroll', onScroll, {passive:true});
     parallax();
 
-    /* --------------------------
-       Helpers
-    -------------------------- */
     async function loadJSON(path){
       const res = await fetch(path, { cache: "no-store" });
       if(!res.ok) throw new Error(`Failed to load ${path}: ${res.status}`);
@@ -752,10 +720,7 @@
       el.innerHTML = `Contact: <b>${site.contactName || "[Your Name]"}</b> • WhatsApp: <b>${site.contactWhatsapp || "[+60…]"}</b> • Email: <b>${site.contactEmail || "[…]"}</b> • IG: <b>${site.contactIg || "@[handle]"}</b>`;
     }
 
-    /* --------------------------
-       Market charts renderer
-       (Canvas only, no libs)
-    -------------------------- */
+    /* Market charts renderer */
     function drawMarketCharts(market){
       const fmt = new Intl.NumberFormat('en-MY');
       const scenarios = market?.numbersLogic?.scenarios || [];
@@ -766,12 +731,11 @@
         return { name:s.name, cost, avgPrice:s.avgPrice, disputeRate:s.disputeRate };
       });
 
-      // Labels
       const c1 = market?.charts?.chart1 || {};
       const c2 = market?.charts?.chart2 || {};
       const c3 = market?.charts?.chart3 || {};
-
       const setText = (id, txt) => { const el = document.getElementById(id); if(el) el.textContent = txt; };
+
       setText("chart1Title", c1.title || "Competitive map: Price vs Reliability");
       setText("chart2Title", c2.title || "Hidden cost per booking (disputes + rework)");
       setText("chart3Title", c3.title || "Weekday utilization flywheel");
@@ -779,7 +743,7 @@
       setText("chart2Labels", `${c2.yLabel || "RM per booking"} (model: dispute rate + rework hours)`);
       setText("chart3Labels", c3.subtitle || "Weekday products prevent idle fixed costs and stabilize bookings.");
 
-      // 1) Scatter map (Price vs Reliability proxy)
+      // Scatter
       const map = document.getElementById("chartMap");
       if(map?.getContext && hiddenCosts.length){
         const ctx = map.getContext("2d");
@@ -790,7 +754,6 @@
         const pad = 22 * devicePixelRatio;
         const left = pad, top = pad, right = w - pad, bottom = h - pad;
 
-        // grid
         ctx.strokeStyle = "rgba(18,16,24,.10)";
         ctx.lineWidth = 1 * devicePixelRatio;
         for(let i=0;i<=4;i++){
@@ -825,7 +788,7 @@
         });
       }
 
-      // 2) Bar chart (Hidden cost)
+      // Bars
       const bar = document.getElementById("chartHidden");
       if(bar?.getContext && hiddenCosts.length){
         const ctx = bar.getContext("2d");
@@ -839,7 +802,6 @@
         const maxCost = Math.max(...hiddenCosts.map(d=>d.cost), 1);
         const bw = (right-left) / (hiddenCosts.length * 1.3);
 
-        // grid
         ctx.strokeStyle = "rgba(18,16,24,.10)";
         ctx.lineWidth = 1 * devicePixelRatio;
         for(let i=0;i<=4;i++){
@@ -866,36 +828,59 @@
         });
       }
 
-      // 3) Flywheel
+      /* ✅ Mobile-safe flywheel (fixed) */
       const fly = document.getElementById("chartFlywheel");
       if(fly?.getContext){
         const ctx = fly.getContext("2d");
+
+        const isMobile = window.matchMedia("(max-width: 480px)").matches;
+
+        const targetH = isMobile ? 260 : 190;
         const w = fly.width = Math.max(10, fly.clientWidth) * devicePixelRatio;
-        const h = fly.height = 190 * devicePixelRatio;
+        const h = fly.height = targetH * devicePixelRatio;
+
         ctx.clearRect(0,0,w,h);
 
-        const cx = w/2, cy = h/2;
+        const cx = w/2;
+        const cy = h/2 + (isMobile ? 8*devicePixelRatio : 0);
         const r = Math.min(w,h) * 0.30;
 
         ctx.strokeStyle = "rgba(210,174,114,.55)";
         ctx.lineWidth = 3 * devicePixelRatio;
         ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI*2); ctx.stroke();
 
+        function wrapLabel(text){
+          if(!isMobile) return [text];
+          if(text.length <= 10) return [text];
+          const mid = Math.ceil(text.length/2);
+          return [text.slice(0, mid), text.slice(mid)];
+        }
+
         function node(angle, text){
           const x = cx + Math.cos(angle)*r;
           const y = cy + Math.sin(angle)*r;
 
           ctx.beginPath();
-          ctx.fillStyle = "rgba(255,255,255,.85)";
+          ctx.fillStyle = "rgba(255,255,255,.90)";
           ctx.strokeStyle = "rgba(18,16,24,.15)";
           ctx.lineWidth = 2 * devicePixelRatio;
-          ctx.arc(x,y,22*devicePixelRatio,0,Math.PI*2);
+
+          const radius = (isMobile ? 26 : 22) * devicePixelRatio;
+          ctx.arc(x,y,radius,0,Math.PI*2);
           ctx.fill(); ctx.stroke();
 
-          ctx.fillStyle = "rgba(18,16,24,.72)";
-          ctx.font = `${12*devicePixelRatio}px Inter`;
+          const lines = wrapLabel(text);
+          ctx.fillStyle = "rgba(18,16,24,.78)";
+          ctx.font = `${(isMobile ? 11 : 12) * devicePixelRatio}px Inter`;
           ctx.textAlign = "center";
-          ctx.fillText(text, x, y + 4*devicePixelRatio);
+          ctx.textBaseline = "middle";
+
+          if(lines.length === 1){
+            ctx.fillText(lines[0], x, y);
+          } else {
+            ctx.fillText(lines[0], x, y - 7*devicePixelRatio);
+            ctx.fillText(lines[1], x, y + 7*devicePixelRatio);
+          }
         }
 
         node(-Math.PI/2, "Weekday");
@@ -904,17 +889,18 @@
         node(Math.PI, "Referrals");
 
         ctx.fillStyle = "rgba(18,16,24,.78)";
-        ctx.font = `${13*devicePixelRatio}px Inter`;
+        ctx.font = `${(isMobile ? 12 : 13) * devicePixelRatio}px Inter`;
         ctx.textAlign = "center";
-        ctx.fillText("Consistency flywheel", cx, cy + 4*devicePixelRatio);
+        ctx.textBaseline = "middle";
+
+        if(isMobile){
+          ctx.fillText("Consistency flywheel", cx, cy + 34*devicePixelRatio);
+        } else {
+          ctx.fillText("Consistency flywheel", cx, cy + 4*devicePixelRatio);
+        }
       }
     }
 
-    /* --------------------------
-       Market hydration
-       - Loads from content/market.json if present
-       - Otherwise uses built-in defaults
-    -------------------------- */
     const DEFAULT_MARKET = {
       title: "Competitive landscape & our edge (why we win, what it costs)",
       intro: "We’re not trying to be the cheapest. We’re trying to be the most reliable studio that still feels premium. The battlefield is simple: the cheaper you go, the more disputes and rework you absorb. Our edge is operational certainty — fit-first + hygiene SLA + dispute-proof handover — so each booking produces repeatable margin and reviews.",
@@ -939,21 +925,19 @@
           title: "Studio bundle / photo-first",
           howTheyWin: ["Partners push volume (photo/MUA/planners)", "Bundled convenience"],
           hiddenCosts: ["Partner dependency", "Discounting to keep partners happy", "Weak moat if everyone can bundle"],
-          ourCounter: ["We still partner — but we keep pricing integrity via tiered packages", "Our moat is ops + trust (reviews) not partner discounts"]
+          ourCounter: ["We still partner — but keep pricing integrity via tiered packages", "Moat is ops + trust (reviews) not partner discounts"]
         }
       ],
       yourLane: {
-        headline: "Ops-led boutique (Us): premium feel, standardized system",
-        promise: ["Fit-first: no ‘take home unless it fits’","Hygiene SLA: documented cleaning/press readiness","Dispute-proof: before/after photos + checklist + deposits","Weekday utilization: ROM + photoshoot packages","Trust compounding: review flywheel as a moat"],
         whatItCosts: ["More time per booking (structured fitting + checklist)", "Cleaning SLA budget (predictable vendor cost)", "Systems discipline (templates, photos, tracking)"],
         whyWorthIt: ["Lower disputes → less refunds, less time wasted", "Inventory lasts longer → lower replacement capital", "Higher referral + reviews → cheaper marketing over time", "Predictable margin → stable business (your goal)"]
       },
       numbersLogic: {
         scenarios: [
-          { name:"Budget Rack", avgPrice:600, variableCost:140, disputeRate:0.18, reworkHours:2.2, weekdayFill:0.35, note:"Low price, higher hidden cost" },
-          { name:"Typical Boutique", avgPrice:850, variableCost:160, disputeRate:0.10, reworkHours:1.5, weekdayFill:0.45, note:"Better experience, utilization risk" },
-          { name:"Studio Bundle", avgPrice:780, variableCost:170, disputeRate:0.12, reworkHours:1.7, weekdayFill:0.55, note:"Partners help, discount pressure" },
-          { name:"Us (Ops-led Boutique)", avgPrice:950, variableCost:190, disputeRate:0.06, reworkHours:0.9, weekdayFill:0.62, note:"Slightly higher price, lower chaos cost" }
+          { name:"Budget Rack", avgPrice:600, variableCost:140, disputeRate:0.18, reworkHours:2.2, weekdayFill:0.35 },
+          { name:"Typical Boutique", avgPrice:850, variableCost:160, disputeRate:0.10, reworkHours:1.5, weekdayFill:0.45 },
+          { name:"Studio Bundle", avgPrice:780, variableCost:170, disputeRate:0.12, reworkHours:1.7, weekdayFill:0.55 },
+          { name:"Us (Ops-led Boutique)", avgPrice:950, variableCost:190, disputeRate:0.06, reworkHours:0.9, weekdayFill:0.62 }
         ],
         chaosCostModel: { refundCost:150, hourlyOpsCost:35 }
       },
@@ -990,11 +974,11 @@
 
     function hydrateMarket(market){
       const m = market || DEFAULT_MARKET;
+      window.__MARKET_CACHE__ = m;
 
       document.getElementById("marketTitle").textContent = m.title || "Competitive landscape & our edge";
       document.getElementById("marketIntro").textContent = m.intro || "";
 
-      // Explain cards
       const explain = document.getElementById("marketExplain");
       if(explain){
         explain.innerHTML = "";
@@ -1038,7 +1022,6 @@
         });
       }
 
-      // Costs block
       const lane = m.yourLane || {};
       const marketCosts = document.getElementById("marketCosts");
       if(marketCosts){
@@ -1052,7 +1035,6 @@
         `;
       }
 
-      // Matrix
       const tbody = document.getElementById("matrixBody");
       if(tbody){
         tbody.innerHTML = (m.matrixRows || []).map((r)=>{
@@ -1074,9 +1056,7 @@
       drawMarketCharts(m);
     }
 
-    /* --------------------------
-       Stress test
-    -------------------------- */
+    /* Stress test */
     let AVG = 850, BURN = 7500, CAPITAL = 190000;
     let bookings = 10;
 
@@ -1107,20 +1087,10 @@
     document.getElementById('plus').addEventListener('click', ()=>{ bookings = clamp(bookings+1,0,40); renderStress(); });
     document.getElementById('minus').addEventListener('click', ()=>{ bookings = clamp(bookings-1,0,40); renderStress(); });
 
-    /* --------------------------
-       CMS hydrate
-       Looks for:
-         ./content/site.json
-         ./content/market.json
-         ./content/stress.json
-       If not found, uses defaults.
-    -------------------------- */
     async function hydrateCMS(){
-      // Try load site.json (optional)
       let site = {};
       try { site = await loadJSON("./content/site.json"); } catch(e){ site = {}; }
 
-      // Brand updates
       const brandName = site.brandName || "The Victoria Studio";
       const tagline = site.tagline || "Editorial pitch • modern chic • ops-led moat";
       const monogram = site.monogram || "BR";
@@ -1134,12 +1104,10 @@
 
       setContactLine(site);
 
-      // Market
       let market = null;
       try { market = await loadJSON("./content/market.json"); } catch(e){ market = null; }
       hydrateMarket(market);
 
-      // Stress
       let stress = {};
       try { stress = await loadJSON("./content/stress.json"); } catch(e){ stress = {}; }
       AVG = Number(stress.avgRental ?? AVG);
@@ -1147,7 +1115,6 @@
       CAPITAL = Number(stress.capital ?? CAPITAL);
       bookings = Number(stress.defaultBookings ?? bookings);
 
-      // Model cards mirror stress assumptions (so it feels consistent)
       const breakeven = Math.max(0, Math.ceil(BURN / (AVG || 1)));
       document.getElementById("modelBurn").textContent = fmt.format(BURN);
       document.getElementById("modelAvg").textContent = fmt.format(AVG);
@@ -1158,6 +1125,11 @@
 
     renderStress();
     hydrateCMS().catch(err=>console.error("Hydration failed:", err));
+
+    // ✅ redraw on rotate/resize so mobile flywheel stays clean
+    window.addEventListener("resize", () => {
+      if(window.__MARKET_CACHE__) drawMarketCharts(window.__MARKET_CACHE__);
+    });
   </script>
 </body>
 </html>
