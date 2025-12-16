@@ -1,0 +1,882 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>Bridal Rental Studio – Single Scroll Pitch</title>
+
+<style>
+:root{
+  /* Bridal luxe palette */
+  --bg0:#070812;
+  --bg1:#0a1030;
+  --ivory:#fff7ee;
+  --ink:#f3edff;
+  --muted:rgba(243,237,255,.72);
+
+  --blush:#ffb7c8;
+  --champ:#ffd9a6;
+  --lilac:#c7b3ff;
+  --aqua:#7de6ff;
+
+  --good:#34d399;
+  --warn:#fbbf24;
+  --bad:#fb7185;
+
+  --soft:rgba(255,255,255,.08);
+  --soft2:rgba(255,255,255,.14);
+
+  --radius:18px;
+  --shadow:0 20px 55px rgba(0,0,0,.45);
+  --shadow2:0 10px 28px rgba(0,0,0,.32);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  color:var(--ink);
+  background:
+    radial-gradient(900px 650px at 20% 10%, rgba(199,179,255,.18), transparent 58%),
+    radial-gradient(900px 650px at 78% 18%, rgba(125,230,255,.14), transparent 55%),
+    radial-gradient(900px 650px at 50% 88%, rgba(255,183,200,.10), transparent 55%),
+    linear-gradient(180deg, var(--bg0), var(--bg1));
+  overflow-x:hidden;
+}
+
+/* Subtle shimmering lattice (bridal lace vibe) */
+.lace{
+  position:fixed; inset:0;
+  pointer-events:none;
+  opacity:.28;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255,255,255,.10), transparent 45%),
+    radial-gradient(circle at 80% 30%, rgba(255,255,255,.08), transparent 45%),
+    radial-gradient(circle at 50% 90%, rgba(255,255,255,.07), transparent 55%),
+    linear-gradient(to right, rgba(255,255,255,.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,.03) 1px, transparent 1px);
+  background-size: auto, auto, auto, 64px 64px, 64px 64px;
+  animation: laceDrift 14s ease-in-out infinite alternate;
+}
+@keyframes laceDrift{
+  from{ transform: translate3d(-10px,-8px,0) scale(1.02)}
+  to  { transform: translate3d(12px,10px,0) scale(1.05)}
+}
+
+/* Floating floral bokeh */
+.bokeh{
+  position:fixed; inset:-10%;
+  pointer-events:none;
+  filter: blur(0.2px);
+  opacity:.5;
+  background:
+    radial-gradient(circle at 10% 20%, rgba(255,183,200,.20), transparent 22%),
+    radial-gradient(circle at 25% 65%, rgba(255,217,166,.14), transparent 26%),
+    radial-gradient(circle at 78% 22%, rgba(199,179,255,.18), transparent 24%),
+    radial-gradient(circle at 85% 75%, rgba(125,230,255,.12), transparent 28%);
+  animation: bokehFloat 18s ease-in-out infinite alternate;
+}
+@keyframes bokehFloat{
+  from{ transform: translate3d(0,0,0) scale(1.0)}
+  to  { transform: translate3d(0,-16px,0) scale(1.03)}
+}
+
+/* Glow follows pointer lightly */
+.glow{
+  position:fixed;
+  width:520px; height:520px;
+  left:0; top:0;
+  transform: translate(-50%,-50%);
+  background: radial-gradient(circle at 50% 50%,
+    rgba(255,183,200,.20),
+    rgba(199,179,255,.16),
+    rgba(125,230,255,.10),
+    transparent 62%);
+  filter: blur(10px);
+  opacity:.9;
+  pointer-events:none;
+  mix-blend-mode: screen;
+}
+
+/* Layout */
+header{
+  position:sticky;
+  top:0;
+  z-index:50;
+  padding: env(safe-area-inset-top) 14px 10px;
+  backdrop-filter: blur(10px);
+  background: linear-gradient(180deg, rgba(7,8,18,.85), rgba(7,8,18,.30));
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.topbar{
+  max-width:980px;
+  margin:0 auto;
+  display:flex;
+  gap:10px;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 12px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.06);
+  box-shadow: var(--shadow2);
+  min-width:0;
+}
+.mark{
+  width:34px; height:34px;
+  border-radius:14px;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255,255,255,.38), transparent 55%),
+    linear-gradient(135deg, var(--blush), var(--lilac), var(--aqua));
+}
+.brand .t{min-width:0}
+.brand strong{display:block;font-size:14px;letter-spacing:.2px;white-space:nowrap}
+.brand span{
+  display:block;
+  font-size:12px;
+  color:var(--muted);
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  max-width: 56vw;
+  margin-top:2px;
+}
+
+.pill{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 10px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.06);
+  color: rgba(243,237,255,.80);
+  font-size:12px;
+  font-weight:750;
+}
+
+.progress{
+  max-width:980px;
+  margin:10px auto 0;
+  height:6px;
+  border-radius:999px;
+  background: rgba(255,255,255,.08);
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.10);
+}
+.progress > div{
+  height:100%;
+  width:0%;
+  background: linear-gradient(90deg, var(--blush), var(--champ), var(--lilac), var(--aqua));
+  border-radius:999px;
+  transition: width .35s cubic-bezier(.2,.9,.2,1);
+}
+
+/* Sections */
+section{
+  padding:22px 14px;
+}
+.container{
+  max-width:980px;
+  margin:0 auto;
+}
+
+.card{
+  border-radius: var(--radius);
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.06);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(12px);
+  padding:18px;
+}
+
+.kicker{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:12px;
+}
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:7px 12px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  font-size:12px;
+  color: rgba(243,237,255,.82);
+}
+.dot{width:10px;height:10px;border-radius:999px;background: linear-gradient(135deg,var(--blush),var(--lilac),var(--aqua));}
+
+h1{
+  margin:0 0 10px;
+  font-size: clamp(28px, 6.8vw, 46px);
+  line-height:1.08;
+  letter-spacing:-0.6px;
+}
+h2{
+  margin:0 0 8px;
+  font-size: clamp(20px, 5.5vw, 32px);
+  letter-spacing:-0.25px;
+}
+h3{
+  margin:0 0 8px;
+  font-size: 15px;
+  color: rgba(243,237,255,.92);
+}
+p{
+  margin:0;
+  color: var(--muted);
+  line-height:1.7;
+  font-size: 15px;
+}
+
+.grid{
+  display:grid;
+  gap:14px;
+  margin-top:14px;
+}
+@media(min-width:900px){
+  .grid.two{ grid-template-columns: 1fr 1fr; }
+  .grid.three{ grid-template-columns: 1fr 1fr 1fr; }
+}
+
+.item{
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(7,8,18,.38);
+  padding:14px;
+}
+
+.row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+.pchip{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 12px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.06);
+  font-size:13px;
+  font-weight:650;
+  color: rgba(243,237,255,.88);
+}
+.pchip small{font-weight:700;opacity:.85}
+.bul{ width:10px;height:10px;border-radius:999px; background: rgba(255,255,255,.16); }
+.pchip.good .bul{ background: rgba(52,211,153,.85); }
+.pchip.warn .bul{ background: rgba(251,191,36,.85); }
+.pchip.bad  .bul{ background: rgba(251,113,133,.85); }
+
+.metric{
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.06);
+  padding:14px;
+}
+.metric .label{ font-size:12px; color: rgba(243,237,255,.70); font-weight:750; }
+.metric .value{
+  margin-top:6px;
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing:-0.4px;
+}
+.metric .sub{ margin-top:6px; font-size:12px; color: rgba(243,237,255,.68); }
+
+hr.sep{
+  border:none;
+  border-top:1px solid rgba(255,255,255,.10);
+  margin:16px 0;
+}
+
+/* Utilization chart (bridal pastel gradient) */
+.bars{display:flex; gap:10px; align-items:flex-end; height:160px; margin-top:12px}
+.bar{
+  flex:1;
+  border-radius: 16px;
+  border:1px solid rgba(255,255,255,.12);
+  background: linear-gradient(180deg, rgba(255,183,200,.72), rgba(199,179,255,.55), rgba(125,230,255,.36));
+  transform-origin: bottom;
+  transform: scaleY(.38);
+  opacity:.92;
+  transition: transform .75s cubic-bezier(.2,.9,.2,1);
+}
+.reveal.in .bar{ transform: scaleY(var(--h,.7)); }
+.bar.highlight{
+  outline:2px solid rgba(52,211,153,.75);
+  box-shadow: 0 0 0 6px rgba(52,211,153,.10);
+}
+.barlabel{display:flex; justify-content:space-between; margin-top:10px; font-size:12px; color: rgba(243,237,255,.72)}
+.barlabel span{ text-align:center; width:25% }
+
+/* Scroll reveal animation */
+.reveal{
+  opacity:0;
+  transform: translate3d(0,14px,0);
+  transition: opacity .55s ease, transform .65s cubic-bezier(.2,.9,.2,1);
+}
+.reveal.in{
+  opacity:1;
+  transform: translate3d(0,0,0);
+}
+
+/* Stress test controls */
+.controls{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:10px;
+  margin-top:12px;
+}
+.btn{
+  appearance:none;
+  border:none;
+  border-radius:16px;
+  padding:14px 12px;
+  font-weight:850;
+  cursor:pointer;
+  color: rgba(7,8,18,.95);
+  background: linear-gradient(90deg, var(--champ), var(--blush));
+  box-shadow: 0 10px 25px rgba(0,0,0,.25);
+}
+.btn.secondary{
+  background: linear-gradient(90deg, var(--lilac), var(--aqua));
+}
+.btn:active{ transform: translateY(1px); }
+
+.note{
+  font-size:12px;
+  color: rgba(243,237,255,.66);
+  margin-top:10px;
+  line-height:1.5;
+}
+
+/* Footer */
+footer{
+  padding: 26px 14px calc(26px + env(safe-area-inset-bottom));
+  text-align:center;
+  color: rgba(243,237,255,.66);
+  font-size:13px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .lace,.bokeh{animation:none}
+  .reveal{transition:none}
+  .progress > div{transition:none}
+  .bar{transition:none}
+}
+</style>
+</head>
+
+<body>
+<div class="lace"></div>
+<div class="bokeh"></div>
+<div class="glow" id="glow"></div>
+
+<header>
+  <div class="topbar">
+    <div class="brand">
+      <div class="mark"></div>
+      <div class="t">
+        <strong>Bridal Rental Studio</strong>
+        <span>Single-scroll pitch • Bridal-luxe theme • Investor-grade</span>
+      </div>
+    </div>
+    <div class="pill"><span class="dot"></span><span id="readPct">0%</span></div>
+  </div>
+  <div class="progress"><div id="prog"></div></div>
+</header>
+
+<!-- HERO -->
+<section>
+  <div class="container">
+    <div class="card reveal">
+      <div class="kicker">
+        <div class="badge"><span class="dot"></span> Malaysia • 20–30 outfits • Appointment-first</div>
+        <div class="badge">Funding-ready model</div>
+      </div>
+
+      <h1>
+        A bridal rental studio built for
+        <span style="background:linear-gradient(90deg,var(--blush),var(--champ),var(--lilac),var(--aqua));-webkit-background-clip:text;background-clip:text;color:transparent;">
+          consistent cashflow
+        </span>
+        — with premium bridal experience.
+      </h1>
+
+      <p>
+        We operate a curated bridal + groom rental studio designed to survive quiet months,
+        control costs, and generate predictable monthly bookings through partnerships and disciplined operations.
+      </p>
+
+      <hr class="sep"/>
+
+      <div class="row">
+        <div class="pchip good"><span class="bul"></span> Low fixed burn</div>
+        <div class="pchip good"><span class="bul"></span> Clear breakeven math</div>
+        <div class="pchip good"><span class="bul"></span> Ops-driven moat</div>
+        <div class="pchip good"><span class="bul"></span> Bridal-luxe positioning</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section>
+  <div class="container">
+    <div class="card reveal">
+      <div class="kicker">
+        <div class="badge"><span class="dot"></span> The problem</div>
+        <div class="badge">Customers + studios both suffer</div>
+      </div>
+
+      <h2>Weddings are one day. Buying premium outfits is rarely rational.</h2>
+      <p>
+        Couples want a premium look without premium ownership cost — but they also want fit, hygiene, reliability,
+        and zero last-minute surprises.
+      </p>
+
+      <div class="grid two">
+        <div class="item">
+          <h3>Customer pain points</h3>
+          <div class="row">
+            <div class="pchip warn"><span class="bul"></span> High one-time cost</div>
+            <div class="pchip warn"><span class="bul"></span> Fit & sizing anxiety</div>
+            <div class="pchip warn"><span class="bul"></span> Trust & hygiene concerns</div>
+            <div class="pchip warn"><span class="bul"></span> Time pressure</div>
+          </div>
+        </div>
+        <div class="item">
+          <h3>Why many studios fail</h3>
+          <div class="row">
+            <div class="pchip bad"><span class="bul"></span> Rent too high</div>
+            <div class="pchip bad"><span class="bul"></span> Dead stock traps cash</div>
+            <div class="pchip bad"><span class="bul"></span> Weak policies → disputes</div>
+            <div class="pchip bad"><span class="bul"></span> Hiring too early</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section>
+  <div class="container">
+    <div class="card reveal">
+      <div class="kicker">
+        <div class="badge"><span class="dot"></span> Our solution</div>
+        <div class="badge">Premium experience + strict ops</div>
+      </div>
+
+      <h2>Appointment-only studio with curated bridal + groom bundles.</h2>
+      <p>
+        We win through controlled workflow, predictable turnaround, and consistent quality —
+        supported by deposits, checklists, outsourced cleaning, and on-demand tailoring.
+      </p>
+
+      <div class="grid two">
+        <div class="item">
+          <h3>What customers feel</h3>
+          <p>Elegant fitting experience. Clear expectations. Reliable pickup/return. Clean and ready, every time.</p>
+        </div>
+        <div class="item">
+          <h3>What the business enforces</h3>
+          <div class="row">
+            <div class="pchip good"><span class="bul"></span> Appointment slots</div>
+            <div class="pchip good"><span class="bul"></span> Deposit discipline</div>
+            <div class="pchip good"><span class="bul"></span> Photo checklist</div>
+            <div class="pchip good"><span class="bul"></span> Vendor network</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- UTILIZATION -->
+<section>
+  <div class="container">
+    <div class="card reveal">
+      <div class="kicker">
+        <div class="badge"><span class="dot"></span> Utilization & breakeven</div>
+        <div class="badge">Clarity = confidence</div>
+      </div>
+
+      <h2>The model is built around one simple target: ~10 bookings per month.</h2>
+      <p>
+        This is a “steady cashflow” business. We do not need huge volume — we need consistent utilization.
+      </p>
+
+      <div class="grid two">
+        <div class="metric">
+          <div class="label">Monthly fixed cost (burn)</div>
+          <div class="value">RM 7,500</div>
+          <div class="sub">lean studio strategy</div>
+        </div>
+        <div class="metric">
+          <div class="label">Average rental (blended)</div>
+          <div class="value">RM 850</div>
+          <div class="sub">mix of gowns, suits, add-ons</div>
+        </div>
+        <div class="metric">
+          <div class="label">Breakeven</div>
+          <div class="value" style="color:rgba(52,211,153,.95)">~10 bookings / month</div>
+          <div class="sub">~2–3 bookings per week</div>
+        </div>
+        <div class="metric">
+          <div class="label">Peak season upside</div>
+          <div class="value">15+ / month</div>
+          <div class="sub">profit compounds during wedding season</div>
+        </div>
+      </div>
+
+      <div class="item" style="margin-top:14px">
+        <h3>Utilization targets (monthly bookings)</h3>
+        <div class="bars" aria-label="utilization chart">
+          <div class="bar" style="--h:.35" title="4 bookings"></div>
+          <div class="bar" style="--h:.58" title="8 bookings"></div>
+          <div class="bar highlight" style="--h:.72" title="Breakeven: 10"></div>
+          <div class="bar" style="--h:.92" title="15 bookings"></div>
+        </div>
+        <div class="barlabel">
+          <span>4<br><small>Slow</small></span>
+          <span>8<br><small>Avg</small></span>
+          <span><b>10</b><br><small style="color:rgba(52,211,153,.95)">Breakeven</small></span>
+          <span>15<br><small>Peak</small></span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- BUSINESS MODEL -->
+<section>
+  <div class="container">
+    <div class="card reveal">
+      <div class="kicker">
+        <div class="badge"><span class="dot"></span> Business model</div>
+        <div class="badge">Bundled pricing</div>
+      </div>
+
+      <h2>We sell packages, not just rentals.</h2>
+      <p>Bundles lift average order value and reduce the number of customers needed to be profitable.</p>
+
+      <div class="grid two">
+        <div class="item">
+          <h3>Revenue streams</h3>
+          <div class="row">
+            <div class="pchip good"><span class="bul"></span> Bridal rentals</div>
+            <div class="pchip good"><span class="bul"></span> Groom rentals</div>
+            <div class="pchip good"><span class="bul"></span> Bundles</div>
+            <div class="pchip good"><span class="bul"></span> Accessories</div>
+            <div class="pchip good"><span class="bul"></span> Rush fees</div>
+          </div>
+        </div>
+        <div class="item">
+          <h3>Pricing anchors</h3>
+          <div class="grid two">
+            <div class="metric">
+              <div class="label">Avg rental</div>
+              <div class="value">RM 850</div>
+              <div class="sub">blended</div>
+            </div>
+            <div class="metric">
+              <div class="label">Bundle avg</div>
+              <div class="value">RM 1,500–2,500</div>
+              <div class="sub">depends on styling</div>
+            </div>
+          </div>
+          <div class="note">Tip: Bundles also reduce “shopping fatigue” and increase conversion.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OPERATIONS -->
+<section>
+  <div class="container">
+    <div class="card reveal">
+      <div class="kicker">
+        <div class="badge"><span class="dot"></span> Operations</div>
+        <div class="badge">This is the moat</div>
+      </div>
+
+      <h2>Operational discipline is what prevents losses.</h2>
+      <p>
+        Most failures are not demand issues. They’re operations issues: damage disputes, late returns,
+        inconsistent cleaning, and uncontrolled workflow.
+      </p>
+
+      <div class="grid two">
+        <div class="item">
+          <h3>Non-negotiables</h3>
+          <div class="row">
+            <div class="pchip good"><span class="bul"></span> Signed policy</div>
+            <div class="pchip good"><span class="bul"></span> Photo checklist</div>
+            <div class="pchip good"><span class="bul"></span> Damage tiers</div>
+            <div class="pchip good"><span class="bul"></span> Late fees</div>
+          </div>
+        </div>
+        <div class="item">
+          <h3>Lean team</h3>
+          <div class="grid two">
+            <div class="metric">
+              <div class="label">Front-end</div>
+              <div class="value">Owner-led</div>
+              <div class="sub">fittings + booking</div>
+            </div>
+            <div class="metric">
+              <div class="label">Back-end</div>
+              <div class="value">Vendors</div>
+              <div class="sub">tailor + cleaning</div>
+            </div>
+          </div>
+          <div class="note">Hiring happens only after bookings are consistently above breakeven.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINANCIAL PLAN -->
+<section>
+  <div class="container">
+    <div class="card reveal">
+      <div class="kicker">
+        <div class="badge"><span class="dot"></span> 2-year financial plan</div>
+        <div class="badge">Capitalized stability</div>
+      </div>
+
+      <h2>Capital is used to protect runway and avoid panic decisions.</h2>
+      <p>We fund stability first. Growth comes from utilization and partnerships.</p>
+
+      <div class="grid two">
+        <div class="metric">
+          <div class="label">Inventory (20–30 outfits)</div>
+          <div class="value">RM 70,000</div>
+          <div class="sub">bridal + groom mix</div>
+        </div>
+        <div class="metric">
+          <div class="label">Setup & deposits</div>
+          <div class="value">RM 10,000</div>
+          <div class="sub">racks, mirrors, deposits</div>
+        </div>
+        <div class="metric">
+          <div class="label">24-month overhead buffer</div>
+          <div class="value">RM 90,000</div>
+          <div class="sub">lean burn strategy</div>
+        </div>
+        <div class="metric">
+          <div class="label">Total capital required</div>
+          <div class="value" style="background:linear-gradient(90deg,var(--blush),var(--champ),var(--lilac),var(--aqua));-webkit-background-clip:text;background-clip:text;color:transparent;">
+            RM 190,000
+          </div>
+          <div class="sub">runway + stability</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STRESS TEST -->
+<section id="stress">
+  <div class="container">
+    <div class="card reveal">
+      <div class="kicker">
+        <div class="badge"><span class="dot"></span> Stress test</div>
+        <div class="badge">Worst-case survivability</div>
+      </div>
+
+      <h2>Adjust bookings and see profitability instantly.</h2>
+      <p>
+        Assumptions: Avg rental RM <b>850</b>, monthly fixed cost RM <b>7,500</b>, runway capital RM <b>190,000</b>.
+      </p>
+
+      <div class="grid two">
+        <div class="metric">
+          <div class="label">Bookings / month</div>
+          <div class="value"><span id="bookings">10</span></div>
+          <div class="sub">tap buttons to adjust</div>
+        </div>
+        <div class="metric">
+          <div class="label">Monthly revenue</div>
+          <div class="value">RM <span id="revenue">8,500</span></div>
+          <div class="sub">850 × bookings</div>
+        </div>
+        <div class="metric">
+          <div class="label">Monthly net</div>
+          <div class="value" id="net">RM +1,000</div>
+          <div class="sub">revenue − 7,500</div>
+        </div>
+        <div class="metric">
+          <div class="label">Runway (months)</div>
+          <div class="value"><span id="runway">999</span></div>
+          <div class="sub">if net negative, capital ÷ burn</div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button class="btn" id="minus">−1 booking</button>
+        <button class="btn secondary" id="plus">+1 booking</button>
+      </div>
+
+      <div class="note">
+        What to look for: If bookings dip below breakeven (≈10/month), the business should still have enough runway to recover without cutting corners.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FUNDING -->
+<section>
+  <div class="container">
+    <div class="card reveal">
+      <div class="kicker">
+        <div class="badge"><span class="dot"></span> Funding ask</div>
+        <div class="badge">Runway, not luxury</div>
+      </div>
+
+      <h2>Seeking RM 200,000 to fund a stable runway.</h2>
+      <p>
+        Funds are allocated toward inventory, operational buffer, systems, and partnership-led marketing — not expensive rent or over-hiring.
+      </p>
+
+      <div class="grid two">
+        <div class="item">
+          <h3>Use of funds</h3>
+          <div class="row">
+            <div class="pchip good"><span class="bul"></span> Inventory acquisition</div>
+            <div class="pchip good"><span class="bul"></span> Overhead buffer</div>
+            <div class="pchip good"><span class="bul"></span> Systems & policies</div>
+            <div class="pchip good"><span class="bul"></span> Partner-led GTM</div>
+          </div>
+        </div>
+        <div class="item">
+          <h3>Positioning</h3>
+          <p>
+            This is not a “hyper-growth” startup. It’s a disciplined cashflow business where profits compound from utilization and reputation.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSE -->
+<section>
+  <div class="container">
+    <div class="card reveal">
+      <div class="kicker">
+        <div class="badge"><span class="dot"></span> Closing</div>
+        <div class="badge">Stable + elegant</div>
+      </div>
+
+      <h2>Elegant customer experience + disciplined operations = durability.</h2>
+      <p>
+        Low burn, clear breakeven, strict policies, and a partner-led booking engine.
+        That’s how this studio survives quiet months and grows consistently.
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Contact: <b>[Your Name]</b> • WhatsApp: <b>[+60…]</b> • Email: <b>[…]</b> • IG: <b>@[handle]</b>
+</footer>
+
+<script>
+/* Pointer glow (lightweight) */
+const glow = document.getElementById('glow');
+let gx = innerWidth * 0.5, gy = innerHeight * 0.2, tx = gx, ty = gy;
+window.addEventListener('pointermove', (e)=>{ tx = e.clientX; ty = e.clientY; }, {passive:true});
+(function raf(){
+  gx += (tx - gx) * 0.06;
+  gy += (ty - gy) * 0.06;
+  glow.style.left = gx + 'px';
+  glow.style.top  = gy + 'px';
+  requestAnimationFrame(raf);
+})();
+
+/* Read progress */
+const prog = document.getElementById('prog');
+const readPct = document.getElementById('readPct');
+function updateProgress(){
+  const doc = document.documentElement;
+  const max = (doc.scrollHeight - doc.clientHeight) || 1;
+  const pct = Math.max(0, Math.min(100, Math.round((doc.scrollTop / max)*100)));
+  prog.style.width = pct + '%';
+  readPct.textContent = pct + '%';
+}
+window.addEventListener('scroll', updateProgress, {passive:true});
+updateProgress();
+
+/* Scroll reveal */
+const reveals = Array.from(document.querySelectorAll('.reveal'));
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if (e.isIntersecting) e.target.classList.add('in');
+  });
+},{threshold:0.12});
+reveals.forEach(el=>io.observe(el));
+
+/* Stress test */
+const fmt = new Intl.NumberFormat('en-MY');
+
+const AVG = 850;
+const BURN = 7500;
+const CAPITAL = 190000;
+
+let bookings = 10;
+
+const elBookings = document.getElementById('bookings');
+const elRevenue  = document.getElementById('revenue');
+const elNet      = document.getElementById('net');
+const elRunway   = document.getElementById('runway');
+
+function clamp(n,a,b){ return Math.max(a, Math.min(b,n)); }
+
+function render(){
+  const revenue = AVG * bookings;
+  const net = revenue - BURN;
+
+  elBookings.textContent = bookings;
+  elRevenue.textContent = fmt.format(revenue);
+
+  const sign = net >= 0 ? '+' : '−';
+  elNet.textContent = `RM ${sign}${fmt.format(Math.abs(net))}`;
+  elNet.style.color = net >= 0 ? 'rgba(52,211,153,.95)' : 'rgba(251,113,133,.95)';
+
+  const runway = net < 0 ? Math.floor(CAPITAL / Math.abs(net)) : 999;
+  elRunway.textContent = runway;
+}
+render();
+
+document.getElementById('plus').addEventListener('click', ()=>{
+  bookings = clamp(bookings + 1, 0, 40);
+  render();
+});
+document.getElementById('minus').addEventListener('click', ()=>{
+  bookings = clamp(bookings - 1, 0, 40);
+  render();
+});
+</script>
+</body>
+</html>
