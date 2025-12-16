@@ -12,7 +12,7 @@
 
   <!-- Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        integrity="sha384-QWTKZyjpPEiISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
   <style>
     :root{
@@ -28,6 +28,7 @@
       --glass:rgba(255,255,255,.78);
 
       --good:#1f9d6e;
+      --warn:#d39f2a;
       --bad:#b54a5a;
 
       --radius:24px;
@@ -257,24 +258,7 @@
       will-change: transform;
     }
 
-    .score{
-      display:inline-flex;
-      gap:8px;
-      align-items:center;
-      padding:8px 10px;
-      border-radius:999px;
-      border:1px solid rgba(18,16,24,.10);
-      background: rgba(255,255,255,.78);
-      font-size:12px;
-      font-weight:950;
-      color: rgba(18,16,24,.72);
-      white-space:nowrap;
-    }
-    .sIcon{ width:10px;height:10px;border-radius:999px;background:rgba(18,16,24,.20); }
-    .sIcon.g{ background: rgba(31,157,110,.78); }
-    .sIcon.m{ background: rgba(210,174,114,.78); }
-    .sIcon.r{ background: rgba(181,74,90,.78); }
-
+    /* Matrix styles */
     .matrixWrap{
       margin-top: 14px;
       border-radius: 26px;
@@ -290,11 +274,74 @@
       color: rgba(18,16,24,.70);
       font-weight:980;
       background: rgba(255,255,255,.60);
+      white-space:nowrap;
     }
+    .matrixWrap table td{
+      vertical-align:top;
+    }
+
+    .scoreBadge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid rgba(18,16,24,.10);
+      background: rgba(255,255,255,.78);
+      font-size:12px;
+      font-weight:950;
+      color: rgba(18,16,24,.78);
+      white-space:nowrap;
+    }
+    .dots{
+      display:inline-flex;
+      gap:4px;
+      align-items:center;
+    }
+    .dots i{
+      width:7px;height:7px;border-radius:999px;display:inline-block;
+      background: rgba(18,16,24,.18);
+    }
+    .dots i.on1{ background: rgba(181,74,90,.78); }
+    .dots i.on2{ background: rgba(211,159,42,.78); }
+    .dots i.on3{ background: rgba(31,157,110,.78); }
+
+    .weightPill{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(18,16,24,.10);
+      background: rgba(210,174,114,.12);
+      font-size:12px;
+      font-weight:950;
+      color: rgba(18,16,24,.70);
+      white-space:nowrap;
+    }
+    .subtext{
+      font-size:12px;
+      color: rgba(18,16,24,.60);
+      line-height:1.65;
+      margin-top:6px;
+    }
+    .metricTitle{
+      font-weight:950;
+      color: rgba(18,16,24,.84);
+      line-height:1.2;
+    }
+
     @media(max-width:860px){
       .matrixWrap{ overflow:auto; -webkit-overflow-scrolling: touch; }
-      .matrixWrap table th, .matrixWrap table td{ min-width: 160px; }
-      .matrixWrap table td:first-child{ min-width: 220px; }
+      .matrixWrap table th, .matrixWrap table td{ min-width: 170px; }
+      .matrixWrap table td:first-child{ min-width: 250px; }
+      .matrixWrap table td:nth-child(2){ min-width: 110px; }
+      .matrixWrap table td:nth-child(3){ min-width: 110px; }
+      .matrixWrap table td:nth-child(4){ min-width: 110px; }
+      .matrixWrap table td:nth-child(5){ min-width: 110px; }
+      .matrixWrap table td:nth-child(6){ min-width: 260px; }
+      .matrixWrap table td:nth-child(7){ min-width: 260px; }
+      .matrixWrap table td:nth-child(8){ min-width: 260px; }
     }
 
     .ribbon{
@@ -526,30 +573,62 @@
             </div>
           </div>
 
-          <div class="matrixWrap mt-4" id="matrixWrap" data-mode="none">
+          <!-- ✅ FIXED / UPGRADED COMPARISON MATRIX -->
+          <div class="matrixWrap mt-4" id="matrixWrap">
             <div class="p-3 d-flex flex-wrap gap-2 align-items-center justify-content-between"
                  style="border-bottom:1px solid rgba(18,16,24,.10);
                         background:linear-gradient(90deg, rgba(210,174,114,.10), rgba(200,143,149,.08), rgba(255,255,255,.70));">
-              <div class="d-flex gap-2 align-items-center">
-                <span class="badge rounded-pill text-dark border" style="background:rgba(255,255,255,.74);font-weight:950;">Comparison matrix</span>
-                <span style="font-size:12px;color:rgba(18,16,24,.58)">We compete on reliability, not chaos pricing.</span>
+              <div class="d-flex flex-wrap gap-2 align-items-center">
+                <span class="badge rounded-pill text-dark border" style="background:rgba(255,255,255,.74);font-weight:950;">Comparison matrix (with reasoning)</span>
+                <span style="font-size:12px;color:rgba(18,16,24,.58)">This explains exactly <b>where</b> we win and <b>why</b> we choose this lane.</span>
               </div>
-              <span style="font-size:12px;color:rgba(18,16,24,.58)">Legend: ● strong • ● medium • ● weak</span>
+
+              <div class="d-flex flex-wrap gap-2 align-items-center">
+                <span class="pill" style="padding:7px 10px;font-size:12px;">
+                  <span class="dot"></span> Score: 1 (weak) → 5 (strong)
+                </span>
+                <span class="pill" style="padding:7px 10px;font-size:12px;background:rgba(210,174,114,.10);">
+                  Weight = importance to <b>profit stability</b>
+                </span>
+              </div>
             </div>
 
             <div class="table-responsive">
               <table class="table align-middle mb-0">
                 <thead>
                 <tr>
-                  <th>Battlefield</th>
+                  <th>Metric</th>
+                  <th>Weight</th>
                   <th>Budget Rack</th>
                   <th>Typical Boutique</th>
                   <th>Studio Bundle</th>
                   <th>Us (Ops-led)</th>
+                  <th>What it means</th>
+                  <th>Why it matters (business)</th>
+                  <th>Our play (how we win)</th>
                 </tr>
                 </thead>
                 <tbody id="matrixBody"></tbody>
               </table>
+            </div>
+
+            <div class="p-3" style="border-top:1px solid rgba(18,16,24,.10);background:rgba(255,255,255,.62);">
+              <div class="row g-3">
+                <div class="col-12 col-lg-7">
+                  <div style="font-weight:950;margin-bottom:6px;">Read it correctly</div>
+                  <div style="color:rgba(18,16,24,.62);line-height:1.7;">
+                    This is not “who is nicest.” It’s “who produces stable margin with fewer disasters.”
+                    We intentionally score low on <b>lowest sticker price</b> because price wars create disputes, rework, and inventory burnout.
+                  </div>
+                </div>
+                <div class="col-12 col-lg-5">
+                  <div style="font-weight:950;margin-bottom:6px;">Our positioning sentence</div>
+                  <div style="color:rgba(18,16,24,.62);line-height:1.7;">
+                    <span class="em">“We charge slightly more to remove wedding risk.”</span>
+                    The premium is justified by fit certainty + hygiene readiness + dispute-proof handover.
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -627,7 +706,7 @@
       </section>
 
       <div class="text-center pb-5" style="font-size:13px;color:rgba(18,16,24,.60);">
-        © Bridal Rental Studio Proposal • Mobile-safe flywheel
+        © Bridal Rental Studio Proposal • Comparison matrix upgraded
       </div>
     </div>
   </main>
@@ -686,11 +765,35 @@
       if(!res.ok) throw new Error(`Failed to load ${path}: ${res.status}`);
       return res.json();
     }
-    function scoreChip(val){
-      const map = { strong:["g","strong"], medium:["m","medium"], weak:["r","weak"] };
-      const [cls, label] = map[val] || map.medium;
-      return `<span class="score"><span class="sIcon ${cls}"></span> ${label}</span>`;
+
+    function dotsForScore(score){
+      const s = Math.max(1, Math.min(5, Number(score) || 1));
+      let html = `<span class="dots" aria-label="score ${s}">`;
+      for(let i=1;i<=5;i++){
+        let cls = "";
+        if(i<=s){
+          if(s<=2) cls = "on1";
+          else if(s===3) cls = "on2";
+          else cls = "on3";
+        }
+        html += `<i class="${cls}"></i>`;
+      }
+      html += `</span>`;
+      return html;
     }
+
+    function scoreBadge(score, label){
+      const s = Math.max(1, Math.min(5, Number(score) || 1));
+      const txt = label ? label : `${s}/5`;
+      return `<span class="scoreBadge" title="Score ${s} out of 5">${dotsForScore(s)} <span>${txt}</span></span>`;
+    }
+
+    function weightPill(w){
+      const n = Math.max(1, Math.min(5, Number(w) || 3));
+      const map = {1:"Low",2:"Medium-",3:"Medium",4:"High",5:"Critical"};
+      return `<span class="weightPill" title="Importance to profit stability">${map[n]} (${n})</span>`;
+    }
+
     function setBullets(tileId, obj){
       const tile = document.getElementById(tileId);
       if(!tile || !obj) return;
@@ -707,13 +810,11 @@
         p.style.marginTop = idx ? "10px" : "0";
         p.style.color = "rgba(18,16,24,.62)";
         p.style.lineHeight = "1.7";
-        const parts = b.split(":");
-        const k = parts[0] || "";
-        const v = parts.slice(1).join(":").trim() || "";
-        p.innerHTML = `<span class="em">${k}:</span> ${v}`;
+        p.innerHTML = `• ${b}`;
         tile.appendChild(p);
       });
     }
+
     function setContactLine(site){
       const el = document.getElementById("contactLine");
       if(!el) return;
@@ -828,7 +929,7 @@
         });
       }
 
-      /* ✅ Mobile-safe flywheel (fixed) */
+      /* ✅ Mobile-safe flywheel */
       const fly = document.getElementById("chartFlywheel");
       if(fly?.getContext){
         const ctx = fly.getContext("2d");
@@ -902,35 +1003,44 @@
     }
 
     const DEFAULT_MARKET = {
-      title: "Competitive landscape & our edge (why we win, what it costs)",
-      intro: "We’re not trying to be the cheapest. We’re trying to be the most reliable studio that still feels premium. The battlefield is simple: the cheaper you go, the more disputes and rework you absorb. Our edge is operational certainty — fit-first + hygiene SLA + dispute-proof handover — so each booking produces repeatable margin and reviews.",
+      title: "Competitive landscape & our edge (clear position + clear reasons)",
+      intro: "We win by removing wedding risk: fit certainty + hygiene readiness + dispute-proof handover. That creates stable margin and review compounding — the boring (but powerful) way to build a consistent business.",
       positioning: {
-        whereWeCompete: "We compete in the ‘reliability premium’ lane: customers pay slightly more because risk is lower. For weddings, risk reduction is worth real money.",
-        whatWeWontDo: "We won’t win price wars or accept chaotic bookings that damage inventory and brand. We’ll choose consistency, weekday utilization, and partner funnels instead."
+        whereWeCompete: "Reliability premium lane: not luxury pricing, not budget chaos. Slight premium justified by reduced risk.",
+        whatWeWontDo: "We won’t chase the cheapest price. Price wars increase disputes, rework, and inventory burnout."
       },
       battlefields: [
         {
           title: "Price-driven competitors (Budget Rack)",
-          howTheyWin: ["Lower sticker price, large catalogue", "Fast walk-ins, minimal fitting time"],
-          hiddenCosts: ["More damage + missing items", "Higher dispute rate", "More staff time handling complaints", "Inventory looks tired faster"],
-          ourCounter: ["We reduce risk with structured fittings and evidence-based handover", "We price for readiness: cleaned, pressed, confirmed fit — not just a garment on a hanger"]
+          howTheyWin: ["Lowest sticker price", "Large catalogue, fast walk-ins"],
+          hiddenCosts: ["Higher disputes (fit, stains, expectations)", "More damage, missing items", "More staff time firefighting"],
+          ourCounter: ["Fit-first appointment + checklist", "Evidence-based handover reduces arguments", "We price readiness, not hanger count"]
         },
         {
-          title: "Typical boutique (Taste + service)",
-          howTheyWin: ["Better styling, nicer experience", "Premium perception"],
-          hiddenCosts: ["Often high rent + higher headcount early", "Ops inconsistency: depends on staff mood/skill", "Weekday idle time (utilization gap)"],
-          ourCounter: ["Standardized SOP so quality is repeatable", "Weekday products (civil/ROM + photoshoot packages) to fill quiet days"]
+          title: "Typical boutique (service-led)",
+          howTheyWin: ["Better styling & experience", "Premium perception"],
+          hiddenCosts: ["Quality depends on staff skill/mood", "Often high rent early", "Weekday idle utilization gap"],
+          ourCounter: ["Standard SOP makes quality repeatable", "Weekday products: ROM/civil + photoshoot bundles"]
         },
         {
-          title: "Studio bundle / photo-first",
-          howTheyWin: ["Partners push volume (photo/MUA/planners)", "Bundled convenience"],
-          hiddenCosts: ["Partner dependency", "Discounting to keep partners happy", "Weak moat if everyone can bundle"],
-          ourCounter: ["We still partner — but keep pricing integrity via tiered packages", "Moat is ops + trust (reviews) not partner discounts"]
+          title: "Studio bundle / partner-driven",
+          howTheyWin: ["Partners push volume", "Convenience via bundles"],
+          hiddenCosts: ["Partner dependency", "Discount pressure", "Weak moat if everyone bundles"],
+          ourCounter: ["We partner but protect pricing via tier tiers", "Ops + trust moat (reviews) not discounts"]
         }
       ],
       yourLane: {
-        whatItCosts: ["More time per booking (structured fitting + checklist)", "Cleaning SLA budget (predictable vendor cost)", "Systems discipline (templates, photos, tracking)"],
-        whyWorthIt: ["Lower disputes → less refunds, less time wasted", "Inventory lasts longer → lower replacement capital", "Higher referral + reviews → cheaper marketing over time", "Predictable margin → stable business (your goal)"]
+        whatItCosts: [
+          "More time per booking (fit check + checklist)",
+          "Cleaning SLA budget (predictable vendor cost)",
+          "Process discipline (photos, tracking, handover records)"
+        ],
+        whyWorthIt: [
+          "Fewer disputes → less refunds + less time wasted",
+          "Inventory lasts longer → lower replacement capital",
+          "Review compounding → cheaper marketing over time",
+          "Stable margin → consistent business (your goal)"
+        ]
       },
       numbersLogic: {
         scenarios: [
@@ -946,16 +1056,85 @@
         chart2: { title:"Hidden cost per booking (disputes + rework)", xLabel:"Competitor type", yLabel:"RM per booking" },
         chart3: { title:"Why weekday utilization matters", subtitle:"We don’t need massive volume. We need consistent bookings (weekday products prevent idle fixed costs)." }
       },
+
+      /* ✅ NEW MATRIX THAT MAKES SENSE */
       matrixRows: [
-        { key:"fit", label:"Fit certainty", budget:"weak", boutique:"medium", studio:"medium", us:"strong" },
-        { key:"hygiene", label:"Hygiene readiness", budget:"weak", boutique:"medium", studio:"medium", us:"strong" },
-        { key:"disputes", label:"Dispute risk control", budget:"weak", boutique:"medium", studio:"medium", us:"strong" },
-        { key:"weekday", label:"Weekday utilization", budget:"weak", boutique:"weak", studio:"strong", us:"strong" },
-        { key:"proof", label:"Review compounding", budget:"weak", boutique:"medium", studio:"medium", us:"strong" },
-        { key:"price", label:"Low sticker price", budget:"strong", boutique:"weak", studio:"medium", us:"weak" }
+        {
+          key:"fit-certainty",
+          label:"Fit certainty",
+          weight:5,
+          scores:{ budget:2, boutique:3, studio:3, us:5 },
+          meaning:"How likely the outfit fits perfectly and is confirmed before it leaves.",
+          why:"Poor fit causes panic brides, refund requests, rework hours, and bad reviews.",
+          play:"Appointment-first, fit check, measurement capture, ‘no-fit-no-leave’ rule with calm tone."
+        },
+        {
+          key:"hygiene-readiness",
+          label:"Hygiene readiness",
+          weight:5,
+          scores:{ budget:2, boutique:3, studio:3, us:5 },
+          meaning:"Cleaning quality, freshness, and delivery/collection readiness.",
+          why:"Hygiene complaints are the fastest path to refunds and reputation damage.",
+          play:"Cleaning SLA (turnaround + QC), sealed packing, before/after photos."
+        },
+        {
+          key:"dispute-control",
+          label:"Dispute & damage control",
+          weight:5,
+          scores:{ budget:1, boutique:3, studio:3, us:5 },
+          meaning:"How well the shop prevents and resolves late returns, damage, ‘it was like that’ disputes.",
+          why:"Disputes destroy staff time and break predictable operations.",
+          play:"Photo evidence at pickup/return, clear tiers for damage, calm scripts + no policy negotiation."
+        },
+        {
+          key:"weekday-util",
+          label:"Weekday utilization",
+          weight:4,
+          scores:{ budget:2, boutique:2, studio:4, us:5 },
+          meaning:"Ability to monetize Monday–Thursday (quiet days).",
+          why:"Weekday utilization stabilizes cashflow and reduces reliance on weekend peaks.",
+          play:"ROM/civil packages, photoshoot bundles, partner funnels (MUA/photo/planner) for weekdays."
+        },
+        {
+          key:"inventory-longevity",
+          label:"Inventory longevity",
+          weight:4,
+          scores:{ budget:2, boutique:3, studio:3, us:5 },
+          meaning:"How long items remain rentable and premium-looking.",
+          why:"Longer lifecycle = lower capex replacement and higher ROI per piece.",
+          play:"Selective intake, rotation rules, repair log, controlled handling + packing standards."
+        },
+        {
+          key:"review-compound",
+          label:"Review compounding",
+          weight:4,
+          scores:{ budget:2, boutique:3, studio:3, us:5 },
+          meaning:"How reliably bookings generate strong reviews & referrals.",
+          why:"Reviews become a free sales engine. More trust = less discounting needed.",
+          play:"A repeatable ‘wow moment’: ready garment + calm guidance + fast fix if needed."
+        },
+        {
+          key:"styling-experience",
+          label:"Styling experience",
+          weight:3,
+          scores:{ budget:2, boutique:4, studio:4, us:4 },
+          meaning:"Consultation quality: styling, accessories suggestions, overall ‘premium feel’.",
+          why:"Boosts AOV and upsells; reduces buyer regret.",
+          play:"Simple curated racks, accessories add-ons, ‘2 looks max’ guidance to reduce indecision."
+        },
+        {
+          key:"lowest-price",
+          label:"Lowest sticker price",
+          weight:2,
+          scores:{ budget:5, boutique:2, studio:3, us:2 },
+          meaning:"How cheap the advertised package looks.",
+          why:"Cheapest price increases mismatch expectations and attracts bonus hunters (high dispute risk).",
+          play:"We don’t chase it. We compete on certainty; we keep pricing fair and transparent."
+        }
       ],
+
       standoutLeft: {
-        title: "How we stand out (without sounding arrogant)",
+        title: "How we stand out (in one breath)",
         bullets: [
           "We sell certainty: fit-first + readiness checklist.",
           "We empathize with emotions, but policies stay consistent.",
@@ -1035,16 +1214,24 @@
         `;
       }
 
+      // ✅ Render matrix with meaning/why/play and proper weights + scores
       const tbody = document.getElementById("matrixBody");
       if(tbody){
         tbody.innerHTML = (m.matrixRows || []).map((r)=>{
+          const s = r.scores || {};
           return `
-            <tr class="row-${r.key || ""}">
-              <td style="font-weight:950;color:rgba(18,16,24,.82)">${r.label || ""}</td>
-              <td>${scoreChip(r.budget)}</td>
-              <td>${scoreChip(r.boutique)}</td>
-              <td>${scoreChip(r.studio)}</td>
-              <td>${scoreChip(r.us)}</td>
+            <tr>
+              <td>
+                <div class="metricTitle">${r.label || ""}</div>
+              </td>
+              <td>${weightPill(r.weight || 3)}</td>
+              <td>${scoreBadge(s.budget, `${s.budget||1}/5`)}</td>
+              <td>${scoreBadge(s.boutique, `${s.boutique||1}/5`)}</td>
+              <td>${scoreBadge(s.studio, `${s.studio||1}/5`)}</td>
+              <td>${scoreBadge(s.us, `${s.us||1}/5`)}</td>
+              <td><div class="subtext">${r.meaning || ""}</div></td>
+              <td><div class="subtext">${r.why || ""}</div></td>
+              <td><div class="subtext">${r.play || ""}</div></td>
             </tr>
           `;
         }).join("");
