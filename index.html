@@ -154,6 +154,7 @@ a.navLink{
   border:1px solid rgba(18,16,24,.10);
   background: rgba(255,255,255,.70);
   transition: transform .18s var(--ease), background .2s var(--ease);
+  white-space:nowrap;
 }
 a.navLink:hover{ background: rgba(255,255,255,.92); }
 a.navLink:active{ transform: translateY(1px); }
@@ -402,6 +403,7 @@ strong.em{ color: rgba(18,16,24,.92); font-weight:950; }
 @media(min-width:980px){
   .grid.two{ grid-template-columns: 1fr 1fr; }
   .grid.three{ grid-template-columns: 1fr 1fr 1fr; }
+  .grid.four{ grid-template-columns: 1fr 1fr 1fr 1fr; }
 }
 .tile{
   border-radius: 22px;
@@ -491,11 +493,16 @@ button.btn{
   color: rgba(18,16,24,.92);
   background: rgba(255,255,255,.86);
   box-shadow: 0 14px 28px rgba(18,16,24,.10);
-  transition: transform .15s var(--ease), background .2s var(--ease);
+  transition: transform .15s var(--ease), background .2s var(--ease), box-shadow .2s var(--ease);
 }
 button.btn.alt{ background: linear-gradient(90deg, rgba(210,174,114,.22), rgba(200,143,149,.16)); }
 button.btn:hover{ background: rgba(255,255,255,.96); }
 button.btn:active{ transform: translateY(1px); }
+button.btn.small{ padding:11px 12px; border-radius: 16px; font-size:12px; }
+button.btn.on{
+  background: linear-gradient(90deg, rgba(210,174,114,.24), rgba(200,143,149,.18));
+  box-shadow: 0 18px 40px rgba(18,16,24,.12);
+}
 
 /* Reveal */
 .reveal{
@@ -515,7 +522,219 @@ button.btn:active{ transform: translateY(1px); }
 .reveal.in .stagger > *:nth-child(3){ transition-delay:.16s }
 .reveal.in .stagger > *:nth-child(4){ transition-delay:.22s }
 
-/* ===== SOP LIVENESS UPGRADE ===== */
+/* ===== MARKET CHAPTER (NEW) ===== */
+.marketTop{
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  margin-top: 10px;
+}
+.marketActions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  align-items:center;
+}
+.marketHint{
+  font-size:12px;
+  color: rgba(18,16,24,.58);
+  line-height:1.55;
+  max-width: 52ch;
+}
+
+.marketType{
+  position:relative;
+  overflow:hidden;
+}
+.marketType::after{
+  content:"";
+  position:absolute;
+  top:-40%;
+  left:-35%;
+  width:60%;
+  height:220%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.24), transparent);
+  transform: rotate(18deg);
+  opacity:.18;
+  animation: sweep2 8.4s var(--ease) infinite;
+  pointer-events:none;
+}
+@keyframes sweep2{
+  0%{ transform: translateX(-40%) rotate(18deg); opacity:.10; }
+  45%{ opacity:.20; }
+  100%{ transform: translateX(230%) rotate(18deg); opacity:.10; }
+}
+.marketType .kicker{
+  display:flex;
+  gap:8px;
+  align-items:center;
+  margin-bottom:10px;
+}
+.kdot{ width:10px;height:10px;border-radius:999px;background:rgba(18,16,24,.20); }
+.kdot.good{ background: rgba(31,157,110,.72); }
+.kdot.mid{ background: rgba(210,174,114,.72); }
+.kdot.bad{ background: rgba(181,74,90,.72); }
+.marketType .title{
+  font-weight:980;
+  color: rgba(18,16,24,.90);
+}
+.marketType p{
+  color: rgba(18,16,24,.62);
+  line-height:1.75;
+}
+
+/* Comparison matrix */
+.matrixWrap{
+  margin-top: 14px;
+  border-radius: 26px;
+  border:1px solid rgba(18,16,24,.10);
+  background: rgba(255,255,255,.72);
+  box-shadow: 0 18px 50px rgba(18,16,24,.08);
+  overflow:hidden;
+}
+.matrixHead{
+  padding:14px 16px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  border-bottom:1px solid rgba(18,16,24,.10);
+  background: linear-gradient(90deg, rgba(210,174,114,.10), rgba(200,143,149,.08), rgba(255,255,255,.70));
+}
+.matrixHead .left{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+.matrixBadge{
+  font-size:12px;
+  font-weight:980;
+  padding:7px 10px;
+  border-radius:999px;
+  border:1px solid rgba(18,16,24,.10);
+  background: rgba(255,255,255,.74);
+  color: rgba(18,16,24,.72);
+}
+.matrixNote{
+  font-size:12px;
+  color: rgba(18,16,24,.58);
+}
+
+.matrix{
+  width:100%;
+  border-collapse:separate;
+  border-spacing:0;
+}
+.matrix th, .matrix td{
+  padding: 12px 12px;
+  vertical-align:middle;
+  border-bottom:1px solid rgba(18,16,24,.08);
+}
+.matrix th{
+  font-size:12px;
+  letter-spacing:.24px;
+  text-transform:uppercase;
+  color: rgba(18,16,24,.70);
+  font-weight:980;
+  background: rgba(255,255,255,.60);
+  position:sticky;
+  top:0;
+  z-index:1;
+}
+.matrix td:first-child{
+  width: 26%;
+  font-weight:950;
+  color: rgba(18,16,24,.82);
+}
+@media(max-width:860px){
+  .matrixWrap{ overflow:auto; -webkit-overflow-scrolling: touch; }
+  .matrix th, .matrix td{ min-width: 160px; }
+  .matrix td:first-child{ min-width: 220px; }
+}
+
+.score{
+  display:inline-flex;
+  gap:8px;
+  align-items:center;
+  padding:8px 10px;
+  border-radius:999px;
+  border:1px solid rgba(18,16,24,.10);
+  background: rgba(255,255,255,.78);
+  font-size:12px;
+  font-weight:950;
+  color: rgba(18,16,24,.72);
+  white-space:nowrap;
+}
+.sIcon{
+  width:10px;height:10px;border-radius:999px;background:rgba(18,16,24,.20);
+}
+.sIcon.g{ background: rgba(31,157,110,.78); }
+.sIcon.m{ background: rgba(210,174,114,.78); }
+.sIcon.r{ background: rgba(181,74,90,.78); }
+
+.matrixRow{
+  opacity:0;
+  transform: translate3d(0,10px,0);
+}
+.matrixLive .matrixRow{
+  opacity:1;
+  transform: translate3d(0,0,0);
+  transition: opacity .55s ease, transform .75s var(--ease);
+}
+.matrixLive .matrixRow:nth-child(1){ transition-delay: .05s; }
+.matrixLive .matrixRow:nth-child(2){ transition-delay: .11s; }
+.matrixLive .matrixRow:nth-child(3){ transition-delay: .17s; }
+.matrixLive .matrixRow:nth-child(4){ transition-delay: .23s; }
+.matrixLive .matrixRow:nth-child(5){ transition-delay: .29s; }
+.matrixLive .matrixRow:nth-child(6){ transition-delay: .35s; }
+.matrixLive .matrixRow:nth-child(7){ transition-delay: .41s; }
+.matrixLive .matrixRow:nth-child(8){ transition-delay: .47s; }
+
+.matrix tr:last-child td{ border-bottom:none; }
+
+.matrix tr.usRow{
+  background: linear-gradient(90deg, rgba(210,174,114,.08), rgba(200,143,149,.06), rgba(255,255,255,.0));
+}
+.matrix tr.usRow td:first-child{
+  position:relative;
+}
+.usPill{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  margin-left:10px;
+  padding:6px 10px;
+  border-radius:999px;
+  border:1px solid rgba(18,16,24,.10);
+  background: rgba(255,255,255,.76);
+  font-size:11px;
+  font-weight:980;
+  color: rgba(18,16,24,.70);
+}
+.usPill .spark{
+  width:10px;height:10px;border-radius:999px;
+  background: linear-gradient(135deg, rgba(210,174,114,.95), rgba(200,143,149,.85));
+}
+
+/* Highlight mode toggles */
+.matrixWrap[data-mode="fit"] .row-fit,
+.matrixWrap[data-mode="hygiene"] .row-hyg,
+.matrixWrap[data-mode="disputes"] .row-disp,
+.matrixWrap[data-mode="speed"] .row-speed,
+.matrixWrap[data-mode="bundles"] .row-bundle,
+.matrixWrap[data-mode="proof"] .row-proof,
+.matrixWrap[data-mode="price"] .row-price,
+.matrixWrap[data-mode="weekday"] .row-weekday{
+  background: rgba(210,174,114,.10);
+}
+.matrixWrap[data-mode="none"] .matrix tr{ background: transparent; }
+.matrixWrap[data-mode="none"] .matrix tr.usRow{
+  background: linear-gradient(90deg, rgba(210,174,114,.08), rgba(200,143,149,.06), rgba(255,255,255,.0));
+}
+
+/* ===== SOP (existing) ===== */
 .sopCard{ background: rgba(255,255,255,.72); }
 .sopInner{ padding: 26px; }
 
@@ -803,7 +1022,7 @@ footer{
   html{scroll-behavior:auto}
   .reveal, .stagger > *{transition:none}
   .progress > div{transition:none}
-  .sweep, .miniArt::after, .sopStampRing{animation:none}
+  .sweep, .miniArt::after, .sopStampRing, .marketType::after{animation:none}
 }
 </style>
 </head>
@@ -825,6 +1044,7 @@ footer{
 
     <div class="navRight">
       <a class="navLink" href="#model">Model</a>
+      <a class="navLink" href="#market">Market</a>
       <a class="navLink" href="#moat">Why Us</a>
       <a class="navLink" href="#ops">SOP</a>
       <a class="navLink" href="#stress">Stress</a>
@@ -880,7 +1100,7 @@ footer{
             <div class="sweep" aria-hidden="true"></div>
 
             <div class="heroCaption" id="heroCaption">
-              <b>Positioning:</b> Private fitting, clean rules, soft delivery.
+              <b>Positioning:</b> Ops-led boutique — premium experience, standardized system.
               <small>Elegant for the bride. Consistent for the business.</small>
             </div>
           </div>
@@ -929,7 +1149,7 @@ footer{
               <h3>Starter packages</h3>
               <p><strong class="em">Bride Essentials</strong> — gown + veil + accessories.</p>
               <p style="margin-top:10px"><strong class="em">Couple Bundle</strong> — gown + suit + coordinated accessories.</p>
-              <p style="margin-top:10px"><strong class="em">Weekday Shoot</strong> — weekday pricing to fill quiet days.</p>
+              <p style="margin-top:10px"><strong class="em">Weekday Studio Package</strong> — weekday pricing framed as “studio convenience,” not discount.</p>
             </div>
             <div class="tile">
               <h3>Demand engine</h3>
@@ -951,11 +1171,181 @@ footer{
     </div>
   </section>
 
+  <!-- MARKET (NEW) -->
+  <section class="section" id="market">
+    <div class="container">
+      <div class="chapter">
+        <div class="num">02</div><div class="line"></div><div class="tag">Market</div>
+      </div>
+
+      <div class="card reveal" id="marketCard">
+        <div class="cardInner">
+          <h2>Competitive landscape & our edge</h2>
+          <p>
+            Most studios cluster into four models. The stable lane for consistent cashflow is <strong class="em">Ops-led Boutique</strong>:
+            premium experience <em>with</em> standardized systems so you can scale, reduce disputes, and protect margins.
+          </p>
+
+          <div class="grid four stagger" style="margin-top:14px">
+            <div class="tile marketType">
+              <div class="kicker"><span class="kdot bad"></span><div class="title">Budget Rack / High-volume</div></div>
+              <p>Wins on low price + quantity. Weak on fit consistency, hygiene control, and disputes.</p>
+              <div class="subline"><b>Risk:</b> price wars + higher damage rate.</div>
+            </div>
+
+            <div class="tile marketType">
+              <div class="kicker"><span class="kdot mid"></span><div class="title">Typical Boutique</div></div>
+              <p>Wins on service and taste. Weak on operational throughput and fixed-cost sensitivity.</p>
+              <div class="subline"><b>Risk:</b> high rent/headcount early.</div>
+            </div>
+
+            <div class="tile marketType">
+              <div class="kicker"><span class="kdot mid"></span><div class="title">Studio Bundle / Photo-first</div></div>
+              <p>Wins via partner bundles. Weak if partners leave or promo-driven pricing dilutes brand.</p>
+              <div class="subline"><b>Risk:</b> dependence on referral funnels.</div>
+            </div>
+
+            <div class="tile marketType">
+              <div class="kicker"><span class="kdot good"></span><div class="title">Ops-led Boutique (Us)</div></div>
+              <p>Wins on reliability: fit-first, hygiene SLA, dispute-proof handover, and weekday productization.</p>
+              <div class="subline"><b>Result:</b> consistent bookings without discounting.</div>
+            </div>
+          </div>
+
+          <div class="marketTop">
+            <div class="marketHint">
+              Tap a focus button to highlight what we’re deliberately better at — without sounding arrogant.
+              This becomes your “stand out while staying competitive” story.
+            </div>
+
+            <div class="marketActions">
+              <button class="btn small on" data-mode="none" type="button">All</button>
+              <button class="btn small" data-mode="fit" type="button">Fit</button>
+              <button class="btn small" data-mode="hygiene" type="button">Hygiene</button>
+              <button class="btn small" data-mode="disputes" type="button">Disputes</button>
+              <button class="btn small" data-mode="weekday" type="button">Weekdays</button>
+              <button class="btn small" data-mode="proof" type="button">Reviews</button>
+            </div>
+          </div>
+
+          <div class="matrixWrap" id="matrixWrap" data-animate="matrix" data-mode="none">
+            <div class="matrixHead">
+              <div class="left">
+                <div class="matrixBadge">Comparison matrix</div>
+                <div class="matrixNote">We compete on reliability, not chaos pricing.</div>
+              </div>
+              <div class="matrixNote">Legend: ● strong • ● medium • ● weak</div>
+            </div>
+
+            <table class="matrix" aria-label="Competitive comparison matrix">
+              <thead>
+                <tr>
+                  <th>Battlefield</th>
+                  <th>Budget Rack</th>
+                  <th>Typical Boutique</th>
+                  <th>Studio Bundle</th>
+                  <th>Us (Ops-led Boutique)</th>
+                </tr>
+              </thead>
+
+              <tbody id="matrixBody">
+                <tr class="matrixRow row-price">
+                  <td>Price clarity</td>
+                  <td><span class="score"><span class="sIcon m"></span> medium</span></td>
+                  <td><span class="score"><span class="sIcon m"></span> medium</span></td>
+                  <td><span class="score"><span class="sIcon m"></span> medium</span></td>
+                  <td><span class="score"><span class="sIcon g"></span> strong</span></td>
+                </tr>
+
+                <tr class="matrixRow row-fit">
+                  <td>Fit reliability</td>
+                  <td><span class="score"><span class="sIcon r"></span> weak</span></td>
+                  <td><span class="score"><span class="sIcon m"></span> medium</span></td>
+                  <td><span class="score"><span class="sIcon m"></span> medium</span></td>
+                  <td><span class="score"><span class="sIcon g"></span> strong</span></td>
+                </tr>
+
+                <tr class="matrixRow row-hyg">
+                  <td>Hygiene & readiness</td>
+                  <td><span class="score"><span class="sIcon r"></span> weak</span></td>
+                  <td><span class="score"><span class="sIcon m"></span> medium</span></td>
+                  <td><span class="score"><span class="sIcon m"></span> medium</span></td>
+                  <td><span class="score"><span class="sIcon g"></span> strong</span></td>
+                </tr>
+
+                <tr class="matrixRow row-disp">
+                  <td>Dispute frequency</td>
+                  <td><span class="score"><span class="sIcon r"></span> weak</span></td>
+                  <td><span class="score"><span class="sIcon m"></span> medium</span></td>
+                  <td><span class="score"><span class="sIcon m"></span> medium</span></td>
+                  <td><span class="score"><span class="sIcon g"></span> strong</span></td>
+                </tr>
+
+                <tr class="matrixRow row-speed">
+                  <td>Turnaround speed</td>
+                  <td><span class="score"><span class="sIcon m"></span> medium</span></td>
+                  <td><span class="score"><span class="sIcon m"></span> medium</span></td>
+                  <td><span class="score"><span class="sIcon g"></span> strong</span></td>
+                  <td><span class="score"><span class="sIcon g"></span> strong</span></td>
+                </tr>
+
+                <tr class="matrixRow row-bundle">
+                  <td>Bundle power</td>
+                  <td><span class="score"><span class="sIcon r"></span> weak</span></td>
+                  <td><span class="score"><span class="sIcon m"></span> medium</span></td>
+                  <td><span class="score"><span class="sIcon g"></span> strong</span></td>
+                  <td><span class="score"><span class="sIcon g"></span> strong</span></td>
+                </tr>
+
+                <tr class="matrixRow row-weekday">
+                  <td>Weekday utilization</td>
+                  <td><span class="score"><span class="sIcon r"></span> weak</span></td>
+                  <td><span class="score"><span class="sIcon m"></span> medium</span></td>
+                  <td><span class="score"><span class="sIcon m"></span> medium</span></td>
+                  <td><span class="score"><span class="sIcon g"></span> strong</span></td>
+                </tr>
+
+                <tr class="matrixRow row-proof usRow row-proof">
+                  <td>
+                    Trust compounding
+                    <span class="usPill"><span class="spark"></span> review flywheel</span>
+                  </td>
+                  <td><span class="score"><span class="sIcon r"></span> weak</span></td>
+                  <td><span class="score"><span class="sIcon m"></span> medium</span></td>
+                  <td><span class="score"><span class="sIcon m"></span> medium</span></td>
+                  <td><span class="score"><span class="sIcon g"></span> strong</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="grid two" style="margin-top:14px">
+            <div class="tile">
+              <h3>How we stand out (high ROI)</h3>
+              <p><strong class="em">Calm Bride System:</strong> pre-education + reminders + fit checklist.</p>
+              <p style="margin-top:10px"><strong class="em">Quality seal:</strong> “ready-to-wear” checklist + timestamped cleaning.</p>
+              <p style="margin-top:10px"><strong class="em">Soft delivery, strict system:</strong> clear policies enforced kindly.</p>
+              <div class="subline"><b>Goal:</b> premium feel without premium fixed cost.</div>
+            </div>
+            <div class="tile">
+              <h3>Borrow smart from China marketplace</h3>
+              <p><strong class="em">Package-first selling:</strong> fewer choices, clearer tiers, higher conversion.</p>
+              <p style="margin-top:10px"><strong class="em">Capacity pooling:</strong> partner tailors/cleaners for fast turnaround.</p>
+              <p style="margin-top:10px"><strong class="em">Content loop:</strong> short clips showing sanitization + fit checks (trust-building).</p>
+              <div class="subline"><b>Translation:</b> productization + speed, without chaos.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- WHY US -->
   <section class="section" id="moat">
     <div class="container">
       <div class="chapter">
-        <div class="num">02</div><div class="line"></div><div class="tag">Why we win</div>
+        <div class="num">03</div><div class="line"></div><div class="tag">Why we win</div>
       </div>
 
       <div class="card reveal">
@@ -997,11 +1387,11 @@ footer{
     </div>
   </section>
 
-  <!-- SOP (LIVELY) -->
+  <!-- SOP -->
   <section class="section" id="ops">
     <div class="container">
       <div class="chapter">
-        <div class="num">03</div><div class="line"></div><div class="tag">SOP</div>
+        <div class="num">04</div><div class="line"></div><div class="tag">SOP</div>
       </div>
 
       <div class="card reveal sopCard">
@@ -1208,7 +1598,7 @@ footer{
   <section class="section" id="stress">
     <div class="container">
       <div class="chapter">
-        <div class="num">04</div><div class="line"></div><div class="tag">Stress test</div>
+        <div class="num">05</div><div class="line"></div><div class="tag">Stress test</div>
       </div>
 
       <div class="card reveal">
@@ -1258,7 +1648,7 @@ footer{
   <section class="section" id="funding">
     <div class="container">
       <div class="chapter">
-        <div class="num">05</div><div class="line"></div><div class="tag">Funding</div>
+        <div class="num">06</div><div class="line"></div><div class="tag">Funding</div>
       </div>
 
       <div class="card reveal">
@@ -1397,10 +1787,26 @@ const sopIO = new IntersectionObserver((entries)=>{
       if(e.target.dataset.animate === 'flow'){
         e.target.classList.add('isLive');
       }
+      if(e.target.dataset.animate === 'matrix'){
+        document.getElementById('matrixBody')?.classList.add('matrixLive');
+      }
     }
   });
-},{threshold:0.22});
+},{threshold:0.18});
 sopAnimTargets.forEach(el => sopIO.observe(el));
+
+/* Market toggles: highlight matrix rows */
+const matrixWrap = document.getElementById('matrixWrap');
+const modeButtons = document.querySelectorAll('[data-mode]');
+modeButtons.forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    const mode = btn.getAttribute('data-mode');
+    matrixWrap.setAttribute('data-mode', mode);
+
+    modeButtons.forEach(b=>b.classList.remove('on'));
+    btn.classList.add('on');
+  });
+});
 </script>
 
 </body>
