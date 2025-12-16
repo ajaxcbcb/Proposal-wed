@@ -1,54 +1,158 @@
 {
-  "title": "Competitive landscape & our edge",
-  "intro": "Most studios cluster into four models. The stable lane for consistent cashflow is Ops-led Boutique: premium experience with standardized systems so you can scale, reduce disputes, and protect margins.",
-  "types": [
+  "title": "Competitive landscape & our edge (why we win, what it costs)",
+  "intro": "We’re not trying to be the cheapest. We’re trying to be the most reliable studio that still feels premium. The battlefield is simple: the cheaper you go, the more disputes and rework you absorb. Our edge is operational certainty — fit-first + hygiene SLA + dispute-proof handover — so each booking produces repeatable margin and reviews.",
+  "positioning": {
+    "whereWeCompete": "We compete in the ‘reliability premium’ lane: customers pay slightly more because risk is lower. For weddings, risk reduction is worth real money.",
+    "whatWeWontDo": "We won’t win price wars or accept chaotic bookings that damage inventory and brand. We’ll choose consistency, weekday utilization, and partner funnels instead."
+  },
+  "battlefields": [
     {
-      "title": "Budget Rack / High-volume",
-      "summary": "Wins on low price + quantity. Weak on fit consistency, hygiene control, and disputes.",
-      "risk": "Risk: price wars + higher damage rate.",
-      "tone": "bad"
+      "title": "Price-driven competitors (Budget Rack)",
+      "howTheyWin": [
+        "Lower sticker price, large catalogue",
+        "Fast walk-ins, minimal fitting time"
+      ],
+      "hiddenCosts": [
+        "More damage + missing items",
+        "Higher dispute rate",
+        "More staff time handling complaints",
+        "Inventory looks tired faster"
+      ],
+      "ourCounter": [
+        "We reduce risk with structured fittings and evidence-based handover",
+        "We price for readiness: cleaned, pressed, confirmed fit — not just a garment on a hanger"
+      ]
     },
     {
-      "title": "Typical Boutique",
-      "summary": "Wins on service and taste. Weak on operational throughput and fixed-cost sensitivity.",
-      "risk": "Risk: high rent/headcount early.",
-      "tone": "mid"
+      "title": "Typical boutique (Taste + service)",
+      "howTheyWin": [
+        "Better styling, nicer experience",
+        "Premium perception"
+      ],
+      "hiddenCosts": [
+        "Often high rent + higher headcount early",
+        "Ops inconsistency: depends on staff mood/skill",
+        "Weekday idle time (utilization gap)"
+      ],
+      "ourCounter": [
+        "Standardized SOP so quality is repeatable",
+        "Weekday products (civil/ROM + photoshoot packages) to fill quiet days"
+      ]
     },
     {
-      "title": "Studio Bundle / Photo-first",
-      "summary": "Wins via partner bundles. Weak if partners leave or promo-driven pricing dilutes brand.",
-      "risk": "Risk: dependence on referral funnels.",
-      "tone": "mid"
-    },
-    {
-      "title": "Ops-led Boutique (Us)",
-      "summary": "Wins on reliability: fit-first, hygiene SLA, dispute-proof handover, and weekday productization.",
-      "risk": "Result: consistent bookings without discounting.",
-      "tone": "good"
+      "title": "Studio bundle / photo-first",
+      "howTheyWin": [
+        "Partners push volume (photo/MUA/planners)",
+        "Bundled convenience"
+      ],
+      "hiddenCosts": [
+        "Partner dependency",
+        "Discounting to keep partners happy",
+        "Weak moat if everyone can bundle"
+      ],
+      "ourCounter": [
+        "We still partner — but we keep pricing integrity via tiered packages",
+        "Our moat is ops + trust (reviews) not partner discounts"
+      ]
     }
   ],
-  "matrixRows": [
-    { "key": "price", "label": "Price clarity", "budget": "medium", "boutique": "medium", "studio": "medium", "us": "strong" },
-    { "key": "fit", "label": "Fit reliability", "budget": "weak", "boutique": "medium", "studio": "medium", "us": "strong" },
-    { "key": "hygiene", "label": "Hygiene & readiness", "budget": "weak", "boutique": "medium", "studio": "medium", "us": "strong" },
-    { "key": "disputes", "label": "Dispute frequency", "budget": "weak", "boutique": "medium", "studio": "medium", "us": "strong" },
-    { "key": "weekday", "label": "Weekday utilization", "budget": "weak", "boutique": "medium", "studio": "medium", "us": "strong" },
-    { "key": "proof", "label": "Trust compounding (review flywheel)", "budget": "weak", "boutique": "medium", "studio": "medium", "us": "strong", "highlight": true }
-  ],
+  "yourLane": {
+    "headline": "Ops-led boutique (Us): premium feel, standardized system",
+    "promise": [
+      "Fit-first: no ‘take home unless it fits’",
+      "Hygiene SLA: documented cleaning/press readiness",
+      "Dispute-proof: before/after photos + checklist + deposits",
+      "Weekday utilization: ROM + photoshoot packages",
+      "Trust compounding: review flywheel as a moat"
+    ],
+    "whatItCosts": [
+      "More time per booking (structured fitting + checklist)",
+      "Cleaning SLA budget (predictable vendor cost)",
+      "Systems discipline (templates, photos, tracking)"
+    ],
+    "whyWorthIt": [
+      "Lower disputes → less refunds, less time wasted",
+      "Inventory lasts longer → lower replacement capital",
+      "Higher referral + reviews → cheaper marketing over time",
+      "Predictable margin → stable business (your goal)"
+    ]
+  },
+  "numbersLogic": {
+    "assumptionNote": "The point isn’t perfect accuracy; it’s to show patterns: disputes and rework are silent killers in rental businesses.",
+    "scenarios": [
+      {
+        "name": "Budget Rack",
+        "avgPrice": 600,
+        "variableCost": 140,
+        "disputeRate": 0.18,
+        "reworkHours": 2.2,
+        "weekdayFill": 0.35,
+        "note": "Low price, higher hidden cost"
+      },
+      {
+        "name": "Typical Boutique",
+        "avgPrice": 850,
+        "variableCost": 160,
+        "disputeRate": 0.10,
+        "reworkHours": 1.5,
+        "weekdayFill": 0.45,
+        "note": "Better experience, utilization risk"
+      },
+      {
+        "name": "Studio Bundle",
+        "avgPrice": 780,
+        "variableCost": 170,
+        "disputeRate": 0.12,
+        "reworkHours": 1.7,
+        "weekdayFill": 0.55,
+        "note": "Partners help, discount pressure"
+      },
+      {
+        "name": "Us (Ops-led Boutique)",
+        "avgPrice": 950,
+        "variableCost": 190,
+        "disputeRate": 0.06,
+        "reworkHours": 0.9,
+        "weekdayFill": 0.62,
+        "note": "Slightly higher price, lower chaos cost"
+      }
+    ],
+    "chaosCostModel": {
+      "refundCost": 150,
+      "hourlyOpsCost": 35,
+      "meaning": "Expected hidden cost per booking = (disputeRate × refundCost) + (reworkHours × hourlyOpsCost). We aim to minimize this."
+    }
+  },
+  "charts": {
+    "chart1": {
+      "title": "Competitive map: Price vs Reliability",
+      "xLabel": "Lower price → Higher price",
+      "yLabel": "Lower reliability → Higher reliability"
+    },
+    "chart2": {
+      "title": "Hidden cost per booking (disputes + rework)",
+      "xLabel": "Competitor type",
+      "yLabel": "RM per booking"
+    },
+    "chart3": {
+      "title": "Why weekday utilization matters",
+      "subtitle": "We don’t need massive volume. We need consistent bookings (and weekday products prevent idle fixed costs)."
+    }
+  },
   "standoutLeft": {
-    "title": "How we stand out (high ROI)",
+    "title": "How we stand out (without sounding arrogant)",
     "bullets": [
-      "Calm Bride System: pre-education + reminders + fit checklist.",
-      "Quality seal: ready-to-wear checklist + timestamped cleaning.",
-      "Soft delivery, strict system: clear policies enforced kindly."
+      "We sell certainty: fit-first + readiness checklist.",
+      "We don’t negotiate policies — we empathize and follow system.",
+      "Every smooth experience becomes a review → future booking."
     ]
   },
   "chinaRight": {
-    "title": "Borrow smart from China marketplace",
+    "title": "Borrow smart ideas from China marketplaces",
     "bullets": [
-      "Package-first selling: fewer choices, clearer tiers, higher conversion.",
-      "Capacity pooling: partner tailors/cleaners for fast turnaround.",
-      "Content loop: sanitization + fit checks = trust building."
+      "Tiered packages: fewer choices, higher conversion.",
+      "Proof-content: cleaning + fit checks become trust marketing.",
+      "Operational pooling: partner tailors/cleaners for fast turnaround."
     ]
   }
 }
