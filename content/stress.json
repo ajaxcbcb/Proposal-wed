@@ -1,6 +1,6 @@
-const defaults = window.__CMS_STRESS__ || { avgRental: 850, burn: 7500, capital: 190000, defaultBookings: 10 };
-const AVG = defaults.avgRental;
-const BURN = defaults.burn;
-const CAPITAL = defaults.capital;
-let bookings = defaults.defaultBookings;
-window.renderStress = renderStress; // expose to hydrateCMS
+{
+  "avgRental": 850,
+  "burn": 7500,
+  "capital": 190000,
+  "defaultBookings": 10
+}
