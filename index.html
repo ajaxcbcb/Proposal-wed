@@ -303,6 +303,9 @@
       background: linear-gradient(90deg, transparent, rgba(210,174,114,.55), rgba(200,143,149,.40), transparent);
       opacity:.85;
     }
+
+    /* Ensures flywheel canvas has enough height everywhere */
+    #chartFlywheel { width: 100%; height: 320px; }
   </style>
 </head>
 
@@ -470,10 +473,7 @@
       <section id="market" class="mb-4">
         <div class="p-4" style="border-radius:28px;background:rgba(255,255,255,.72);border:1px solid rgba(18,16,24,.10);box-shadow:var(--shadow2);">
           <h2 id="marketTitle">Competitive landscape & our edge</h2>
-          <p id="marketIntro">
-            We’re not trying to be the cheapest. We’re trying to be the most reliable studio that still feels premium.
-            The battlefield is simple: cheaper shops absorb more disputes and rework. Our edge is operational certainty.
-          </p>
+          <p id="marketIntro"></p>
 
           <div class="row g-3 mt-3" id="marketExplain"></div>
 
@@ -516,13 +516,13 @@
             <div class="col-12">
               <div class="p-3" style="border-radius:22px;border:1px solid rgba(18,16,24,.10);background:rgba(255,255,255,.78);">
                 <div style="font-weight:950;margin-bottom:8px;" id="chart3Title">Weekday utilization flywheel</div>
-                <canvas id="chartFlywheel" style="width:100%; height:auto;"></canvas>
+                <canvas id="chartFlywheel"></canvas>
                 <div style="font-size:12px;color:rgba(18,16,24,.58);line-height:1.6;margin-top:8px;" id="chart3Labels"></div>
               </div>
             </div>
           </div>
 
-          <!-- ✅ FIXED + UPGRADED COMPARISON MATRIX -->
+          <!-- MATRIX -->
           <div class="matrixWrap mt-4">
             <div class="p-3 d-flex flex-wrap gap-2 align-items-center justify-content-between"
                  style="border-bottom:1px solid rgba(18,16,24,.10);
@@ -601,9 +601,7 @@
       <section id="stress" class="mb-4">
         <div class="p-4" style="border-radius:28px;background:rgba(255,255,255,.72);border:1px solid rgba(18,16,24,.10);box-shadow:var(--shadow2);">
           <h2>Stress test: bookings vs runway.</h2>
-          <p id="stressAssumptionText">
-            Assumptions: Avg rental <span class="em">RM 850</span>, monthly burn <span class="em">RM 7,500</span>, capital buffer <span class="em">RM 190,000</span>.
-          </p>
+          <p id="stressAssumptionText"></p>
 
           <div class="row g-3 mt-3">
             <div class="col-6 col-lg-3">
@@ -658,7 +656,7 @@
       </section>
 
       <div class="text-center pb-5" style="font-size:13px;color:rgba(18,16,24,.60);">
-        © Bridal Rental Studio Proposal • Matrix upgraded with explanations + review cadence
+        © Bridal Rental Studio Proposal • Flywheel fixed for desktop + matrix upgraded
       </div>
     </div>
   </main>
@@ -754,7 +752,6 @@
       el.innerHTML = `Contact: <b>${site.contactName || "[Your Name]"}</b> • WhatsApp: <b>${site.contactWhatsapp || "[+60…]"}</b> • Email: <b>${site.contactEmail || "[…]"}</b> • IG: <b>${site.contactIg || "@[handle]"}</b>`;
     }
 
-    /* Market charts renderer */
     function drawMarketCharts(market){
       const fmt = new Intl.NumberFormat('en-MY');
       const scenarios = market?.numbersLogic?.scenarios || [];
@@ -770,12 +767,12 @@
       const c3 = market?.charts?.chart3 || {};
       const setText = (id, txt) => { const el = document.getElementById(id); if(el) el.textContent = txt; };
 
-      setText("chart1Title", c1.title || "Competitive map: Price vs Reliability");
-      setText("chart2Title", c2.title || "Hidden cost per booking (disputes + rework)");
+      setText("chart1Title", c1.title || "Competitive map");
+      setText("chart2Title", c2.title || "Hidden cost per booking");
       setText("chart3Title", c3.title || "Weekday utilization flywheel");
-      setText("chart1Labels", `${c1.xLabel || "Lower price → Higher price"} • ${c1.yLabel || "Lower reliability → Higher reliability"}`);
-      setText("chart2Labels", `${c2.yLabel || "RM per booking"} (model: dispute rate + rework hours)`);
-      setText("chart3Labels", c3.subtitle || "Weekday products prevent idle fixed costs and stabilize bookings.");
+      setText("chart1Labels", `${c1.xLabel || ""} • ${c1.yLabel || ""}`);
+      setText("chart2Labels", `${c2.yLabel || ""}`);
+      setText("chart3Labels", c3.subtitle || "");
 
       // Scatter
       const map = document.getElementById("chartMap");
@@ -862,189 +859,122 @@
         });
       }
 
-      // ✅ Mobile-safe flywheel
+      // ✅ Desktop-safe flywheel (no overlapping / "hamburgered" labels)
       const fly = document.getElementById("chartFlywheel");
-      if(fly?.getContext){
+      if (fly?.getContext) {
         const ctx = fly.getContext("2d");
         const isMobile = window.matchMedia("(max-width: 480px)").matches;
 
-        const targetH = isMobile ? 260 : 190;
-        const w = fly.width = Math.max(10, fly.clientWidth) * devicePixelRatio;
-        const h = fly.height = targetH * devicePixelRatio;
+        const targetH = isMobile ? 320 : 320;
 
-        ctx.clearRect(0,0,w,h);
+        const cssW = Math.max(10, fly.clientWidth);
+        const cssH = targetH;
 
-        const cx = w/2;
-        const cy = h/2 + (isMobile ? 8*devicePixelRatio : 0);
-        const r = Math.min(w,h) * 0.30;
+        fly.width = Math.floor(cssW * devicePixelRatio);
+        fly.height = Math.floor(cssH * devicePixelRatio);
 
+        ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+        ctx.clearRect(0, 0, cssW, cssH);
+
+        const pad = isMobile ? 18 : 22;
+        const cx = cssW / 2;
+        const cy = cssH / 2 + (isMobile ? 12 : 4);
+
+        const r = Math.min(cssW, cssH) * (isMobile ? 0.26 : 0.22);
+        const nodeOrbit = r + (isMobile ? 44 : 56);
+        const nodeR = isMobile ? 26 : 24;
+
+        // Ring
         ctx.strokeStyle = "rgba(210,174,114,.55)";
-        ctx.lineWidth = 3 * devicePixelRatio;
-        ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI*2); ctx.stroke();
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.arc(cx, cy, r, 0, Math.PI * 2);
+        ctx.stroke();
 
-        function wrapLabel(text){
-          if(!isMobile) return [text];
-          if(text.length <= 10) return [text];
-          const mid = Math.ceil(text.length/2);
-          return [text.slice(0, mid), text.slice(mid)];
-        }
+        function drawNode(angle, label, sideHint) {
+          const x = cx + Math.cos(angle) * nodeOrbit;
+          const y = cy + Math.sin(angle) * nodeOrbit;
 
-        function node(angle, text){
-          const x = cx + Math.cos(angle)*r;
-          const y = cy + Math.sin(angle)*r;
-
+          // Node circle
           ctx.beginPath();
           ctx.fillStyle = "rgba(255,255,255,.90)";
           ctx.strokeStyle = "rgba(18,16,24,.15)";
-          ctx.lineWidth = 2 * devicePixelRatio;
+          ctx.lineWidth = 2;
+          ctx.arc(x, y, nodeR, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.stroke();
 
-          const radius = (isMobile ? 26 : 22) * devicePixelRatio;
-          ctx.arc(x,y,radius,0,Math.PI*2);
-          ctx.fill(); ctx.stroke();
+          // Label outside circle
+          const labelDist = nodeR + (isMobile ? 12 : 14);
+          const lx = x + Math.cos(angle) * labelDist;
+          const ly = y + Math.sin(angle) * labelDist;
 
-          const lines = wrapLabel(text);
           ctx.fillStyle = "rgba(18,16,24,.78)";
-          ctx.font = `${(isMobile ? 11 : 12) * devicePixelRatio}px Inter`;
-          ctx.textAlign = "center";
+          ctx.font = `${isMobile ? 12 : 13}px Inter`;
           ctx.textBaseline = "middle";
 
-          if(lines.length === 1){
-            ctx.fillText(lines[0], x, y);
+          if (sideHint === "left") ctx.textAlign = "right";
+          else if (sideHint === "right") ctx.textAlign = "left";
+          else {
+            if (Math.abs(Math.cos(angle)) < 0.25) ctx.textAlign = "center";
+            else ctx.textAlign = Math.cos(angle) > 0 ? "left" : "right";
+          }
+
+          // Multi-line on mobile only (safe)
+          const words = label.split(" ");
+          let lines = [];
+          if (isMobile && words.length > 1) {
+            const mid = Math.ceil(words.length / 2);
+            lines = [words.slice(0, mid).join(" "), words.slice(mid).join(" ")];
           } else {
-            ctx.fillText(lines[0], x, y - 7*devicePixelRatio);
-            ctx.fillText(lines[1], x, y + 7*devicePixelRatio);
+            lines = [label];
+          }
+
+          if (lines.length === 1) {
+            ctx.fillText(lines[0], lx, ly);
+          } else {
+            ctx.fillText(lines[0], lx, ly - 8);
+            ctx.fillText(lines[1], lx, ly + 8);
           }
         }
 
-        node(-Math.PI/2, "Weekday");
-        node(0, "Utilization");
-        node(Math.PI/2, "Reviews");
-        node(Math.PI, "Referrals");
+        drawNode(-Math.PI / 2, "Weekday", "center");
+        drawNode(0, "Utilization", "right");
+        drawNode(Math.PI / 2, "Reviews", "center");
+        drawNode(Math.PI, "Referrals", "left");
 
+        // Center label
         ctx.fillStyle = "rgba(18,16,24,.78)";
-        ctx.font = `${(isMobile ? 12 : 13) * devicePixelRatio}px Inter`;
+        ctx.font = `${isMobile ? 13 : 14}px Inter`;
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
-        if(isMobile){
-          ctx.fillText("Consistency flywheel", cx, cy + 34*devicePixelRatio);
-        } else {
-          ctx.fillText("Consistency flywheel", cx, cy + 4*devicePixelRatio);
-        }
+        ctx.fillText("Consistency flywheel", cx, cy + (isMobile ? 10 : 12));
       }
     }
 
-    // ✅ Upgraded matrix: more dimensions + explanations + view modes
     const MATRIX_ROWS = [
-      {
-        key:"stickerPrice",
-        label:"Sticker price (first impression)",
-        scores:{ budget:"strong", boutique:"weak", studio:"medium", us:"medium" },
-        why:{
-          customer:"Price attracts clicks, but weddings buy peace-of-mind. Too cheap can feel risky.",
-          ops:"Low price often forces shortcuts (rushed fitting, weaker checks).",
-          finance:"Cheapest wins volume only if disputes don’t destroy margin."
-        }
-      },
-      {
-        key:"fitCertainty",
-        label:"Fit certainty (prevents disasters)",
-        scores:{ budget:"weak", boutique:"medium", studio:"medium", us:"strong" },
-        why:{
-          customer:"Bad fit ruins photos. Fit-first is the main ‘anti-regret’ feature.",
-          ops:"Structured fitting + checklist reduces last-minute changes and conflicts.",
-          finance:"Fewer reworks/refunds = stable margin per booking."
-        }
-      },
-      {
-        key:"hygieneReadiness",
-        label:"Hygiene readiness (cleaning SLA)",
-        scores:{ budget:"weak", boutique:"medium", studio:"medium", us:"strong" },
-        why:{
-          customer:"Brides notice smell, stains, and ‘tired fabric’ instantly.",
-          ops:"SLA makes turnaround predictable; no panic cleaning.",
-          finance:"Predictable cleaning cost beats surprise remediation."
-        }
-      },
-      {
-        key:"inventoryFreshness",
-        label:"Inventory freshness (how ‘new’ it looks)",
-        scores:{ budget:"weak", boutique:"medium", studio:"medium", us:"strong" },
-        why:{
-          customer:"Fresh look = premium feel, even for rental.",
-          ops:"Better storage + handling extends garment life.",
-          finance:"Longer garment lifespan reduces replacement CAPEX."
-        }
-      },
-      {
-        key:"turnaroundSpeed",
-        label:"Turnaround speed (between bookings)",
-        scores:{ budget:"medium", boutique:"medium", studio:"strong", us:"strong" },
-        why:{
-          customer:"Fast turnaround matters when dates shift.",
-          ops:"Vendor pool + SOP prevents bottlenecks.",
-          finance:"Speed improves utilization without adding inventory early."
-        }
-      },
-      {
-        key:"disputeControl",
-        label:"Dispute control (proof + policies)",
-        scores:{ budget:"weak", boutique:"medium", studio:"medium", us:"strong" },
-        why:{
-          customer:"Fair rules feel safe when explained calmly.",
-          ops:"Before/after photos + tiered damage pricing reduces arguments.",
-          finance:"Disputes are hidden cost: refunds + time + reputation."
-        }
-      },
-      {
-        key:"weekdayUtil",
-        label:"Weekday utilization strategy",
-        scores:{ budget:"weak", boutique:"weak", studio:"strong", us:"strong" },
-        why:{
-          customer:"Weekday packages (ROM/shoots) offer value without discounting weddings.",
-          ops:"Fills quiet days so the team stays in rhythm.",
-          finance:"Utilization stabilizes cashflow; fixed costs get covered."
-        }
-      },
-      {
-        key:"partnerFunnel",
-        label:"Partner funnel strength (planner/MUA/photo)",
-        scores:{ budget:"weak", boutique:"medium", studio:"strong", us:"strong" },
-        why:{
-          customer:"Partners reduce planning effort and increase trust.",
-          ops:"Referrals create cleaner bookings (less random walk-ins).",
-          finance:"Lower CAC (customer acquisition cost) over time."
-        }
-      },
-      {
-        key:"brandMoat",
-        label:"Moat (what’s hard to copy)",
-        scores:{ budget:"weak", boutique:"medium", studio:"weak", us:"strong" },
-        why:{
-          customer:"Experience feels consistent; not dependent on one staff member.",
-          ops:"Systems scale: scripts, checklists, QC, vendor SLAs.",
-          finance:"Moat protects pricing and reduces churn/negative reviews."
-        }
-      },
-      {
-        key:"marginPredict",
-        label:"Margin predictability",
-        scores:{ budget:"weak", boutique:"medium", studio:"medium", us:"strong" },
-        why:{
-          customer:"Predictability means fewer cancellations and smoother service.",
-          ops:"Less fire-fighting. More scheduled work.",
-          finance:"Stable margin is what makes a ‘consistent business’ possible."
-        }
-      },
-      {
-        key:"scalability",
-        label:"Scalability (add inventory / add staff)",
-        scores:{ budget:"medium", boutique:"weak", studio:"medium", us:"strong" },
-        why:{
-          customer:"Scaling shouldn’t reduce experience quality.",
-          ops:"Repeatable SOP = easier training, fewer quality drops.",
-          finance:"Scale without ballooning rent/headcount too early."
-        }
-      }
+      { label:"Sticker price (first impression)", scores:{ budget:"strong", boutique:"weak", studio:"medium", us:"medium" },
+        why:{ customer:"Price attracts clicks, but weddings buy peace-of-mind.", ops:"Low price often forces shortcuts.", finance:"Cheapest wins only if disputes don’t destroy margin." }},
+      { label:"Fit certainty (prevents disasters)", scores:{ budget:"weak", boutique:"medium", studio:"medium", us:"strong" },
+        why:{ customer:"Bad fit ruins photos.", ops:"Structured fitting reduces last-minute changes.", finance:"Fewer reworks/refunds = stable margin." }},
+      { label:"Hygiene readiness (cleaning SLA)", scores:{ budget:"weak", boutique:"medium", studio:"medium", us:"strong" },
+        why:{ customer:"Brides notice hygiene instantly.", ops:"SLA makes turnaround predictable.", finance:"Predictable cleaning cost beats surprises." }},
+      { label:"Inventory freshness (how ‘new’ it looks)", scores:{ budget:"weak", boutique:"medium", studio:"medium", us:"strong" },
+        why:{ customer:"Fresh look = premium feel.", ops:"Better storage extends garment life.", finance:"Longer lifespan reduces replacement CAPEX." }},
+      { label:"Turnaround speed (between bookings)", scores:{ budget:"medium", boutique:"medium", studio:"strong", us:"strong" },
+        why:{ customer:"Fast turnaround when dates shift.", ops:"Vendor pool prevents bottlenecks.", finance:"Speed improves utilization without new inventory." }},
+      { label:"Dispute control (proof + policies)", scores:{ budget:"weak", boutique:"medium", studio:"medium", us:"strong" },
+        why:{ customer:"Fair rules feel safe when explained calmly.", ops:"Proof reduces arguments.", finance:"Disputes are hidden cost: refunds + time + reputation." }},
+      { label:"Weekday utilization strategy", scores:{ budget:"weak", boutique:"weak", studio:"strong", us:"strong" },
+        why:{ customer:"Weekday packages add value without discounting weddings.", ops:"Fills quiet days.", finance:"Utilization stabilizes cashflow." }},
+      { label:"Partner funnel strength (planner/MUA/photo)", scores:{ budget:"weak", boutique:"medium", studio:"strong", us:"strong" },
+        why:{ customer:"Partners reduce planning effort.", ops:"Cleaner bookings.", finance:"Lower CAC over time." }},
+      { label:"Moat (what’s hard to copy)", scores:{ budget:"weak", boutique:"medium", studio:"weak", us:"strong" },
+        why:{ customer:"Consistent experience.", ops:"Systems scale.", finance:"Moat protects pricing and reviews." }},
+      { label:"Margin predictability", scores:{ budget:"weak", boutique:"medium", studio:"medium", us:"strong" },
+        why:{ customer:"Predictability means smoother service.", ops:"Less fire-fighting.", finance:"Stable margin = consistent business." }},
+      { label:"Scalability (add inventory / add staff)", scores:{ budget:"medium", boutique:"weak", studio:"medium", us:"strong" },
+        why:{ customer:"Scaling shouldn’t reduce quality.", ops:"Repeatable SOP = easier training.", finance:"Scale without ballooning rent/headcount." }}
     ];
 
     const MATRIX_DECISION = {
@@ -1069,22 +999,10 @@
     ];
 
     const MATRIX_PLAYBOOK = [
-      {
-        title:"If the market forces price pressure",
-        text:"Do NOT race to the bottom. Create a ‘weekday value tier’ (ROM/shoot package) and keep wedding pricing intact. Discounting weddings signals risk."
-      },
-      {
-        title:"If disputes increase",
-        text:"Improve proof: better lighting for before/after photos, upgrade checklist, and tighten deposit + signature process. Solve the root cause, not the customer."
-      },
-      {
-        title:"If utilization is low",
-        text:"Increase partner funnel (MUA/photo/planners) and publish proof-content (cleaning + fit checks) weekly. Consistency beats ‘viral’ marketing."
-      },
-      {
-        title:"If operations are overloaded",
-        text:"Stop taking walk-ins. Switch to appointment-first and cap daily fittings. Better to be ‘fully booked’ than ‘constantly tired.’"
-      }
+      { title:"If the market forces price pressure", text:"Do NOT race to the bottom. Create a ‘weekday value tier’ (ROM/shoot package) and keep wedding pricing intact." },
+      { title:"If disputes increase", text:"Improve proof: better photos, upgrade checklist, tighten deposit + signature process. Solve root cause." },
+      { title:"If utilization is low", text:"Increase partner funnel and publish proof-content weekly. Consistency beats viral marketing." },
+      { title:"If operations overload", text:"Stop walk-ins. Appointment-first and cap daily fittings. Better fully-booked than exhausted." }
     ];
 
     function renderMatrix(view="customer"){
@@ -1097,7 +1015,7 @@
           <tr>
             <td>
               <div class="matrixRowTitle">${r.label}</div>
-              <div class="matrixHelp">Trade-off lens: ${view === "customer" ? "trust & experience" : view === "ops" ? "risk & control" : "margin & stability"}</div>
+              <div class="matrixHelp">Lens: ${view === "customer" ? "trust & experience" : view === "ops" ? "risk & control" : "margin & stability"}</div>
             </td>
             <td>${scoreChip(r.scores.budget)}</td>
             <td>${scoreChip(r.scores.boutique)}</td>
@@ -1145,32 +1063,26 @@
       title: "Competitive landscape & our edge (why we win, what it costs)",
       intro: "We’re not trying to be the cheapest. We’re trying to be the most reliable studio that still feels premium. The battlefield is simple: the cheaper you go, the more disputes and rework you absorb. Our edge is operational certainty — fit-first + hygiene SLA + dispute-proof handover — so each booking produces repeatable margin and reviews.",
       positioning: {
-        whereWeCompete: "We compete in the ‘reliability premium’ lane: customers pay slightly more because risk is lower. For weddings, risk reduction is worth real money.",
-        whatWeWontDo: "We won’t win price wars or accept chaotic bookings that damage inventory and brand. We’ll choose consistency, weekday utilization, and partner funnels instead."
+        whereWeCompete: "We compete in the ‘reliability premium’ lane: customers pay slightly more because risk is lower.",
+        whatWeWontDo: "We won’t win price wars. We choose consistency, weekday utilization, and partner funnels instead."
       },
       battlefields: [
-        {
-          title: "Price-driven competitors (Budget Rack)",
-          howTheyWin: ["Lower sticker price, large catalogue", "Fast walk-ins, minimal fitting time"],
-          hiddenCosts: ["More damage + missing items", "Higher dispute rate", "More staff time handling complaints", "Inventory looks tired faster"],
-          ourCounter: ["We reduce risk with structured fittings and evidence-based handover", "We price for readiness: cleaned, pressed, confirmed fit — not just a garment on a hanger"]
-        },
-        {
-          title: "Typical boutique (Taste + service)",
-          howTheyWin: ["Better styling, nicer experience", "Premium perception"],
-          hiddenCosts: ["Often high rent + higher headcount early", "Ops inconsistency: depends on staff mood/skill", "Weekday idle time (utilization gap)"],
-          ourCounter: ["Standardized SOP so quality is repeatable", "Weekday products (civil/ROM + photoshoot packages) to fill quiet days"]
-        },
-        {
-          title: "Studio bundle / photo-first",
-          howTheyWin: ["Partners push volume (photo/MUA/planners)", "Bundled convenience"],
-          hiddenCosts: ["Partner dependency", "Discounting to keep partners happy", "Weak moat if everyone can bundle"],
-          ourCounter: ["We still partner — but keep pricing integrity via tiered packages", "Moat is ops + trust (reviews) not partner discounts"]
-        }
+        { title:"Price-driven competitors (Budget Rack)",
+          howTheyWin:["Lower sticker price, large catalogue","Fast walk-ins, minimal fitting time"],
+          hiddenCosts:["More damage + missing items","Higher dispute rate","More staff time handling complaints","Inventory looks tired faster"],
+          ourCounter:["Structured fittings + evidence-based handover","Price for readiness: cleaned, pressed, confirmed fit"] },
+        { title:"Typical boutique (Taste + service)",
+          howTheyWin:["Better styling, nicer experience","Premium perception"],
+          hiddenCosts:["High rent + early headcount","Ops inconsistency","Weekday idle time"],
+          ourCounter:["Standardized SOP","Weekday products to fill quiet days"] },
+        { title:"Studio bundle / photo-first",
+          howTheyWin:["Partners push volume","Bundled convenience"],
+          hiddenCosts:["Partner dependency","Discount pressure","Weak moat if everyone bundles"],
+          ourCounter:["Tiered packages with price integrity","Moat = ops + trust (reviews)"] }
       ],
       yourLane: {
-        whatItCosts: ["More time per booking (structured fitting + checklist)", "Cleaning SLA budget (predictable vendor cost)", "Systems discipline (templates, photos, tracking)"],
-        whyWorthIt: ["Lower disputes → less refunds, less time wasted", "Inventory lasts longer → lower replacement capital", "Higher referral + reviews → cheaper marketing over time", "Predictable margin → stable business (your goal)"]
+        whatItCosts:["More time per booking","Cleaning SLA budget","Systems discipline"],
+        whyWorthIt:["Lower disputes → less refunds/time waste","Inventory lasts longer","Reviews compound","Predictable margin"]
       },
       numbersLogic: {
         scenarios: [
@@ -1183,25 +1095,11 @@
       },
       charts: {
         chart1: { title:"Competitive map: Price vs Reliability", xLabel:"Lower price → Higher price", yLabel:"Lower reliability → Higher reliability" },
-        chart2: { title:"Hidden cost per booking (disputes + rework)", xLabel:"Competitor type", yLabel:"RM per booking" },
-        chart3: { title:"Why weekday utilization matters", subtitle:"We don’t need massive volume. We need consistent bookings (weekday products prevent idle fixed costs)." }
+        chart2: { title:"Hidden cost per booking (disputes + rework)", yLabel:"RM per booking" },
+        chart3: { title:"Why weekday utilization matters", subtitle:"We don’t need massive volume. We need consistent bookings." }
       },
-      standoutLeft: {
-        title: "How we stand out (balanced)",
-        bullets: [
-          "Certainty: Fit-first + readiness checklist.",
-          "Fairness: Calm tone, consistent policies.",
-          "Compounding: Reviews become future bookings."
-        ]
-      },
-      chinaRight: {
-        title: "Borrow smart ideas from China marketplaces",
-        bullets: [
-          "Tiered packages: fewer choices, higher conversion.",
-          "Proof-content: cleaning + fit checks become trust marketing.",
-          "Operational pooling: partner tailors/cleaners for fast turnaround."
-        ]
-      }
+      standoutLeft: { title:"How we stand out (balanced)", bullets:["Certainty: Fit-first + readiness checklist.","Fairness: calm tone, consistent policies.","Compounding: reviews become future bookings."] },
+      chinaRight: { title:"Borrow smart ideas from China marketplaces", bullets:["Tiered packages: fewer choices, higher conversion.","Proof-content: cleaning + fit checks as trust marketing.","Operational pooling: partner tailors/cleaners for fast turnaround."] }
     };
 
     function hydrateMarket(market){
@@ -1214,7 +1112,6 @@
       const explain = document.getElementById("marketExplain");
       if(explain){
         explain.innerHTML = "";
-
         const pos = m.positioning || {};
         const posCard = document.createElement("div");
         posCard.className = "col-12 col-lg-4";
@@ -1233,17 +1130,14 @@
           col.innerHTML = `
             <div class="p-3 h-100" style="border-radius:22px;border:1px solid rgba(18,16,24,.10);background:rgba(255,255,255,.78);">
               <div style="font-weight:950;margin-bottom:8px;">${b.title || ""}</div>
-
               <div style="font-size:12px;font-weight:950;color:rgba(18,16,24,.62);letter-spacing:.22px;text-transform:uppercase;margin-top:6px;">How they win</div>
               <ul style="margin:8px 0 0 18px;color:rgba(18,16,24,.62);line-height:1.7;">
                 ${(b.howTheyWin || []).map(x=>`<li>${x}</li>`).join("")}
               </ul>
-
               <div style="font-size:12px;font-weight:950;color:rgba(18,16,24,.62);letter-spacing:.22px;text-transform:uppercase;margin-top:10px;">Hidden costs</div>
               <ul style="margin:8px 0 0 18px;color:rgba(18,16,24,.62);line-height:1.7;">
                 ${(b.hiddenCosts || []).map(x=>`<li>${x}</li>`).join("")}
               </ul>
-
               <div style="font-size:12px;font-weight:950;color:rgba(18,16,24,.62);letter-spacing:.22px;text-transform:uppercase;margin-top:10px;">Our counter</div>
               <ul style="margin:8px 0 0 18px;color:rgba(18,16,24,.62);line-height:1.7;">
                 ${(b.ourCounter || []).map(x=>`<li>${x}</li>`).join("")}
@@ -1272,13 +1166,10 @@
 
       drawMarketCharts(m);
 
-      // Matrix defaults
-      const viewSel = document.getElementById("matrixView");
-      const view = viewSel?.value || "customer";
+      const view = document.getElementById("matrixView")?.value || "customer";
       renderMatrix(view);
     }
 
-    /* Stress test */
     let AVG = 850, BURN = 7500, CAPITAL = 190000;
     let bookings = 10;
 
@@ -1308,6 +1199,10 @@
     }
     document.getElementById('plus').addEventListener('click', ()=>{ bookings = clamp(bookings+1,0,40); renderStress(); });
     document.getElementById('minus').addEventListener('click', ()=>{ bookings = clamp(bookings-1,0,40); renderStress(); });
+
+    document.getElementById("matrixView").addEventListener("change", (e)=>{
+      renderMatrix(e.target.value);
+    });
 
     async function hydrateCMS(){
       let site = {};
@@ -1345,15 +1240,9 @@
       renderStress();
     }
 
-    // ✅ matrix view switch
-    document.getElementById("matrixView").addEventListener("change", (e)=>{
-      renderMatrix(e.target.value);
-    });
-
     renderStress();
     hydrateCMS().catch(err=>console.error("Hydration failed:", err));
 
-    // ✅ redraw charts on rotate/resize
     window.addEventListener("resize", () => {
       if(window.__MARKET_CACHE__) drawMarketCharts(window.__MARKET_CACHE__);
     });
