@@ -778,6 +778,10 @@
 
       // Scatter
       const map = document.getElementById("chartMap");
+      if(map) {
+        map.setAttribute("role", "img");
+        map.setAttribute("aria-label", `${c1.title || "Competitive Map"}. Scatter plot showing us as high reliability and high price compared to competitors.`);
+      }
       if(map?.getContext && hiddenCosts.length){
         const ctx = map.getContext("2d");
         const w = map.width = Math.max(10, map.clientWidth) * devicePixelRatio;
@@ -823,6 +827,10 @@
 
       // Bars
       const bar = document.getElementById("chartHidden");
+      if(bar) {
+        bar.setAttribute("role", "img");
+        bar.setAttribute("aria-label", `${c2.title || "Hidden Cost"}. Bar chart showing we have the lowest hidden costs compared to others.`);
+      }
       if(bar?.getContext && hiddenCosts.length){
         const ctx = bar.getContext("2d");
         const w = bar.width = Math.max(10, bar.clientWidth) * devicePixelRatio;
@@ -863,6 +871,10 @@
 
       // ✅ Desktop-safe flywheel (no overlapping / "hamburgered" labels)
       const fly = document.getElementById("chartFlywheel");
+      if(fly) {
+        fly.setAttribute("role", "img");
+        fly.setAttribute("aria-label", `${c3.title || "Utilization Flywheel"}. Diagram showing the cycle: Weekday usage → Utilization → Reviews → Referrals.`);
+      }
       if (fly?.getContext) {
         const ctx = fly.getContext("2d");
         const isMobile = window.matchMedia("(max-width: 480px)").matches;
