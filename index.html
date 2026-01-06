@@ -779,6 +779,10 @@
       // Scatter
       const map = document.getElementById("chartMap");
       if(map?.getContext && hiddenCosts.length){
+        // 🎨 Palette: Accessibility for canvas
+        map.setAttribute("role", "img");
+        map.setAttribute("aria-label", `${c1.title||"Competitive map"}. ${c1.xLabel||""} vs ${c1.yLabel||""}`);
+
         const ctx = map.getContext("2d");
         const w = map.width = Math.max(10, map.clientWidth) * devicePixelRatio;
         const h = map.height = 220 * devicePixelRatio;
@@ -824,6 +828,10 @@
       // Bars
       const bar = document.getElementById("chartHidden");
       if(bar?.getContext && hiddenCosts.length){
+        // 🎨 Palette: Accessibility for canvas
+        bar.setAttribute("role", "img");
+        bar.setAttribute("aria-label", `${c2.title||"Hidden cost"}. ${c2.yLabel||""}`);
+
         const ctx = bar.getContext("2d");
         const w = bar.width = Math.max(10, bar.clientWidth) * devicePixelRatio;
         const h = bar.height = 220 * devicePixelRatio;
@@ -864,6 +872,10 @@
       // ✅ Desktop-safe flywheel (no overlapping / "hamburgered" labels)
       const fly = document.getElementById("chartFlywheel");
       if (fly?.getContext) {
+        // 🎨 Palette: Accessibility for canvas
+        fly.setAttribute("role", "img");
+        fly.setAttribute("aria-label", `${c3.title||"Flywheel"}. ${c3.subtitle||""}`);
+
         const ctx = fly.getContext("2d");
         const isMobile = window.matchMedia("(max-width: 480px)").matches;
 
