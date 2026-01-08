@@ -1174,6 +1174,8 @@
 
     let AVG = 850, BURN = 7500, CAPITAL = 190000;
     let bookings = 10;
+    const MIN_BOOKINGS = 0;
+    const MAX_BOOKINGS = 40;
 
     const fmt = new Intl.NumberFormat('en-MY');
     const elBookings = document.getElementById('bookings');
@@ -1199,13 +1201,17 @@
       document.getElementById("stressAssumptionText").innerHTML =
         `Assumptions: Avg rental <span class="em">RM ${fmt.format(AVG)}</span>, monthly burn <span class="em">RM ${fmt.format(BURN)}</span>, capital buffer <span class="em">RM ${fmt.format(CAPITAL)}</span>.`;
 
+      // 🎨 Palette: Visually disable buttons at limits
+      document.getElementById('minus').disabled = bookings <= MIN_BOOKINGS;
+      document.getElementById('plus').disabled = bookings >= MAX_BOOKINGS;
+
       // 🎨 Palette: Announce updates to screen readers
       const liveText = `${bookings} bookings. Net profit: RM ${net >= 0 ? '+' : '−'}${fmt.format(Math.abs(net))}. Runway: ${runway} months.`;
       const liveRegion = document.getElementById('stress-live-feedback');
       if(liveRegion) liveRegion.textContent = liveText;
     }
-    document.getElementById('plus').addEventListener('click', ()=>{ bookings = clamp(bookings+1,0,40); renderStress(); });
-    document.getElementById('minus').addEventListener('click', ()=>{ bookings = clamp(bookings-1,0,40); renderStress(); });
+    document.getElementById('plus').addEventListener('click', ()=>{ bookings = clamp(bookings+1, MIN_BOOKINGS, MAX_BOOKINGS); renderStress(); });
+    document.getElementById('minus').addEventListener('click', ()=>{ bookings = clamp(bookings-1, MIN_BOOKINGS, MAX_BOOKINGS); renderStress(); });
 
     document.getElementById("matrixView").addEventListener("change", (e)=>{
       renderMatrix(e.target.value);
