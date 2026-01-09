@@ -776,6 +776,18 @@
       setText("chart2Labels", `${c2.yLabel || ""}`);
       setText("chart3Labels", c3.subtitle || "");
 
+      // 🎨 Palette: Add accessibility attributes
+      const setA11y = (id, label) => {
+        const el = document.getElementById(id);
+        if(el){
+          el.setAttribute("role", "img");
+          el.setAttribute("aria-label", label);
+        }
+      };
+      setA11y("chartMap", `${c1.title || ""}. Scatter plot of ${c1.xLabel || ""} vs ${c1.yLabel || ""}.`);
+      setA11y("chartHidden", `${c2.title || ""}. Bar chart showing ${c2.yLabel || ""}.`);
+      setA11y("chartFlywheel", `${c3.title || ""}. ${c3.subtitle || ""}`);
+
       // Scatter
       const map = document.getElementById("chartMap");
       if(map?.getContext && hiddenCosts.length){
