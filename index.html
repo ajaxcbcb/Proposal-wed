@@ -1180,6 +1180,8 @@
     const elRevenue  = document.getElementById('revenue');
     const elNet      = document.getElementById('net');
     const elRunway   = document.getElementById('runway');
+    const btnMinus   = document.getElementById('minus');
+    const btnPlus    = document.getElementById('plus');
 
     function clamp(n,a,b){ return Math.max(a, Math.min(b,n)); }
     function renderStress(){
@@ -1195,6 +1197,9 @@
 
       const runway = net < 0 ? Math.floor(CAPITAL / Math.abs(net)) : 999;
       elRunway.textContent = runway;
+
+      if(btnMinus) btnMinus.disabled = (bookings <= 0);
+      if(btnPlus)  btnPlus.disabled  = (bookings >= 40);
 
       document.getElementById("stressAssumptionText").innerHTML =
         `Assumptions: Avg rental <span class="em">RM ${fmt.format(AVG)}</span>, monthly burn <span class="em">RM ${fmt.format(BURN)}</span>, capital buffer <span class="em">RM ${fmt.format(CAPITAL)}</span>.`;
