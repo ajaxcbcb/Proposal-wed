@@ -535,7 +535,7 @@
               </div>
 
               <div class="d-flex align-items-center gap-2">
-                <span class="matrixHelp">View:</span>
+                <label for="matrixView" class="matrixHelp">View:</label>
                 <select id="matrixView" class="form-select form-select-sm"
                         style="width:auto;border-radius:14px;border:1px solid rgba(18,16,24,.10);background:rgba(255,255,255,.80);font-weight:850;">
                   <option value="customer">Customer value</option>
@@ -1203,6 +1203,11 @@
       const liveText = `${bookings} bookings. Net profit: RM ${net >= 0 ? '+' : '−'}${fmt.format(Math.abs(net))}. Runway: ${runway} months.`;
       const liveRegion = document.getElementById('stress-live-feedback');
       if(liveRegion) liveRegion.textContent = liveText;
+
+      const btnMinus = document.getElementById('minus');
+      const btnPlus = document.getElementById('plus');
+      if(btnMinus) btnMinus.disabled = bookings <= 0;
+      if(btnPlus) btnPlus.disabled = bookings >= 40;
     }
     document.getElementById('plus').addEventListener('click', ()=>{ bookings = clamp(bookings+1,0,40); renderStress(); });
     document.getElementById('minus').addEventListener('click', ()=>{ bookings = clamp(bookings-1,0,40); renderStress(); });
