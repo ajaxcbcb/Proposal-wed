@@ -778,6 +778,11 @@
 
       // Scatter
       const map = document.getElementById("chartMap");
+      if(map) {
+        map.setAttribute("role", "img");
+        map.setAttribute("aria-label", `${c1.title || "Competitive map"}. Scatter plot comparing average price versus reliability.`);
+      }
+
       if(map?.getContext && hiddenCosts.length){
         const ctx = map.getContext("2d");
         const w = map.width = Math.max(10, map.clientWidth) * devicePixelRatio;
@@ -823,6 +828,11 @@
 
       // Bars
       const bar = document.getElementById("chartHidden");
+      if(bar) {
+        bar.setAttribute("role", "img");
+        bar.setAttribute("aria-label", `${c2.title || "Hidden cost per booking"}. Bar chart showing estimated hidden costs for different models.`);
+      }
+
       if(bar?.getContext && hiddenCosts.length){
         const ctx = bar.getContext("2d");
         const w = bar.width = Math.max(10, bar.clientWidth) * devicePixelRatio;
@@ -863,6 +873,11 @@
 
       // ✅ Desktop-safe flywheel (no overlapping / "hamburgered" labels)
       const fly = document.getElementById("chartFlywheel");
+      if (fly) {
+        fly.setAttribute("role", "img");
+        fly.setAttribute("aria-label", `${c3.title || "Weekday utilization flywheel"}. Diagram showing the virtuous cycle of utilization, reviews, and referrals.`);
+      }
+
       if (fly?.getContext) {
         const ctx = fly.getContext("2d");
         const isMobile = window.matchMedia("(max-width: 480px)").matches;
