@@ -769,9 +769,13 @@
       const c3 = market?.charts?.chart3 || {};
       const setText = (id, txt) => { const el = document.getElementById(id); if(el) el.textContent = txt; };
 
-      setText("chart1Title", c1.title || "Competitive map");
-      setText("chart2Title", c2.title || "Hidden cost per booking");
-      setText("chart3Title", c3.title || "Weekday utilization flywheel");
+      const t1 = c1.title || "Competitive map";
+      const t2 = c2.title || "Hidden cost per booking";
+      const t3 = c3.title || "Weekday utilization flywheel";
+
+      setText("chart1Title", t1);
+      setText("chart2Title", t2);
+      setText("chart3Title", t3);
       setText("chart1Labels", `${c1.xLabel || ""} • ${c1.yLabel || ""}`);
       setText("chart2Labels", `${c2.yLabel || ""}`);
       setText("chart3Labels", c3.subtitle || "");
@@ -779,6 +783,8 @@
       // Scatter
       const map = document.getElementById("chartMap");
       if(map?.getContext && hiddenCosts.length){
+        map.setAttribute("role", "img");
+        map.setAttribute("aria-label", t1);
         const ctx = map.getContext("2d");
         const w = map.width = Math.max(10, map.clientWidth) * devicePixelRatio;
         const h = map.height = 220 * devicePixelRatio;
@@ -824,6 +830,8 @@
       // Bars
       const bar = document.getElementById("chartHidden");
       if(bar?.getContext && hiddenCosts.length){
+        bar.setAttribute("role", "img");
+        bar.setAttribute("aria-label", t2);
         const ctx = bar.getContext("2d");
         const w = bar.width = Math.max(10, bar.clientWidth) * devicePixelRatio;
         const h = bar.height = 220 * devicePixelRatio;
@@ -864,6 +872,8 @@
       // ✅ Desktop-safe flywheel (no overlapping / "hamburgered" labels)
       const fly = document.getElementById("chartFlywheel");
       if (fly?.getContext) {
+        fly.setAttribute("role", "img");
+        fly.setAttribute("aria-label", t3);
         const ctx = fly.getContext("2d");
         const isMobile = window.matchMedia("(max-width: 480px)").matches;
 
