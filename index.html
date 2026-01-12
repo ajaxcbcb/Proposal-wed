@@ -779,6 +779,9 @@
       // Scatter
       const map = document.getElementById("chartMap");
       if(map?.getContext && hiddenCosts.length){
+        map.setAttribute("role", "img");
+        map.setAttribute("aria-label", "Competitive map scatter plot: We are in the top-right quadrant (High Price, High Reliability), distinguished from competitors with lower reliability.");
+
         const ctx = map.getContext("2d");
         const w = map.width = Math.max(10, map.clientWidth) * devicePixelRatio;
         const h = map.height = 220 * devicePixelRatio;
@@ -824,6 +827,13 @@
       // Bars
       const bar = document.getElementById("chartHidden");
       if(bar?.getContext && hiddenCosts.length){
+        bar.setAttribute("role", "img");
+        const us = hiddenCosts.find(d => d.name.toLowerCase().includes("us"));
+        const others = hiddenCosts.filter(d => !d.name.toLowerCase().includes("us"));
+        const maxOther = others.reduce((p, c) => (p.cost > c.cost) ? p : c, {cost:0});
+        const label = `Bar chart comparing hidden costs. We have the lowest cost at RM ${Math.round(us?.cost||0)}, while competitors reach up to RM ${Math.round(maxOther?.cost||0)}.`;
+        bar.setAttribute("aria-label", label);
+
         const ctx = bar.getContext("2d");
         const w = bar.width = Math.max(10, bar.clientWidth) * devicePixelRatio;
         const h = bar.height = 220 * devicePixelRatio;
@@ -864,6 +874,9 @@
       // ✅ Desktop-safe flywheel (no overlapping / "hamburgered" labels)
       const fly = document.getElementById("chartFlywheel");
       if (fly?.getContext) {
+        fly.setAttribute("role", "img");
+        fly.setAttribute("aria-label", "Flywheel diagram: Weekday bookings drive utilization, generating reviews which bring referrals, feeding back into bookings.");
+
         const ctx = fly.getContext("2d");
         const isMobile = window.matchMedia("(max-width: 480px)").matches;
 
