@@ -1186,6 +1186,10 @@
       const revenue = AVG * bookings;
       const net = revenue - BURN;
 
+      // 🎨 Palette: Disable buttons at limits
+      document.getElementById('minus').disabled = (bookings <= 0);
+      document.getElementById('plus').disabled = (bookings >= 40);
+
       elBookings.textContent = bookings;
       elRevenue.textContent = fmt.format(revenue);
 
