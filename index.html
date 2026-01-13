@@ -772,6 +772,19 @@
       setText("chart1Title", c1.title || "Competitive map");
       setText("chart2Title", c2.title || "Hidden cost per booking");
       setText("chart3Title", c3.title || "Weekday utilization flywheel");
+
+      // 🎨 Palette: Accessibility for canvas charts
+      const setAria = (id, label) => {
+        const el = document.getElementById(id);
+        if(el) {
+          el.setAttribute("role", "img");
+          el.setAttribute("aria-label", label);
+        }
+      };
+      setAria("chartMap", c1.title || "Competitive map");
+      setAria("chartHidden", c2.title || "Hidden cost per booking");
+      setAria("chartFlywheel", c3.title || "Weekday utilization flywheel");
+
       setText("chart1Labels", `${c1.xLabel || ""} • ${c1.yLabel || ""}`);
       setText("chart2Labels", `${c2.yLabel || ""}`);
       setText("chart3Labels", c3.subtitle || "");
