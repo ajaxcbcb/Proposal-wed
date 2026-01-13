@@ -3,16 +3,15 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>The Victoria Studio — Bridal Rental Pitch</title>
+  <title>The Victoria Studio — Strategic Pitch</title>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;0,900;1,500&display=swap" rel="stylesheet">
 
   <!-- Bootstrap 5 -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" xintegrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
   <style>
     :root{
@@ -24,19 +23,20 @@
       --champ:#d2ae72;
       --rose:#c88f95;
 
-      --line:rgba(18,16,24,.11);
-      --glass:rgba(255,255,255,.78);
+      --line:rgba(18,16,24,.08);
+      --glass:rgba(255,255,255,.65);
+      --glass-solid:rgba(255,255,255,.85);
 
-      --good:#1f9d6e;
-      --mid:#d2ae72;
-      --bad:#b54a5a;
+      --good:#1f9d6e; /* Green */
+      --warn:#d2ae72; /* Gold */
+      --bad:#b54a5a;  /* Red */
 
-      --radius:24px;
-      --shadow:0 30px 80px rgba(18,16,24,.13);
-      --shadow2:0 18px 45px rgba(18,16,24,.10);
+      --radius:28px;
+      --shadow:0 30px 80px -10px rgba(18,16,24,.12);
+      --shadow2:0 12px 35px -5px rgba(18,16,24,.08);
 
-      --serif:"Playfair Display", ui-serif, Georgia, "Times New Roman", serif;
-      --sans:"Inter", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      --serif:"Playfair Display", ui-serif, Georgia, serif;
+      --sans:"Inter", ui-sans-serif, system-ui, sans-serif;
 
       --ease:cubic-bezier(.2,.9,.2,1);
     }
@@ -47,1212 +47,699 @@
       font-family:var(--sans);
       color:var(--ink);
       background:
-        radial-gradient(1100px 700px at 18% 10%, rgba(210,174,114,.16), transparent 55%),
-        radial-gradient(900px 650px at 86% 18%, rgba(200,143,149,.12), transparent 60%),
-        linear-gradient(180deg, var(--ivory), var(--paper));
+        radial-gradient(1100px 700px at 18% 10%, rgba(210,174,114,.12), transparent 55%),
+        radial-gradient(900px 650px at 86% 18%, rgba(200,143,149,.09), transparent 60%),
+        linear-gradient(180deg, var(--ivory), #efe5db);
       overflow-x:hidden;
     }
 
-    .grain, .fibers{
-      position:fixed; inset:0;
-      pointer-events:none;
-      z-index:0;
-    }
+    /* Texture overlays for 'premium paper' feel */
     .grain{
-      opacity:.11;
+      position:fixed; inset:0; pointer-events:none; z-index:0; opacity:.09;
       background-image:
-        radial-gradient(circle at 10% 20%, rgba(0,0,0,.18) .6px, transparent 1px),
-        radial-gradient(circle at 70% 40%, rgba(0,0,0,.14) .6px, transparent 1px),
-        radial-gradient(circle at 30% 80%, rgba(0,0,0,.12) .6px, transparent 1px);
-      background-size: 180px 180px, 220px 220px, 260px 260px;
+        radial-gradient(circle at 10% 20%, rgba(0,0,0,.15) .6px, transparent 1px),
+        radial-gradient(circle at 70% 40%, rgba(0,0,0,.12) .6px, transparent 1px);
+      background-size: 180px 180px;
     }
-    .fibers{
-      opacity:.10;
-      background:
-        linear-gradient(90deg, rgba(0,0,0,.05), transparent 28%, rgba(0,0,0,.04) 62%, transparent),
-        linear-gradient(0deg, rgba(0,0,0,.05), transparent 32%, rgba(0,0,0,.03) 72%, transparent);
-      mix-blend-mode:multiply;
+    .noise{
+      position:fixed; inset:0; pointer-events:none; z-index:0; opacity:.03;
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
     }
 
+    /* Navigation */
     .navShell{
-      position:fixed;
-      top:0; left:0; right:0;
-      z-index:1030;
+      position:fixed; top:0; left:0; right:0; z-index:1030;
       padding: env(safe-area-inset-top) 0 10px;
-      background: linear-gradient(180deg, rgba(251,247,242,.92), rgba(251,247,242,.45));
-      backdrop-filter: blur(14px);
+      background: rgba(251,247,242,.85);
+      backdrop-filter: blur(16px) saturate(180%);
       border-bottom:1px solid var(--line);
     }
-    .brandWrap{ display:flex; align-items:center; gap:12px; min-width:0; }
+    .brandWrap{ display:flex; align-items:center; gap:12px; }
     .monogram{
-      width:42px; height:42px;
-      border-radius:18px;
+      width:44px; height:44px; border-radius:14px;
       display:grid; place-items:center;
-      background:
-        radial-gradient(circle at 30% 30%, rgba(255,255,255,.95), transparent 55%),
-        linear-gradient(135deg, rgba(210,174,114,.92), rgba(200,143,149,.72));
-      box-shadow: var(--shadow2);
-      border:1px solid rgba(18,16,24,.10);
-      font-family: var(--serif);
-      font-weight:900;
-      letter-spacing:.5px;
-      color: rgba(18,16,24,.86);
-      flex: 0 0 auto;
+      background: linear-gradient(135deg, #fff, #f4ede5);
+      box-shadow: 0 4px 12px rgba(0,0,0,.06);
+      border:1px solid rgba(255,255,255,.6);
+      font-family: var(--serif); font-weight:800; color:var(--ink);
     }
-    .brandText strong{
-      display:block;
-      font-weight:950;
-      letter-spacing:.1px;
-      font-size:13px;
-      white-space:nowrap;
-    }
-    .brandText span{
-      display:block;
-      font-size:12px;
-      color:var(--muted);
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      max-width: 52vw;
-    }
+    .brandText strong{ display:block; font-weight:900; font-size:14px; letter-spacing:-0.2px; }
+    .brandText span{ display:block; font-size:12px; color:var(--muted); }
 
-    .pill{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:9px 11px;
-      border-radius:999px;
-      border:1px solid rgba(18,16,24,.10);
-      background: rgba(255,255,255,.70);
-      color: rgba(18,16,24,.68);
-      font-weight:950;
-      font-size:12px;
-      white-space:nowrap;
+    .nav-btn{
+      border-radius:99px; border:1px solid rgba(18,16,24,.08);
+      background:rgba(255,255,255,.6); font-weight:700; font-size:13px;
+      padding: 6px 14px; transition:all .2s;
+      text-decoration:none; color: var(--ink);
     }
-    .dot{
-      width:10px; height:10px;
-      border-radius:999px;
-      background: linear-gradient(135deg, rgba(210,174,114,.95), rgba(200,143,149,.85));
-    }
+    .nav-btn:hover{ background:#fff; transform:translateY(-1px); box-shadow:0 4px 10px rgba(0,0,0,.05); }
 
     .progressBarWrap{
-      max-width:1120px;
-      margin:10px auto 0;
-      height:6px;
-      border-radius:999px;
-      background: rgba(18,16,24,.06);
-      overflow:hidden;
-      border:1px solid rgba(18,16,24,.10);
+      max-width:1120px; margin:10px auto 0; height:4px;
+      background: rgba(18,16,24,.04); border-radius:9px; overflow:hidden;
     }
-    .progressBarWrap > div{
-      height:100%;
-      width:0%;
-      background: linear-gradient(90deg, rgba(210,174,114,.95), rgba(200,143,149,.85));
-      border-radius:999px;
-      transition: width .28s var(--ease);
-    }
+    .progressBar{ height:100%; width:0%; background:var(--ink); transition:width .1s linear; }
 
-    main{ position:relative; z-index:1; padding-top: 102px; }
+    main{ position:relative; z-index:1; padding-top: 110px; padding-bottom: 60px; }
 
+    /* Cards */
     .cardEditorial{
-      border-radius: 34px;
-      overflow:hidden;
-      position:relative;
+      border-radius: var(--radius);
+      overflow:hidden; position:relative;
       box-shadow: var(--shadow);
-      background: rgba(255,255,255,.40);
-      border: 1px solid rgba(18,16,24,.10);
+      background: rgba(255,255,255,.55);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,.6);
     }
 
-    h1{
-      margin:0 0 14px;
-      font-family: var(--serif);
-      font-size: clamp(40px, 7.2vw, 72px);
-      line-height: .98;
-      letter-spacing: -0.8px;
-    }
-    h2{
-      margin:0 0 12px;
-      font-family: var(--serif);
-      font-size: clamp(24px, 4.2vw, 40px);
-      line-height:1.1;
-      letter-spacing:-0.35px;
-    }
-    p{ margin:0; font-size:15px; line-height:1.9; color: var(--muted); }
-    .em{ color: rgba(18,16,24,.92); font-weight:950; }
+    h1{ font-family: var(--serif); font-size: clamp(38px, 6vw, 68px); line-height: 1.05; letter-spacing: -1px; color:var(--ink); }
+    h2{ font-family: var(--serif); font-size: clamp(24px, 4vw, 36px); line-height:1.15; letter-spacing:-0.5px; margin-bottom:12px; }
+    p{ font-size:16px; line-height:1.7; color: var(--muted); max-width:65ch; }
+    .em{ color: var(--ink); font-weight:800; }
+    .champ{ color: #b08d55; }
 
+    /* Hero */
     .heroGrid{ display:grid; gap:0; min-height: 72vh; }
-    @media(min-width: 992px){
-      .heroGrid{ grid-template-columns: 1.05fr .95fr; }
+    @media(min-width: 992px){ .heroGrid{ grid-template-columns: 1.1fr .9fr; } }
+    
+    .heroLeft{ padding: 40px 30px; display:flex; flex-direction:column; justify-content:center; }
+    .heroRight{ position:relative; min-height: 40vh; background: #ddd; overflow:hidden; }
+    .heroMedia img{ width:100%; height:100%; object-fit:cover; transform:scale(1.1); transition:transform 0.1s linear; }
+    .heroBadge{
+      display:inline-flex; align-items:center; gap:6px;
+      padding:6px 12px; border-radius:99px; background:rgba(255,255,255,.7);
+      border:1px solid rgba(0,0,0,.06); font-size:12px; font-weight:700; color:rgba(0,0,0,.6);
+      margin-right:6px; margin-bottom:12px;
     }
-    .heroLeft{
-      padding: 28px 22px 26px;
-      display:flex;
-      flex-direction:column;
-      justify-content:flex-end;
-    }
-    .badgeX{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:7px 12px;
-      border-radius:999px;
-      border:1px solid rgba(18,16,24,.10);
-      background: rgba(255,255,255,.66);
-      font-size:12px;
-      font-weight:950;
-      color: rgba(18,16,24,.70);
-      margin-right:8px;
-      margin-bottom:8px;
-    }
-    .heroRight{ position:relative; min-height: 52vh; background: #ddd; }
-    .heroMedia{ position:absolute; inset:0; overflow:hidden; }
-    .heroMedia img{
-      width:100%; height:100%;
-      object-fit:cover;
-      transform: translate3d(0,0,0) scale(1.16);
-      will-change: transform, filter;
-      filter: contrast(1.02) saturate(1.04);
-    }
-    .heroMask{
-      position:absolute; inset:0;
-      pointer-events:none;
-      background:
-        radial-gradient(850px 620px at 35% 15%, rgba(255,255,255,.18), transparent 58%),
-        linear-gradient(180deg, rgba(251,247,242,.05), rgba(18,16,24,.62));
-      will-change: transform;
-    }
-    .heroCaption{
-      position:absolute;
-      left:16px; right:16px; bottom:16px;
-      padding:12px 12px;
-      border-radius: 18px;
-      border:1px solid rgba(255,255,255,.22);
-      background: rgba(255,255,255,.80);
-      backdrop-filter: blur(12px);
-      color: rgba(18,16,24,.82);
-      will-change: transform;
-    }
+    .heroDot{ width:8px; height:8px; background:var(--good); border-radius:50%; }
 
-    .score{
-      display:inline-flex;
-      gap:8px;
-      align-items:center;
-      padding:8px 10px;
-      border-radius:999px;
-      border:1px solid rgba(18,16,24,.10);
-      background: rgba(255,255,255,.78);
-      font-size:12px;
-      font-weight:950;
-      color: rgba(18,16,24,.72);
-      white-space:nowrap;
+    /* Stats Box */
+    .statBox{
+      padding:24px; border-radius:24px;
+      background: linear-gradient(160deg, rgba(255,255,255,.9), rgba(255,255,255,.7));
+      border:1px solid rgba(255,255,255,1);
+      box-shadow: 0 10px 30px rgba(0,0,0,.03);
+      height:100%; transition:transform .3s var(--ease);
     }
-    .sIcon{ width:10px;height:10px;border-radius:999px;background:rgba(18,16,24,.20); }
-    .sIcon.g{ background: rgba(31,157,110,.78); }
-    .sIcon.m{ background: rgba(210,174,114,.78); }
-    .sIcon.r{ background: rgba(181,74,90,.78); }
+    .statBox:hover{ transform:translateY(-4px); }
+    .statLabel{ font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:0.5px; color:rgba(0,0,0,.4); }
+    .statVal{ font-size:28px; font-weight:900; letter-spacing:-0.5px; margin:6px 0; color:var(--ink); }
+    .statSub{ font-size:13px; color:var(--muted); line-height:1.4; }
 
+    /* Matrix Table */
     .matrixWrap{
-      margin-top: 14px;
-      border-radius: 26px;
-      border:1px solid rgba(18,16,24,.10);
-      background: rgba(255,255,255,.72);
-      box-shadow: 0 18px 50px rgba(18,16,24,.08);
-      overflow:hidden;
+      border-radius: 24px; background: rgba(255,255,255,.6);
+      border:1px solid rgba(255,255,255,.8); box-shadow: var(--shadow2);
+      overflow:hidden; margin-top:20px;
     }
-    .matrixWrap table th{
-      font-size:12px;
-      letter-spacing:.24px;
-      text-transform:uppercase;
-      color: rgba(18,16,24,.70);
-      font-weight:980;
-      background: rgba(255,255,255,.60);
-      position:sticky;
-      top:0;
-      z-index:1;
+    .matrixHeader{
+      padding:16px 24px; background:rgba(255,255,255,.5);
+      border-bottom:1px solid rgba(0,0,0,.06);
+      display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:12px;
     }
-    .matrixHelp{
-      font-size:12px;
-      color: rgba(18,16,24,.60);
-      line-height:1.55;
+    .table-responsive{ overflow-x:auto; -webkit-overflow-scrolling:touch; }
+    table{ width:100%; border-collapse:collapse; min-width:800px; }
+    th{
+      text-align:left; font-size:11px; text-transform:uppercase; letter-spacing:1px;
+      padding:14px 20px; color:rgba(0,0,0,.5); border-bottom:1px solid rgba(0,0,0,.06); background:rgba(255,255,255,.4);
     }
-    .matrixRowTitle{
-      font-weight:950;
-      color: rgba(18,16,24,.84);
+    td{ padding:16px 20px; border-bottom:1px solid rgba(0,0,0,.04); font-size:14px; vertical-align:middle; }
+    tr:last-child td{ border-bottom:none; }
+    
+    .status-pill{
+      display:inline-flex; align-items:center; gap:6px; padding:4px 10px;
+      border-radius:6px; font-size:12px; font-weight:700;
     }
-    .whyCell{
-      font-size:12px;
-      line-height:1.6;
-      color: rgba(18,16,24,.62);
-      min-width: 260px;
-    }
+    .st-g{ background:rgba(31,157,110,.1); color:var(--good); }
+    .st-m{ background:rgba(210,174,114,.1); color:var(--warn); }
+    .st-r{ background:rgba(181,74,90,.1); color:var(--bad); }
 
-    @media(max-width:860px){
-      .matrixWrap{ overflow:auto; -webkit-overflow-scrolling: touch; }
-      .matrixWrap table th, .matrixWrap table td{ min-width: 170px; }
-      .matrixWrap table td:first-child{ min-width: 220px; }
-      .whyCell{ min-width: 280px; }
-    }
+    /* Flywheel */
+    #chartFlywheel{ width:100%; height:480px; }
+    @media(max-width:480px){ #chartFlywheel{ height:400px; } }
 
-    .ribbon{
-      position:fixed;
-      left:0; right:0;
-      top:72px;
-      height:1px;
-      z-index:1029;
-      pointer-events:none;
-      background: linear-gradient(90deg, transparent, rgba(210,174,114,.55), rgba(200,143,149,.40), transparent);
-      opacity:.85;
+    /* Buttons */
+    .btn-action{
+      width:100%; border-radius:16px; font-weight:800; padding:12px;
+      border:1px solid rgba(0,0,0,.1); background:#fff; transition:all .2s;
     }
+    .btn-action:active{ transform:scale(0.98); background:#f4ede5; }
 
-    /* Ensures flywheel canvas has enough height everywhere */
-    #chartFlywheel { width: 100%; height: 320px; }
   </style>
 </head>
 
 <body>
   <div class="grain"></div>
-  <div class="fibers"></div>
-  <div class="ribbon" aria-hidden="true"></div>
+  <div class="noise"></div>
 
+  <!-- Navigation -->
   <div class="navShell">
     <div class="container-xl px-3">
-      <nav class="navbar navbar-expand-lg p-0">
-        <a class="navbar-brand d-flex align-items-center gap-2 m-0" href="#top" style="text-decoration:none;">
+      <nav class="d-flex align-items-center justify-content-between">
+        <a href="#top" class="text-decoration-none text-dark">
           <div class="brandWrap">
-            <div class="monogram" id="brandMonogram">BR</div>
+            <div class="monogram" id="brandMonogram">VS</div>
             <div class="brandText">
               <strong id="brandNameTop">The Victoria Studio</strong>
-              <span id="brandTaglineTop">Editorial pitch • modern chic • ops-led moat</span>
+              <span id="brandTaglineTop">Ops-led Bridal Pitch</span>
             </div>
           </div>
         </a>
 
-        <div class="ms-auto d-flex align-items-center gap-2">
-          <span class="pill d-none d-sm-inline-flex"><span class="dot"></span><span id="readPct">0%</span></span>
-
-          <button class="navbar-toggler border-0 shadow-sm"
-                  style="border-radius:14px;background:rgba(255,255,255,.72);"
-                  type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu"
-                  aria-controls="mobileMenu" aria-label="Open menu">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-
-          <div class="collapse navbar-collapse d-none d-lg-flex justify-content-end">
-            <ul class="navbar-nav align-items-center gap-2">
-              <li class="nav-item"><a class="btn btn-sm" href="#model" style="border-radius:999px;border:1px solid rgba(18,16,24,.10);background:rgba(255,255,255,.72);font-weight:900;">Model</a></li>
-              <li class="nav-item"><a class="btn btn-sm" href="#market" style="border-radius:999px;border:1px solid rgba(18,16,24,.10);background:rgba(255,255,255,.72);font-weight:900;">Market</a></li>
-              <li class="nav-item"><a class="btn btn-sm" href="#stress" style="border-radius:999px;border:1px solid rgba(18,16,24,.10);background:rgba(255,255,255,.72);font-weight:900;">Stress</a></li>
-              <li class="nav-item"><a class="btn btn-sm" href="#funding" style="border-radius:999px;border:1px solid rgba(18,16,24,.10);background:rgba(255,255,255,.72);font-weight:900;">Funding</a></li>
-              <li class="nav-item"><span class="pill d-inline-flex"><span class="dot"></span><span id="readPct2">0%</span></span></li>
-            </ul>
-          </div>
+        <div class="d-none d-md-flex align-items-center gap-2">
+          <a class="nav-btn" href="#model">Model</a>
+          <a class="nav-btn" href="#market">Market</a>
+          <a class="nav-btn" href="#stress">Stress Test</a>
+          <span class="ms-2 badge rounded-pill bg-dark text-white" id="readPct">0%</span>
         </div>
       </nav>
-
-      <div class="progressBarWrap"><div id="prog"></div></div>
-    </div>
-  </div>
-
-  <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel"
-       style="background:rgba(251,247,242,.98);backdrop-filter:blur(14px);">
-    <div class="offcanvas-header">
-      <div class="d-flex align-items-center gap-2">
-        <div class="monogram" style="width:38px;height:38px;border-radius:16px;" id="brandMonogramMobile">BR</div>
-        <div>
-          <div id="mobileBrand" style="font-weight:950;">The Victoria Studio</div>
-          <div id="mobileTagline" style="font-size:12px;color:rgba(18,16,24,.62);">Editorial pitch • modern chic</div>
-        </div>
-      </div>
-      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-
-    <div class="offcanvas-body">
-      <div class="d-grid gap-2">
-        <a class="btn btn-lg" href="#model" data-bs-dismiss="offcanvas"
-           style="border-radius:18px;border:1px solid rgba(18,16,24,.10);background:rgba(255,255,255,.80);font-weight:950;">Model</a>
-        <a class="btn btn-lg" href="#market" data-bs-dismiss="offcanvas"
-           style="border-radius:18px;border:1px solid rgba(18,16,24,.10);background:rgba(255,255,255,.80);font-weight:950;">Market</a>
-        <a class="btn btn-lg" href="#stress" data-bs-dismiss="offcanvas"
-           style="border-radius:18px;border:1px solid rgba(18,16,24,.10);background:rgba(255,255,255,.80);font-weight:950;">Stress</a>
-        <a class="btn btn-lg" href="#funding" data-bs-dismiss="offcanvas"
-           style="border-radius:18px;border:1px solid rgba(18,16,24,.10);background:rgba(255,255,255,.80);font-weight:950;">Funding</a>
-
-        <div class="mt-3">
-          <div class="pill w-100 justify-content-center"><span class="dot"></span><span id="readPctMobile">0%</span></div>
-        </div>
-      </div>
-
-      <hr class="my-4" style="border-color: rgba(18,16,24,.12);">
-      <div style="font-size:12px;color:rgba(18,16,24,.62);line-height:1.6;">
-        Tip: edit content in <b>/content/*.json</b> (Decap CMS can manage later).
-      </div>
+      <div class="progressBarWrap"><div class="progressBar" id="prog"></div></div>
     </div>
   </div>
 
   <main id="top">
-    <div class="container-xl px-3 py-4">
+    <div class="container-xl px-3">
 
-      <section class="cardEditorial mb-4">
+      <!-- HERO SECTION -->
+      <section class="cardEditorial mb-5">
         <div class="heroGrid">
           <div class="heroLeft">
-            <div class="mb-3">
-              <span class="badgeX"><span class="dot"></span><span id="heroChip1">Malaysia • 20–30 outfits</span></span>
-              <span class="badgeX" id="heroChip2">Appointment-first</span>
-              <span class="badgeX" id="heroChip3">Consistency > hype</span>
+            <div class="mb-4">
+              <span class="heroBadge"><div class="heroDot"></div> Operational Moat</span>
+              <span class="heroBadge">Appointment Only</span>
+              <span class="heroBadge">Consistency First</span>
             </div>
 
-            <h1 id="heroTitle">
+            <h1>
               Calm operations.<br/>
-              <span style="color:var(--champ)">Consistent bookings.</span><br/>
+              <span class="champ">Predictable profit.</span><br/>
               Bridal, built to last.
             </h1>
 
-            <p class="mt-2" style="max-width:52ch" id="heroIntro">
-              A curated bridal + groom rental studio designed for predictable monthly bookings and controlled costs.
-              We compete on <span class="em">fit</span>, <span class="em">hygiene</span>, and <span class="em">process</span> — not price wars.
+            <p class="mt-4">
+              A curated rental studio designed for high utilization and low chaos. 
+              We don't compete on price wars. We compete on <span class="em">fit</span>, <span class="em">process</span>, and <span class="em">reliability</span>.
             </p>
           </div>
 
           <div class="heroRight">
             <div class="heroMedia">
-              <img id="heroImg" src="hero.png" alt="Hero image">
-            </div>
-            <div class="heroMask" id="heroMask"></div>
-
-            <div class="heroCaption" id="heroCaption">
-              <b>Positioning:</b> Ops-led boutique — premium experience, standardized system.
-              <div style="font-size:12px;color:rgba(18,16,24,.62);margin-top:4px;line-height:1.45;">
-                Elegant for the bride. Consistent for the business.
-              </div>
+                <!-- Fallback image logic included in JS if this fails -->
+               <img id="heroImg" src="hero.png" alt="Bridal Studio Interior">
             </div>
           </div>
         </div>
       </section>
 
-      <section id="model" class="mb-4">
-        <div class="p-4" style="border-radius:28px;background:rgba(255,255,255,.72);border:1px solid rgba(18,16,24,.10);box-shadow:var(--shadow2);">
-          <h2>We sell packages, not just rentals.</h2>
-          <p>Bundles lift average order value and reduce the number of bookings needed to hit profitability.</p>
+      <!-- MODEL SECTION -->
+      <section id="model" class="mb-5">
+        <div class="row align-items-center mb-4">
+          <div class="col-12 col-md-8">
+            <h2>The Unit Economics</h2>
+            <p>We sell bundles, not just rentals. This lifts AOV (Average Order Value) and reduces the volume needed to break even.</p>
+          </div>
+        </div>
 
-          <div class="row g-3 mt-3">
-            <div class="col-12 col-md-6 col-lg-3">
-              <div class="p-3" style="border-radius:22px;border:1px solid rgba(18,16,24,.10);background:rgba(255,255,255,.78);">
-                <div style="font-size:12px;font-weight:950;color:rgba(18,16,24,.62)">Monthly fixed cost (burn)</div>
-                <div style="font-size:22px;font-weight:980;margin-top:6px">RM <span id="modelBurn">7,500</span></div>
-                <div style="font-size:12px;color:rgba(18,16,24,.62);margin-top:6px">lean studio strategy</div>
-              </div>
+        <div class="row g-3">
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="statBox">
+              <div class="statLabel">Monthly Burn</div>
+              <div class="statVal">RM <span id="modelBurn">7,500</span></div>
+              <div class="statSub">Includes rent, utilities, basic staffing. Lean structure.</div>
             </div>
-
-            <div class="col-12 col-md-6 col-lg-3">
-              <div class="p-3" style="border-radius:22px;border:1px solid rgba(18,16,24,.10);background:rgba(255,255,255,.78);">
-                <div style="font-size:12px;font-weight:950;color:rgba(18,16,24,.62)">Average rental (blended)</div>
-                <div style="font-size:22px;font-weight:980;margin-top:6px">RM <span id="modelAvg">850</span></div>
-                <div style="font-size:12px;color:rgba(18,16,24,.62);margin-top:6px">gown + suit + add-ons</div>
-              </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="statBox">
+              <div class="statLabel">Avg. Booking</div>
+              <div class="statVal">RM <span id="modelAvg">850</span></div>
+              <div class="statSub">Blended average across Gown, Suit, and Veil bundles.</div>
             </div>
-
-            <div class="col-12 col-md-6 col-lg-3">
-              <div class="p-3" style="border-radius:22px;border:1px solid rgba(18,16,24,.10);background:rgba(255,255,255,.78);">
-                <div style="font-size:12px;font-weight:950;color:rgba(18,16,24,.62)">Breakeven target</div>
-                <div style="font-size:22px;font-weight:980;margin-top:6px">~<span id="modelBreakeven">10</span> / month</div>
-                <div style="font-size:12px;color:rgba(18,16,24,.62);margin-top:6px">~2–3 per week</div>
-              </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="statBox">
+              <div class="statLabel">Breakeven</div>
+              <div class="statVal">~<span id="modelBreakeven">9</span> / mo</div>
+              <div class="statSub">Only 2-3 bookings per week required to cover costs.</div>
             </div>
-
-            <div class="col-12 col-md-6 col-lg-3">
-              <div class="p-3" style="border-radius:22px;border:1px solid rgba(18,16,24,.10);background:rgba(255,255,255,.78);">
-                <div style="font-size:12px;font-weight:950;color:rgba(18,16,24,.62)">Peak season upside</div>
-                <div style="font-size:22px;font-weight:980;margin-top:6px">15+ / month</div>
-                <div style="font-size:12px;color:rgba(18,16,24,.62);margin-top:6px">profit compounds</div>
-              </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="statBox">
+              <div class="statLabel">Upside Potential</div>
+              <div class="statVal">15+ / mo</div>
+              <div class="statSub">Every booking past #9 is ~80% pure profit margin.</div>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="market" class="mb-4">
-        <div class="p-4" style="border-radius:28px;background:rgba(255,255,255,.72);border:1px solid rgba(18,16,24,.10);box-shadow:var(--shadow2);">
-          <h2 id="marketTitle">Competitive landscape & our edge</h2>
-          <p id="marketIntro"></p>
-
-          <div class="row g-3 mt-3" id="marketExplain"></div>
-
-          <div class="row g-3 mt-3">
-            <div class="col-12 col-lg-6">
-              <div class="p-3" style="border-radius:22px;border:1px solid rgba(18,16,24,.10);background:rgba(255,255,255,.78);">
-                <div style="font-weight:950;margin-bottom:8px;">Charts & patterns</div>
-                <div style="font-size:12px;color:rgba(18,16,24,.60);line-height:1.6;">
-                  These visuals show why we choose an ops-led lane: a slightly higher price reduces disputes and rework — the silent killers of rental profitability.
+      <!-- MARKET / MATRIX SECTION -->
+      <section id="market" class="mb-5">
+        <div class="p-4" style="border-radius:24px; background:rgba(255,255,255,.5); border:1px solid rgba(255,255,255,.6); box-shadow:var(--shadow);">
+            
+            <div class="row mb-4">
+                <div class="col-lg-8">
+                    <h2>Strategic Positioning</h2>
+                    <p>Why choose the "Ops-Led" lane? Because the budget lane drowns in refunds, and the luxury lane drowns in rent. We sit in the middle: <b>High Reliability, Moderate Price.</b></p>
                 </div>
-              </div>
-            </div>
-            <div class="col-12 col-lg-6">
-              <div class="p-3" style="border-radius:22px;border:1px solid rgba(18,16,24,.10);background:rgba(255,255,255,.78);">
-                <div style="font-weight:950;margin-bottom:8px;">What it costs us (on purpose)</div>
-                <div id="marketCosts" style="color:rgba(18,16,24,.62);line-height:1.7;"></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="row g-3 mt-3">
-            <div class="col-12 col-lg-6">
-              <div class="p-3" style="border-radius:22px;border:1px solid rgba(18,16,24,.10);background:rgba(255,255,255,.78);">
-                <div style="font-weight:950;margin-bottom:8px;" id="chart1Title">Competitive map</div>
-                <canvas id="chartMap" height="220" style="width:100%;"></canvas>
-                <div style="font-size:12px;color:rgba(18,16,24,.58);line-height:1.6;margin-top:8px;" id="chart1Labels"></div>
-              </div>
             </div>
 
-            <div class="col-12 col-lg-6">
-              <div class="p-3" style="border-radius:22px;border:1px solid rgba(18,16,24,.10);background:rgba(255,255,255,.78);">
-                <div style="font-weight:950;margin-bottom:8px;" id="chart2Title">Hidden cost per booking</div>
-                <canvas id="chartHidden" height="220" style="width:100%;"></canvas>
-                <div style="font-size:12px;color:rgba(18,16,24,.58);line-height:1.6;margin-top:8px;" id="chart2Labels"></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="row g-3 mt-3">
-            <div class="col-12">
-              <div class="p-3" style="border-radius:22px;border:1px solid rgba(18,16,24,.10);background:rgba(255,255,255,.78);">
-                <div style="font-weight:950;margin-bottom:8px;" id="chart3Title">Weekday utilization flywheel</div>
-                <canvas id="chartFlywheel"></canvas>
-                <div style="font-size:12px;color:rgba(18,16,24,.58);line-height:1.6;margin-top:8px;" id="chart3Labels"></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- MATRIX -->
-          <div class="matrixWrap mt-4">
-            <div class="p-3 d-flex flex-wrap gap-2 align-items-center justify-content-between"
-                 style="border-bottom:1px solid rgba(18,16,24,.10);
-                        background:linear-gradient(90deg, rgba(210,174,114,.10), rgba(200,143,149,.08), rgba(255,255,255,.70));">
-              <div class="d-flex gap-2 align-items-center flex-wrap">
-                <span class="badge rounded-pill text-dark border" style="background:rgba(255,255,255,.74);font-weight:950;">Comparison matrix</span>
-                <span class="matrixHelp">
-                  This is a <b>decision tool</b>: it shows trade-offs, and explains why our lane is stable.
-                </span>
-              </div>
-
-              <div class="d-flex align-items-center gap-2">
-                <span class="matrixHelp">View:</span>
-                <select id="matrixView" class="form-select form-select-sm"
-                        style="width:auto;border-radius:14px;border:1px solid rgba(18,16,24,.10);background:rgba(255,255,255,.80);font-weight:850;">
-                  <option value="customer">Customer value</option>
-                  <option value="ops">Operations risk</option>
-                  <option value="finance">Finance stability</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="table-responsive">
-              <table class="table align-middle mb-0">
-                <thead>
-                <tr>
-                  <th style="min-width:220px">Decision dimension</th>
-                  <th>Budget Rack</th>
-                  <th>Typical Boutique</th>
-                  <th>Studio Bundle</th>
-                  <th>Us (Ops-led)</th>
-                  <th class="whyCell">Why this matters</th>
-                </tr>
-                </thead>
-                <tbody id="matrixBody"></tbody>
-              </table>
-            </div>
-
-            <div class="p-3" style="border-top:1px solid rgba(18,16,24,.10);">
-              <div class="row g-3">
-                <div class="col-12 col-lg-6">
-                  <div class="p-3" style="border-radius:22px;border:1px solid rgba(18,16,24,.10);background:rgba(255,255,255,.80);">
-                    <div style="font-weight:950;margin-bottom:8px;">So why choose our lane?</div>
-                    <div id="matrixDecisionSummary" style="color:rgba(18,16,24,.62);line-height:1.75;"></div>
-                  </div>
+            <!-- DYNAMIC MATRIX -->
+            <div class="matrixWrap">
+                <div class="matrixHeader">
+                    <div style="font-weight:700; font-size:14px; text-transform:uppercase; letter-spacing:0.5px;">Comparison Matrix</div>
+                    <select id="matrixSelector" class="form-select form-select-sm" style="width:auto; border-radius:12px; font-weight:600; cursor:pointer;">
+                        <option value="customer">View: Customer Experience</option>
+                        <option value="ops">View: Operational Risk</option>
+                        <option value="finance">View: Financial Stability</option>
+                    </select>
                 </div>
-                <div class="col-12 col-lg-6">
-                  <div class="p-3" style="border-radius:22px;border:1px solid rgba(18,16,24,.10);background:rgba(255,255,255,.80);">
-                    <div style="font-weight:950;margin-bottom:8px;">Review the approach (don’t be stubborn)</div>
-                    <div id="matrixReviewCadence" style="color:rgba(18,16,24,.62);line-height:1.75;"></div>
-                  </div>
+                
+                <div class="table-responsive">
+                    <table class="table mb-0">
+                        <thead>
+                            <tr>
+                                <th style="min-width:180px">Factor</th>
+                                <th>Budget Rack</th>
+                                <th>Typical Boutique</th>
+                                <th style="color:var(--ink); font-weight:900; background:rgba(31,157,110,.08);">Us (Ops-Led)</th>
+                                <th style="min-width:250px">Why this matters</th>
+                            </tr>
+                        </thead>
+                        <tbody id="matrixBody">
+                            <!-- JS injects rows here -->
+                        </tbody>
+                    </table>
                 </div>
-              </div>
+            </div>
+            
+            <div class="row mt-4 g-4">
+                <!-- CHART: MAP -->
+                <div class="col-lg-6">
+                    <div class="statBox">
+                        <div class="d-flex justify-content-between align-items-end mb-3">
+                            <div class="statLabel">Competitive Map</div>
+                            <div style="font-size:11px; color:var(--muted)">Price vs. Reliability</div>
+                        </div>
+                        <canvas id="chartMap" height="240"></canvas>
+                    </div>
+                </div>
 
-              <div class="mt-3">
-                <div class="accordion" id="matrixAccordion"></div>
-              </div>
+                <!-- CHART: FLYWHEEL -->
+                <div class="col-lg-6">
+                    <div class="statBox">
+                         <div class="d-flex justify-content-between align-items-end mb-3">
+                            <div class="statLabel">The Flywheel</div>
+                            <div style="font-size:11px; color:var(--muted)">Consistent Weekday Utilization</div>
+                        </div>
+                        <canvas id="chartFlywheel"></canvas>
+                    </div>
+                </div>
             </div>
-          </div>
-          <!-- /MATRIX -->
-
-          <div class="row g-3 mt-3">
-            <div class="col-12 col-lg-6">
-              <div class="p-3" id="standoutLeft"
-                   style="border-radius:22px;border:1px solid rgba(18,16,24,.10);background:rgba(255,255,255,.78);"></div>
-            </div>
-            <div class="col-12 col-lg-6">
-              <div class="p-3" id="chinaRight"
-                   style="border-radius:22px;border:1px solid rgba(18,16,24,.10);background:rgba(255,255,255,.78);"></div>
-            </div>
-          </div>
 
         </div>
       </section>
 
-      <section id="stress" class="mb-4">
-        <div class="p-4" style="border-radius:28px;background:rgba(255,255,255,.72);border:1px solid rgba(18,16,24,.10);box-shadow:var(--shadow2);">
-          <h2>Stress test: bookings vs runway.</h2>
-          <p id="stressAssumptionText"></p>
-
-          <div class="row g-3 mt-3">
-            <div class="col-6 col-lg-3">
-              <div class="p-3" style="border-radius:22px;border:1px solid rgba(18,16,24,.10);background:rgba(255,255,255,.78);">
-                <div style="font-size:12px;font-weight:950;color:rgba(18,16,24,.62)">Bookings / month</div>
-                <div style="font-size:22px;font-weight:980;margin-top:6px"><span id="bookings">10</span></div>
-                <div style="font-size:12px;color:rgba(18,16,24,.62);margin-top:6px">tap buttons</div>
-              </div>
+      <!-- STRESS TEST SECTION -->
+      <section id="stress" class="mb-5">
+        <div class="p-4" style="border-radius:24px; background:linear-gradient(135deg, #fff, #f8f1e9); border:1px solid rgba(255,255,255,.6); box-shadow:var(--shadow);">
+            
+            <div class="d-flex flex-wrap gap-3 align-items-center justify-content-between mb-4">
+                <div>
+                    <h2 class="mb-1">Interactive Stress Test</h2>
+                    <p class="mb-0" style="font-size:14px">Simulate bookings to see runway & profit.</p>
+                </div>
+                <div class="d-flex gap-2">
+                    <button id="btnMinus" class="btn-action" style="width:50px;">−</button>
+                    <button id="btnPlus" class="btn-action" style="width:50px;">+</button>
+                </div>
             </div>
-            <div class="col-6 col-lg-3">
-              <div class="p-3" style="border-radius:22px;border:1px solid rgba(18,16,24,.10);background:rgba(255,255,255,.78);">
-                <div style="font-size:12px;font-weight:950;color:rgba(18,16,24,.62)">Monthly revenue</div>
-                <div style="font-size:22px;font-weight:980;margin-top:6px">RM <span id="revenue">8,500</span></div>
-                <div style="font-size:12px;color:rgba(18,16,24,.62);margin-top:6px">avg × bookings</div>
-              </div>
-            </div>
-            <div class="col-6 col-lg-3">
-              <div class="p-3" style="border-radius:22px;border:1px solid rgba(18,16,24,.10);background:rgba(255,255,255,.78);">
-                <div style="font-size:12px;font-weight:950;color:rgba(18,16,24,.62)">Monthly net</div>
-                <div style="font-size:22px;font-weight:980;margin-top:6px" id="net">RM +1,000</div>
-                <div style="font-size:12px;color:rgba(18,16,24,.62);margin-top:6px">revenue − burn</div>
-              </div>
-            </div>
-            <div class="col-6 col-lg-3">
-              <div class="p-3" style="border-radius:22px;border:1px solid rgba(18,16,24,.10);background:rgba(255,255,255,.78);">
-                <div style="font-size:12px;font-weight:950;color:rgba(18,16,24,.62)">Runway (months)</div>
-                <div style="font-size:22px;font-weight:980;margin-top:6px"><span id="runway">999</span></div>
-                <div style="font-size:12px;color:rgba(18,16,24,.62);margin-top:6px">buffer ÷ loss</div>
-              </div>
-            </div>
-          </div>
 
-          <div class="row g-2 mt-3">
-            <div class="col-6"><button class="btn w-100 btn-light border" id="minus" style="border-radius:18px;font-weight:950;">−1 booking</button></div>
-            <div class="col-6"><button class="btn w-100 btn-light border" id="plus" style="border-radius:18px;font-weight:950;background:linear-gradient(90deg, rgba(210,174,114,.18), rgba(200,143,149,.14));">+1 booking</button></div>
-          </div>
+            <div class="row g-3 text-center">
+                <div class="col-6 col-lg-3">
+                    <div class="p-3 bg-white rounded-4 border">
+                        <div class="text-muted small fw-bold text-uppercase">Bookings</div>
+                        <div class="fs-2 fw-black my-1" id="valBookings">10</div>
+                        <div class="text-muted small">per month</div>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <div class="p-3 bg-white rounded-4 border">
+                        <div class="text-muted small fw-bold text-uppercase">Revenue</div>
+                        <div class="fs-2 fw-black my-1">RM <span id="valRev">8,500</span></div>
+                        <div class="text-muted small">@ Avg RM 850</div>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <div class="p-3 bg-white rounded-4 border">
+                        <div class="text-muted small fw-bold text-uppercase">Net Profit</div>
+                        <div class="fs-2 fw-black my-1" id="valNet">RM 1,000</div>
+                        <div class="text-muted small">Rev - Burn</div>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <div class="p-3 bg-white rounded-4 border">
+                        <div class="text-muted small fw-bold text-uppercase">Cash Runway</div>
+                        <div class="fs-2 fw-black my-1"><span id="valRunway">∞</span></div>
+                        <div class="text-muted small">Months survival</div>
+                    </div>
+                </div>
+            </div>
 
-          <div id="stress-live-feedback" class="visually-hidden" aria-live="polite"></div>
+            <div class="mt-4 p-3 rounded-3" style="background:rgba(18,16,24,.03); font-size:13px; color:var(--muted); line-height:1.6;">
+                <strong>Assumption Logic:</strong> Fixed Ops Burn = RM 7,500/mo. Initial Capital Buffer = RM 190,000. 
+                "Runway" calculates how long the business survives if this booking level persists indefinitely.
+            </div>
 
-          <div class="mt-3" style="font-size:12px;color:rgba(18,16,24,.58);line-height:1.6;">
-            “Runway months” = how long you survive losses while rebuilding utilization. If net is positive, runway shows 999.
-          </div>
         </div>
       </section>
 
-      <section id="funding" class="mb-5">
-        <div class="p-4" style="border-radius:28px;background:rgba(255,255,255,.72);border:1px solid rgba(18,16,24,.10);box-shadow:var(--shadow2);">
-          <h2>Funding ask: build inventory + stability buffer.</h2>
-          <p>Funding is allocated toward curated inventory, controlled operational buffer, and systems — not expensive rent or early headcount.</p>
-          <div class="mt-3" id="contactLine" style="font-size:12px;color:rgba(18,16,24,.56);line-height:1.6;">
-            Contact: <b>[Your Name]</b> • WhatsApp: <b>[+60…]</b> • Email: <b>[…]</b> • IG: <b>@[handle]</b>
-          </div>
+      <!-- FOOTER / FUNDING -->
+      <section class="text-center py-5">
+        <div class="d-inline-block p-4 rounded-5" style="background:rgba(255,255,255,.4); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,.5);">
+            <h3 class="h5 fw-bold mb-3">Funding Ask</h3>
+            <p class="mb-4 small text-muted">Allocated to high-durability inventory and 6-month operational buffer.</p>
+            <div class="d-flex justify-content-center gap-3 text-start small">
+                <div>
+                    <div class="fw-bold">Contact</div>
+                    <div>[Your Name]</div>
+                </div>
+                 <div>
+                    <div class="fw-bold">WhatsApp</div>
+                    <div>+60 12-345 6789</div>
+                </div>
+                 <div>
+                    <div class="fw-bold">Email</div>
+                    <div>hello@victoriastudio.com</div>
+                </div>
+            </div>
         </div>
+        <div class="mt-5 text-muted small opacity-50">© 2025 The Victoria Studio. Confidential Proposal.</div>
       </section>
 
-      <div class="text-center pb-5" style="font-size:13px;color:rgba(18,16,24,.60);">
-        © Bridal Rental Studio Proposal • Flywheel fixed for desktop + matrix upgraded
-      </div>
     </div>
   </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-          integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-          crossorigin="anonymous"></script>
-
   <script>
-    const prog = document.getElementById('prog');
-    const readPct = document.getElementById('readPct');
-    const readPct2 = document.getElementById('readPct2');
-    const readPctMobile = document.getElementById('readPctMobile');
-
-    function updateProgress(){
-      const doc = document.documentElement;
-      const max = (doc.scrollHeight - doc.clientHeight) || 1;
-      const pct = Math.max(0, Math.min(100, Math.round((doc.scrollTop / max) * 100)));
-      prog.style.width = pct + '%';
-      if(readPct) readPct.textContent = pct + '%';
-      if(readPct2) readPct2.textContent = pct + '%';
-      if(readPctMobile) readPctMobile.textContent = pct + '%';
-    }
-    window.addEventListener('scroll', updateProgress, {passive:true});
-    updateProgress();
-
-    const heroImg = document.getElementById('heroImg');
-    const heroCaption = document.getElementById('heroCaption');
-    const heroMask = document.getElementById('heroMask');
-
-    let ticking=false;
-    function parallax(){
-      ticking=false;
-      const rect = document.getElementById('top').getBoundingClientRect();
-      const center = rect.top + rect.height * 0.5;
-      const vh = window.innerHeight || 800;
-      const strength = Math.max(-1, Math.min(1, (center - vh*0.5) / (vh*0.7)));
-      const imgY = strength * 20;
-      const capY = strength * 10;
-      const maskY = strength * 8;
-      heroImg.style.transform = `translate3d(0, ${imgY.toFixed(2)}px, 0) scale(1.16)`;
-      heroCaption.style.transform = `translate3d(0, ${capY.toFixed(2)}px, 0)`;
-      heroMask.style.transform = `translate3d(0, ${maskY.toFixed(2)}px, 0)`;
-    }
-    function onScroll(){
-      if(!ticking){
-        ticking=true;
-        requestAnimationFrame(parallax);
-      }
-    }
-    window.addEventListener('scroll', onScroll, {passive:true});
-    parallax();
-
-    async function loadJSON(path){
-      const res = await fetch(path, { cache: "no-store" });
-      if(!res.ok) throw new Error(`Failed to load ${path}: ${res.status}`);
-      return res.json();
-    }
-
-    function scoreChip(val){
-      const map = { strong:["g","strong"], medium:["m","medium"], weak:["r","weak"] };
-      const [cls, label] = map[val] || map.medium;
-      return `<span class="score"><span class="sIcon ${cls}"></span> ${label}</span>`;
-    }
-
-    function setBullets(tileId, obj){
-      const tile = document.getElementById(tileId);
-      if(!tile || !obj) return;
-      tile.innerHTML = "";
-      const h3 = document.createElement("div");
-      h3.style.fontWeight = "950";
-      h3.style.letterSpacing = ".2px";
-      h3.style.marginBottom = "8px";
-      h3.textContent = obj.title || "";
-      tile.appendChild(h3);
-
-      (obj.bullets || []).forEach((b, idx)=>{
-        const p = document.createElement("div");
-        p.style.marginTop = idx ? "10px" : "0";
-        p.style.color = "rgba(18,16,24,.62)";
-        p.style.lineHeight = "1.7";
-        const parts = b.split(":");
-        const k = parts[0] || "";
-        const v = parts.slice(1).join(":").trim() || "";
-        p.innerHTML = v ? `<span class="em">${k}:</span> ${v}` : `• ${b}`;
-        tile.appendChild(p);
-      });
-    }
-
-    function setContactLine(site){
-      const el = document.getElementById("contactLine");
-      if(!el) return;
-      el.innerHTML = `Contact: <b>${site.contactName || "[Your Name]"}</b> • WhatsApp: <b>${site.contactWhatsapp || "[+60…]"}</b> • Email: <b>${site.contactEmail || "[…]"}</b> • IG: <b>${site.contactIg || "@[handle]"}</b>`;
-    }
-
-    function drawMarketCharts(market){
-      const fmt = new Intl.NumberFormat('en-MY');
-      const scenarios = market?.numbersLogic?.scenarios || [];
-      const chaos = market?.numbersLogic?.chaosCostModel || { refundCost:150, hourlyOpsCost:35 };
-
-      const hiddenCosts = scenarios.map(s=>{
-        const cost = (s.disputeRate * chaos.refundCost) + (s.reworkHours * chaos.hourlyOpsCost);
-        return { name:s.name, cost, avgPrice:s.avgPrice, disputeRate:s.disputeRate };
-      });
-
-      const c1 = market?.charts?.chart1 || {};
-      const c2 = market?.charts?.chart2 || {};
-      const c3 = market?.charts?.chart3 || {};
-      const setText = (id, txt) => { const el = document.getElementById(id); if(el) el.textContent = txt; };
-
-      setText("chart1Title", c1.title || "Competitive map");
-      setText("chart2Title", c2.title || "Hidden cost per booking");
-      setText("chart3Title", c3.title || "Weekday utilization flywheel");
-      setText("chart1Labels", `${c1.xLabel || ""} • ${c1.yLabel || ""}`);
-      setText("chart2Labels", `${c2.yLabel || ""}`);
-      setText("chart3Labels", c3.subtitle || "");
-
-      // Scatter
-      const map = document.getElementById("chartMap");
-      if(map?.getContext && hiddenCosts.length){
-        const ctx = map.getContext("2d");
-        const w = map.width = Math.max(10, map.clientWidth) * devicePixelRatio;
-        const h = map.height = 220 * devicePixelRatio;
-        ctx.clearRect(0,0,w,h);
-
-        const pad = 22 * devicePixelRatio;
-        const left = pad, top = pad, right = w - pad, bottom = h - pad;
-
-        ctx.strokeStyle = "rgba(18,16,24,.10)";
-        ctx.lineWidth = 1 * devicePixelRatio;
-        for(let i=0;i<=4;i++){
-          const x = left + (right-left)*(i/4);
-          const y = top + (bottom-top)*(i/4);
-          ctx.beginPath(); ctx.moveTo(x, top); ctx.lineTo(x, bottom); ctx.stroke();
-          ctx.beginPath(); ctx.moveTo(left, y); ctx.lineTo(right, y); ctx.stroke();
-        }
-
-        const xMin = Math.min(...hiddenCosts.map(d=>d.avgPrice), 500);
-        const xMax = Math.max(...hiddenCosts.map(d=>d.avgPrice), 1000);
-        const yMin = 0.75, yMax = 1.0;
-
-        const xScale = v => left + (right-left) * ((v - xMin) / (xMax - xMin || 1));
-        const yScale = v => bottom - (bottom-top) * ((v - yMin) / (yMax - yMin || 1));
-
-        hiddenCosts.forEach(d=>{
-          const rel = 1 - d.disputeRate;
-          const x = xScale(d.avgPrice);
-          const y = yScale(rel);
-          const isUs = d.name.toLowerCase().includes("us");
-          const r = (isUs ? 6 : 5) * devicePixelRatio;
-
-          ctx.beginPath();
-          ctx.fillStyle = isUs ? "rgba(31,157,110,.85)" : "rgba(18,16,24,.55)";
-          ctx.arc(x,y,r,0,Math.PI*2);
-          ctx.fill();
-
-          ctx.font = `${12*devicePixelRatio}px Inter`;
-          ctx.fillStyle = "rgba(18,16,24,.70)";
-          ctx.fillText(d.name, x + 8*devicePixelRatio, y - 8*devicePixelRatio);
-        });
-      }
-
-      // Bars
-      const bar = document.getElementById("chartHidden");
-      if(bar?.getContext && hiddenCosts.length){
-        const ctx = bar.getContext("2d");
-        const w = bar.width = Math.max(10, bar.clientWidth) * devicePixelRatio;
-        const h = bar.height = 220 * devicePixelRatio;
-        ctx.clearRect(0,0,w,h);
-
-        const pad = 22 * devicePixelRatio;
-        const left = pad, top = pad, right = w - pad, bottom = h - pad;
-
-        const maxCost = Math.max(...hiddenCosts.map(d=>d.cost), 1);
-        const bw = (right-left) / (hiddenCosts.length * 1.3);
-
-        ctx.strokeStyle = "rgba(18,16,24,.10)";
-        ctx.lineWidth = 1 * devicePixelRatio;
-        for(let i=0;i<=4;i++){
-          const y = top + (bottom-top)*(i/4);
-          ctx.beginPath(); ctx.moveTo(left, y); ctx.lineTo(right, y); ctx.stroke();
-        }
-
-        hiddenCosts.forEach((d, i)=>{
-          const x = left + i * bw * 1.3 + bw*0.2;
-          const bh = (bottom-top) * (d.cost / maxCost);
-          const y = bottom - bh;
-
-          const isUs = d.name.toLowerCase().includes("us");
-          ctx.fillStyle = isUs ? "rgba(31,157,110,.70)" : "rgba(18,16,24,.35)";
-          ctx.fillRect(x, y, bw, bh);
-
-          ctx.font = `${12*devicePixelRatio}px Inter`;
-          ctx.fillStyle = "rgba(18,16,24,.70)";
-          ctx.fillText(`RM ${fmt.format(Math.round(d.cost))}`, x, y - 6*devicePixelRatio);
-
-          const name = d.name.length > 12 ? d.name.slice(0,12)+"…" : d.name;
-          ctx.fillStyle = "rgba(18,16,24,.60)";
-          ctx.fillText(name, x, bottom + 14*devicePixelRatio);
-        });
-      }
-
-      // ✅ Desktop-safe flywheel (no overlapping / "hamburgered" labels)
-      const fly = document.getElementById("chartFlywheel");
-      if (fly?.getContext) {
-        const ctx = fly.getContext("2d");
-        const isMobile = window.matchMedia("(max-width: 480px)").matches;
-
-        const targetH = isMobile ? 320 : 320;
-
-        const cssW = Math.max(10, fly.clientWidth);
-        const cssH = targetH;
-
-        fly.width = Math.floor(cssW * devicePixelRatio);
-        fly.height = Math.floor(cssH * devicePixelRatio);
-
-        ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
-        ctx.clearRect(0, 0, cssW, cssH);
-
-        const pad = isMobile ? 18 : 22;
-        const cx = cssW / 2;
-        const cy = cssH / 2 + (isMobile ? 12 : 4);
-
-        const r = Math.min(cssW, cssH) * (isMobile ? 0.26 : 0.22);
-        const nodeOrbit = r + (isMobile ? 44 : 56);
-        const nodeR = isMobile ? 26 : 24;
-
-        // Ring
-        ctx.strokeStyle = "rgba(210,174,114,.55)";
-        ctx.lineWidth = 3;
-        ctx.beginPath();
-        ctx.arc(cx, cy, r, 0, Math.PI * 2);
-        ctx.stroke();
-
-        function drawNode(angle, label, sideHint) {
-          const x = cx + Math.cos(angle) * nodeOrbit;
-          const y = cy + Math.sin(angle) * nodeOrbit;
-
-          // Node circle
-          ctx.beginPath();
-          ctx.fillStyle = "rgba(255,255,255,.90)";
-          ctx.strokeStyle = "rgba(18,16,24,.15)";
-          ctx.lineWidth = 2;
-          ctx.arc(x, y, nodeR, 0, Math.PI * 2);
-          ctx.fill();
-          ctx.stroke();
-
-          // Label outside circle
-          const labelDist = nodeR + (isMobile ? 12 : 14);
-          const lx = x + Math.cos(angle) * labelDist;
-          const ly = y + Math.sin(angle) * labelDist;
-
-          ctx.fillStyle = "rgba(18,16,24,.78)";
-          ctx.font = `${isMobile ? 12 : 13}px Inter`;
-          ctx.textBaseline = "middle";
-
-          if (sideHint === "left") ctx.textAlign = "right";
-          else if (sideHint === "right") ctx.textAlign = "left";
-          else {
-            if (Math.abs(Math.cos(angle)) < 0.25) ctx.textAlign = "center";
-            else ctx.textAlign = Math.cos(angle) > 0 ? "left" : "right";
-          }
-
-          // Multi-line on mobile only (safe)
-          const words = label.split(" ");
-          let lines = [];
-          if (isMobile && words.length > 1) {
-            const mid = Math.ceil(words.length / 2);
-            lines = [words.slice(0, mid).join(" "), words.slice(mid).join(" ")];
-          } else {
-            lines = [label];
-          }
-
-          if (lines.length === 1) {
-            ctx.fillText(lines[0], lx, ly);
-          } else {
-            ctx.fillText(lines[0], lx, ly - 8);
-            ctx.fillText(lines[1], lx, ly + 8);
-          }
-        }
-
-        drawNode(-Math.PI / 2, "Weekday", "center");
-        drawNode(0, "Utilization", "right");
-        drawNode(Math.PI / 2, "Reviews", "center");
-        drawNode(Math.PI, "Referrals", "left");
-
-        // Center label
-        ctx.fillStyle = "rgba(18,16,24,.78)";
-        ctx.font = `${isMobile ? 13 : 14}px Inter`;
-        ctx.textAlign = "center";
-        ctx.textBaseline = "middle";
-        ctx.fillText("Consistency flywheel", cx, cy + (isMobile ? 10 : 12));
-      }
-    }
-
-    const MATRIX_ROWS = [
-      { label:"Sticker price (first impression)", scores:{ budget:"strong", boutique:"weak", studio:"medium", us:"medium" },
-        why:{ customer:"Price attracts clicks, but weddings buy peace-of-mind.", ops:"Low price often forces shortcuts.", finance:"Cheapest wins only if disputes don’t destroy margin." }},
-      { label:"Fit certainty (prevents disasters)", scores:{ budget:"weak", boutique:"medium", studio:"medium", us:"strong" },
-        why:{ customer:"Bad fit ruins photos.", ops:"Structured fitting reduces last-minute changes.", finance:"Fewer reworks/refunds = stable margin." }},
-      { label:"Hygiene readiness (cleaning SLA)", scores:{ budget:"weak", boutique:"medium", studio:"medium", us:"strong" },
-        why:{ customer:"Brides notice hygiene instantly.", ops:"SLA makes turnaround predictable.", finance:"Predictable cleaning cost beats surprises." }},
-      { label:"Inventory freshness (how ‘new’ it looks)", scores:{ budget:"weak", boutique:"medium", studio:"medium", us:"strong" },
-        why:{ customer:"Fresh look = premium feel.", ops:"Better storage extends garment life.", finance:"Longer lifespan reduces replacement CAPEX." }},
-      { label:"Turnaround speed (between bookings)", scores:{ budget:"medium", boutique:"medium", studio:"strong", us:"strong" },
-        why:{ customer:"Fast turnaround when dates shift.", ops:"Vendor pool prevents bottlenecks.", finance:"Speed improves utilization without new inventory." }},
-      { label:"Dispute control (proof + policies)", scores:{ budget:"weak", boutique:"medium", studio:"medium", us:"strong" },
-        why:{ customer:"Fair rules feel safe when explained calmly.", ops:"Proof reduces arguments.", finance:"Disputes are hidden cost: refunds + time + reputation." }},
-      { label:"Weekday utilization strategy", scores:{ budget:"weak", boutique:"weak", studio:"strong", us:"strong" },
-        why:{ customer:"Weekday packages add value without discounting weddings.", ops:"Fills quiet days.", finance:"Utilization stabilizes cashflow." }},
-      { label:"Partner funnel strength (planner/MUA/photo)", scores:{ budget:"weak", boutique:"medium", studio:"strong", us:"strong" },
-        why:{ customer:"Partners reduce planning effort.", ops:"Cleaner bookings.", finance:"Lower CAC over time." }},
-      { label:"Moat (what’s hard to copy)", scores:{ budget:"weak", boutique:"medium", studio:"weak", us:"strong" },
-        why:{ customer:"Consistent experience.", ops:"Systems scale.", finance:"Moat protects pricing and reviews." }},
-      { label:"Margin predictability", scores:{ budget:"weak", boutique:"medium", studio:"medium", us:"strong" },
-        why:{ customer:"Predictability means smoother service.", ops:"Less fire-fighting.", finance:"Stable margin = consistent business." }},
-      { label:"Scalability (add inventory / add staff)", scores:{ budget:"medium", boutique:"weak", studio:"medium", us:"strong" },
-        why:{ customer:"Scaling shouldn’t reduce quality.", ops:"Repeatable SOP = easier training.", finance:"Scale without ballooning rent/headcount." }}
-    ];
-
-    const MATRIX_DECISION = {
-      customer: [
-        "We’re positioned as the <b>lowest-risk choice</b> that still feels premium — brides pay slightly more to avoid regret.",
-        "Our best hook isn’t ‘cheap’. It’s <b>certainty</b>: fit-first + hygiene readiness + calm process."
-      ],
-      ops: [
-        "We win by reducing chaos: <b>proof-based handover</b>, cleaning SLA, vendor pool, and a strict fitting flow.",
-        "This lowers disputes and rework — meaning staff time is spent producing bookings, not arguing."
-      ],
-      finance: [
-        "We deliberately spend a bit more on readiness so each booking carries <b>less hidden cost</b> (refunds + rework hours).",
-        "That’s how you get a business that’s consistent instead of volatile."
-      ]
+    // --- 1. CONFIGURATION & STATE ---
+    const CONFIG = {
+        avg: 850,
+        burn: 7500,
+        capital: 190000
+    };
+    let state = {
+        bookings: 10
     };
 
-    const MATRIX_REVIEW = [
-      "<b>Every 4 weeks:</b> check dispute rate, cleaning turnaround, and week-by-week utilization.",
-      "<b>Every 12 weeks:</b> adjust package mix (wedding vs ROM/shoots), revise pricing tiers, refine scripts.",
-      "<b>Trigger review anytime:</b> refunds spike, vendor delays repeat, or reviews mention the same complaint twice."
-    ];
-
-    const MATRIX_PLAYBOOK = [
-      { title:"If the market forces price pressure", text:"Do NOT race to the bottom. Create a ‘weekday value tier’ (ROM/shoot package) and keep wedding pricing intact." },
-      { title:"If disputes increase", text:"Improve proof: better photos, upgrade checklist, tighten deposit + signature process. Solve root cause." },
-      { title:"If utilization is low", text:"Increase partner funnel and publish proof-content weekly. Consistency beats viral marketing." },
-      { title:"If operations overload", text:"Stop walk-ins. Appointment-first and cap daily fittings. Better fully-booked than exhausted." }
-    ];
-
-    function renderMatrix(view="customer"){
-      const tbody = document.getElementById("matrixBody");
-      if(!tbody) return;
-
-      tbody.innerHTML = MATRIX_ROWS.map(r => {
-        const why = r.why?.[view] || "";
-        return `
-          <tr>
-            <td>
-              <div class="matrixRowTitle">${r.label}</div>
-              <div class="matrixHelp">Lens: ${view === "customer" ? "trust & experience" : view === "ops" ? "risk & control" : "margin & stability"}</div>
-            </td>
-            <td>${scoreChip(r.scores.budget)}</td>
-            <td>${scoreChip(r.scores.boutique)}</td>
-            <td>${scoreChip(r.scores.studio)}</td>
-            <td>${scoreChip(r.scores.us)}</td>
-            <td class="whyCell">${why}</td>
-          </tr>
-        `;
-      }).join("");
-
-      const sum = document.getElementById("matrixDecisionSummary");
-      if(sum){
-        const lines = MATRIX_DECISION[view] || [];
-        sum.innerHTML = lines.map(x=>`<div>• ${x}</div>`).join("");
-      }
-
-      const rev = document.getElementById("matrixReviewCadence");
-      if(rev){
-        rev.innerHTML = MATRIX_REVIEW.map(x=>`<div>• ${x}</div>`).join("");
-      }
-
-      const acc = document.getElementById("matrixAccordion");
-      if(acc){
-        acc.innerHTML = MATRIX_PLAYBOOK.map((p, idx) => {
-          const id = `mx_${idx}`;
-          return `
-            <div class="accordion-item" style="background:rgba(255,255,255,.82);border:1px solid rgba(18,16,24,.10);border-radius:18px;overflow:hidden;margin-bottom:10px;">
-              <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#${id}">
-                  <span style="font-weight:950;color:rgba(18,16,24,.82)">${p.title}</span>
-                </button>
-              </h2>
-              <div id="${id}" class="accordion-collapse collapse" data-bs-parent="#matrixAccordion">
-                <div class="accordion-body" style="color:rgba(18,16,24,.62);line-height:1.8;">
-                  ${p.text}
-                </div>
-              </div>
-            </div>
-          `;
-        }).join("");
-      }
-    }
-
-    const DEFAULT_MARKET = {
-      title: "Competitive landscape & our edge (why we win, what it costs)",
-      intro: "We’re not trying to be the cheapest. We’re trying to be the most reliable studio that still feels premium. The battlefield is simple: the cheaper you go, the more disputes and rework you absorb. Our edge is operational certainty — fit-first + hygiene SLA + dispute-proof handover — so each booking produces repeatable margin and reviews.",
-      positioning: {
-        whereWeCompete: "We compete in the ‘reliability premium’ lane: customers pay slightly more because risk is lower.",
-        whatWeWontDo: "We won’t win price wars. We choose consistency, weekday utilization, and partner funnels instead."
-      },
-      battlefields: [
-        { title:"Price-driven competitors (Budget Rack)",
-          howTheyWin:["Lower sticker price, large catalogue","Fast walk-ins, minimal fitting time"],
-          hiddenCosts:["More damage + missing items","Higher dispute rate","More staff time handling complaints","Inventory looks tired faster"],
-          ourCounter:["Structured fittings + evidence-based handover","Price for readiness: cleaned, pressed, confirmed fit"] },
-        { title:"Typical boutique (Taste + service)",
-          howTheyWin:["Better styling, nicer experience","Premium perception"],
-          hiddenCosts:["High rent + early headcount","Ops inconsistency","Weekday idle time"],
-          ourCounter:["Standardized SOP","Weekday products to fill quiet days"] },
-        { title:"Studio bundle / photo-first",
-          howTheyWin:["Partners push volume","Bundled convenience"],
-          hiddenCosts:["Partner dependency","Discount pressure","Weak moat if everyone bundles"],
-          ourCounter:["Tiered packages with price integrity","Moat = ops + trust (reviews)"] }
-      ],
-      yourLane: {
-        whatItCosts:["More time per booking","Cleaning SLA budget","Systems discipline"],
-        whyWorthIt:["Lower disputes → less refunds/time waste","Inventory lasts longer","Reviews compound","Predictable margin"]
-      },
-      numbersLogic: {
-        scenarios: [
-          { name:"Budget Rack", avgPrice:600, variableCost:140, disputeRate:0.18, reworkHours:2.2, weekdayFill:0.35 },
-          { name:"Typical Boutique", avgPrice:850, variableCost:160, disputeRate:0.10, reworkHours:1.5, weekdayFill:0.45 },
-          { name:"Studio Bundle", avgPrice:780, variableCost:170, disputeRate:0.12, reworkHours:1.7, weekdayFill:0.55 },
-          { name:"Us (Ops-led Boutique)", avgPrice:950, variableCost:190, disputeRate:0.06, reworkHours:0.9, weekdayFill:0.62 }
+    // --- 2. MATRIX DATA ---
+    const MATRIX_DATA = {
+        customer: [
+            { factor: "Fitting Exp.", budget: "Self-service / Rush", boutique: "Lux but rigid", us: "Appt + Fit Guarantee", why: "Reduces anxiety = faster close." },
+            { factor: "Hidden Costs", budget: "Cleaning fees extra", boutique: "Deposit penalties", us: "Flat rate / Transparent", why: "No surprises builds trust." },
+            { factor: "Hygiene", budget: "Hit or miss", boutique: "Good", us: "Medical grade / Bagged", why: "Post-COVID non-negotiable." }
         ],
-        chaosCostModel: { refundCost:150, hourlyOpsCost:35 }
-      },
-      charts: {
-        chart1: { title:"Competitive map: Price vs Reliability", xLabel:"Lower price → Higher price", yLabel:"Lower reliability → Higher reliability" },
-        chart2: { title:"Hidden cost per booking (disputes + rework)", yLabel:"RM per booking" },
-        chart3: { title:"Why weekday utilization matters", subtitle:"We don’t need massive volume. We need consistent bookings." }
-      },
-      standoutLeft: { title:"How we stand out (balanced)", bullets:["Certainty: Fit-first + readiness checklist.","Fairness: calm tone, consistent policies.","Compounding: reviews become future bookings."] },
-      chinaRight: { title:"Borrow smart ideas from China marketplaces", bullets:["Tiered packages: fewer choices, higher conversion.","Proof-content: cleaning + fit checks as trust marketing.","Operational pooling: partner tailors/cleaners for fast turnaround."] }
+        ops: [
+            { factor: "Turnaround", budget: "Slow (laundry)", boutique: "Variable", us: "24h SLA Partners", why: "Higher utilization on weekends." },
+            { factor: "Dispute Rate", budget: "High (15%)", boutique: "Medium (8%)", us: "Low (<3%)", why: "Disputes kill profit margin." },
+            { factor: "Inventory Life", budget: "Low (worn out)", boutique: "Medium", us: "High (protective)", why: "Lower replacement capex." }
+        ],
+        finance: [
+            { factor: "Marketing Cost", budget: "High (Ads dependent)", boutique: "Medium", us: "Low (Referral loop)", why: "Organic growth is cheaper." },
+            { factor: "Staffing", budget: "Low skill / High churn", boutique: "High skill / Expensive", us: "Process-driven / Lean", why: "Scalable without hiring frenzy." },
+            { factor: "Cashflow", budget: "Volatile", boutique: "Seasonal", us: "Predictable", why: "Safety buffer for expansion." }
+        ]
     };
 
-    function hydrateMarket(market){
-      const m = market || DEFAULT_MARKET;
-      window.__MARKET_CACHE__ = m;
-
-      document.getElementById("marketTitle").textContent = m.title || "Competitive landscape & our edge";
-      document.getElementById("marketIntro").textContent = m.intro || "";
-
-      const explain = document.getElementById("marketExplain");
-      if(explain){
-        explain.innerHTML = "";
-        const pos = m.positioning || {};
-        const posCard = document.createElement("div");
-        posCard.className = "col-12 col-lg-4";
-        posCard.innerHTML = `
-          <div class="p-3 h-100" style="border-radius:22px;border:1px solid rgba(18,16,24,.10);background:rgba(255,255,255,.78);">
-            <div style="font-weight:950;margin-bottom:8px;">Where we compete</div>
-            <div style="color:rgba(18,16,24,.62);line-height:1.75">${pos.whereWeCompete || ""}</div>
-            <div class="mt-2" style="font-size:12px;color:rgba(18,16,24,.58);line-height:1.6"><b>We won’t do:</b> ${pos.whatWeWontDo || ""}</div>
-          </div>
-        `;
-        explain.appendChild(posCard);
-
-        (m.battlefields || []).slice(0,3).forEach((b)=>{
-          const col = document.createElement("div");
-          col.className = "col-12 col-lg-4";
-          col.innerHTML = `
-            <div class="p-3 h-100" style="border-radius:22px;border:1px solid rgba(18,16,24,.10);background:rgba(255,255,255,.78);">
-              <div style="font-weight:950;margin-bottom:8px;">${b.title || ""}</div>
-              <div style="font-size:12px;font-weight:950;color:rgba(18,16,24,.62);letter-spacing:.22px;text-transform:uppercase;margin-top:6px;">How they win</div>
-              <ul style="margin:8px 0 0 18px;color:rgba(18,16,24,.62);line-height:1.7;">
-                ${(b.howTheyWin || []).map(x=>`<li>${x}</li>`).join("")}
-              </ul>
-              <div style="font-size:12px;font-weight:950;color:rgba(18,16,24,.62);letter-spacing:.22px;text-transform:uppercase;margin-top:10px;">Hidden costs</div>
-              <ul style="margin:8px 0 0 18px;color:rgba(18,16,24,.62);line-height:1.7;">
-                ${(b.hiddenCosts || []).map(x=>`<li>${x}</li>`).join("")}
-              </ul>
-              <div style="font-size:12px;font-weight:950;color:rgba(18,16,24,.62);letter-spacing:.22px;text-transform:uppercase;margin-top:10px;">Our counter</div>
-              <ul style="margin:8px 0 0 18px;color:rgba(18,16,24,.62);line-height:1.7;">
-                ${(b.ourCounter || []).map(x=>`<li>${x}</li>`).join("")}
-              </ul>
-            </div>
-          `;
-          explain.appendChild(col);
-        });
-      }
-
-      const lane = m.yourLane || {};
-      const marketCosts = document.getElementById("marketCosts");
-      if(marketCosts){
-        const costs = (lane.whatItCosts || []).map(x=>`<div>• ${x}</div>`).join("");
-        const worth = (lane.whyWorthIt || []).map(x=>`<div>• ${x}</div>`).join("");
-        marketCosts.innerHTML = `
-          <div style="font-weight:950;color:rgba(18,16,24,.80);margin-bottom:6px;">What we invest in</div>
-          <div style="color:rgba(18,16,24,.62);line-height:1.7">${costs}</div>
-          <div class="mt-2" style="font-weight:950;color:rgba(18,16,24,.80);">Why it’s worth it</div>
-          <div style="color:rgba(18,16,24,.62);line-height:1.7">${worth}</div>
-        `;
-      }
-
-      setBullets("standoutLeft", m.standoutLeft);
-      setBullets("chinaRight", m.chinaRight);
-
-      drawMarketCharts(m);
-
-      const view = document.getElementById("matrixView")?.value || "customer";
-      renderMatrix(view);
-    }
-
-    let AVG = 850, BURN = 7500, CAPITAL = 190000;
-    let bookings = 10;
-
+    // --- 3. UTILITIES ---
     const fmt = new Intl.NumberFormat('en-MY');
-    const elBookings = document.getElementById('bookings');
-    const elRevenue  = document.getElementById('revenue');
-    const elNet      = document.getElementById('net');
-    const elRunway   = document.getElementById('runway');
+    const getEl = (id) => document.getElementById(id);
 
-    function clamp(n,a,b){ return Math.max(a, Math.min(b,n)); }
-    function renderStress(){
-      const revenue = AVG * bookings;
-      const net = revenue - BURN;
+    // --- 4. RENDERERS ---
 
-      elBookings.textContent = bookings;
-      elRevenue.textContent = fmt.format(revenue);
-
-      const sign = net >= 0 ? '+' : '−';
-      elNet.textContent = `RM ${sign}${fmt.format(Math.abs(net))}`;
-      elNet.style.color = net >= 0 ? 'rgba(31,157,110,.95)' : 'rgba(181,74,90,.95)';
-
-      const runway = net < 0 ? Math.floor(CAPITAL / Math.abs(net)) : 999;
-      elRunway.textContent = runway;
-
-      document.getElementById("stressAssumptionText").innerHTML =
-        `Assumptions: Avg rental <span class="em">RM ${fmt.format(AVG)}</span>, monthly burn <span class="em">RM ${fmt.format(BURN)}</span>, capital buffer <span class="em">RM ${fmt.format(CAPITAL)}</span>.`;
-
-      // 🎨 Palette: Announce updates to screen readers
-      const liveText = `${bookings} bookings. Net profit: RM ${net >= 0 ? '+' : '−'}${fmt.format(Math.abs(net))}. Runway: ${runway} months.`;
-      const liveRegion = document.getElementById('stress-live-feedback');
-      if(liveRegion) liveRegion.textContent = liveText;
-    }
-    document.getElementById('plus').addEventListener('click', ()=>{ bookings = clamp(bookings+1,0,40); renderStress(); });
-    document.getElementById('minus').addEventListener('click', ()=>{ bookings = clamp(bookings-1,0,40); renderStress(); });
-
-    document.getElementById("matrixView").addEventListener("change", (e)=>{
-      renderMatrix(e.target.value);
-    });
-
-    async function hydrateCMS(){
-      let site = {};
-      try { site = await loadJSON("./content/site.json"); } catch(e){ site = {}; }
-
-      const brandName = site.brandName || "The Victoria Studio";
-      const tagline = site.tagline || "Editorial pitch • modern chic • ops-led moat";
-      const monogram = site.monogram || "BR";
-
-      document.getElementById("brandNameTop").textContent = brandName;
-      document.getElementById("brandTaglineTop").textContent = tagline;
-      document.getElementById("mobileBrand").textContent = brandName;
-      document.getElementById("mobileTagline").textContent = tagline;
-      document.getElementById("brandMonogram").textContent = monogram;
-      document.getElementById("brandMonogramMobile").textContent = monogram;
-
-      setContactLine(site);
-
-      let market = null;
-      try { market = await loadJSON("./content/market.json"); } catch(e){ market = null; }
-      hydrateMarket(market);
-
-      let stress = {};
-      try { stress = await loadJSON("./content/stress.json"); } catch(e){ stress = {}; }
-      AVG = Number(stress.avgRental ?? AVG);
-      BURN = Number(stress.burn ?? BURN);
-      CAPITAL = Number(stress.capital ?? CAPITAL);
-      bookings = Number(stress.defaultBookings ?? bookings);
-
-      const breakeven = Math.max(0, Math.ceil(BURN / (AVG || 1)));
-      document.getElementById("modelBurn").textContent = fmt.format(BURN);
-      document.getElementById("modelAvg").textContent = fmt.format(AVG);
-      document.getElementById("modelBreakeven").textContent = fmt.format(breakeven);
-
-      renderStress();
+    // A. Stress Test Renderer
+    function renderStress() {
+        const revenue = state.bookings * CONFIG.avg;
+        const net = revenue - CONFIG.burn;
+        const isProfitable = net >= 0;
+        
+        getEl('valBookings').textContent = state.bookings;
+        getEl('valRev').textContent = fmt.format(revenue);
+        
+        const netEl = getEl('valNet');
+        netEl.textContent = `RM ${isProfitable ? '+' : ''}${fmt.format(net)}`;
+        netEl.style.color = isProfitable ? 'var(--good)' : 'var(--bad)';
+        
+        const runway = isProfitable ? 999 : Math.floor(CONFIG.capital / Math.abs(net));
+        getEl('valRunway').textContent = runway > 100 ? "∞" : runway + " mo";
     }
 
-    renderStress();
-    hydrateCMS().catch(err=>console.error("Hydration failed:", err));
+    // B. Matrix Renderer
+    function renderMatrix(viewMode) {
+        const tbody = getEl('matrixBody');
+        tbody.innerHTML = ''; // clear
+        
+        const rows = MATRIX_DATA[viewMode] || MATRIX_DATA.customer;
+        
+        rows.forEach(row => {
+            const tr = document.createElement('tr');
+            
+            // Helper for pill color logic (simple heuristic)
+            const getPillClass = (txt) => {
+                txt = txt.toLowerCase();
+                if(txt.includes('high') && viewMode === 'ops') return 'st-r'; // High disputes is bad
+                if(txt.includes('low') && viewMode === 'ops') return 'st-g'; // Low disputes is good
+                if(txt.includes('self') || txt.includes('slow') || txt.includes('miss')) return 'st-r';
+                if(txt.includes('guarantee') || txt.includes('sla') || txt.includes('transparent')) return 'st-g';
+                return 'st-m';
+            };
 
-    window.addEventListener("resize", () => {
-      if(window.__MARKET_CACHE__) drawMarketCharts(window.__MARKET_CACHE__);
+            tr.innerHTML = `
+                <td style="font-weight:700; color:var(--ink);">${row.factor}</td>
+                <td><span class="status-pill ${getPillClass(row.budget)}">${row.budget}</span></td>
+                <td><span class="status-pill ${getPillClass(row.boutique)}">${row.boutique}</span></td>
+                <td style="background:rgba(31,157,110,.04); font-weight:600;"><span class="status-pill st-g">${row.us}</span></td>
+                <td style="font-size:12px; color:var(--muted); line-height:1.4;">${row.why}</td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+
+    // C. Flywheel Chart (Canvas) - Fixed for Mobile Clipping
+    function drawFlywheel() {
+        const cvs = getEl('chartFlywheel');
+        if(!cvs) return;
+        const ctx = cvs.getContext('2d');
+        
+        // Resize for retina
+        const dpr = window.devicePixelRatio || 1;
+        const rect = cvs.getBoundingClientRect();
+        cvs.width = rect.width * dpr;
+        cvs.height = rect.height * dpr;
+        ctx.scale(dpr, dpr);
+        
+        const w = rect.width;
+        const h = rect.height;
+        const cx = w / 2;
+        const cy = h / 2;
+        
+        ctx.clearRect(0,0,w,h);
+        
+        // Draw Ring
+        const r = Math.min(w,h) * 0.25;
+        ctx.beginPath();
+        ctx.arc(cx, cy, r, 0, Math.PI*2);
+        ctx.strokeStyle = "rgba(210,174,114,.4)";
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        
+        // Center Text
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.font = '700 14px Inter';
+        ctx.fillStyle = '#121018';
+        ctx.fillText("Consistency", cx, cy - 8);
+        ctx.fillText("Flywheel", cx, cy + 8);
+
+        // Nodes
+        const nodes = [
+            { label: "High Weekday\\nUtilization", angle: -Math.PI/2 }, // Top
+            { label: "More Reviews\\n(Social Proof)", angle: 0 },         // Right
+            { label: "Better Inventory\\nLifecycle", angle: Math.PI/2 },  // Bottom
+            { label: "Referral\\nBookings", angle: Math.PI }           // Left
+        ];
+        
+        const orbitR = r + 50; 
+        
+        nodes.forEach(node => {
+            const nx = cx + Math.cos(node.angle) * orbitR;
+            const ny = cy + Math.sin(node.angle) * orbitR;
+            
+            // Dot
+            ctx.beginPath();
+            ctx.arc(nx, ny, 6, 0, Math.PI*2);
+            ctx.fillStyle = "#fff";
+            ctx.strokeStyle = "#121018";
+            ctx.lineWidth = 2;
+            ctx.fill(); ctx.stroke();
+            
+            // Label Logic
+            ctx.font = '600 12px Inter';
+            ctx.fillStyle = 'rgba(18,16,24,.7)';
+            
+            const lines = node.label.split("\\n");
+            const lineHeight = 14;
+            
+            // X Alignment
+            if(Math.abs(nx - cx) < 10) ctx.textAlign = 'center';
+            else ctx.textAlign = nx > cx ? 'left' : 'right';
+            
+            // Y Alignment & Padding to prevent clipping
+            let textY = ny;
+            let xOffset = nx > cx ? 12 : -12;
+            let yOffset = 0;
+
+            if(Math.abs(ny - cy) < 10) { 
+                // Vertical middle (Left/Right nodes)
+                ctx.textBaseline = 'middle';
+            } else {
+                xOffset = 0;
+                // Top Node
+                if(ny < cy) {
+                    ctx.textBaseline = 'bottom';
+                    yOffset = -12; 
+                } 
+                // Bottom Node
+                else {
+                    ctx.textBaseline = 'top';
+                    yOffset = 12;
+                }
+            }
+            
+            if(ctx.textAlign === 'center') xOffset = 0;
+
+            lines.forEach((line, i) => {
+                let yPos = textY + yOffset;
+                // Adjust for multi-line based on baseline
+                if(ctx.textBaseline === 'top') yPos += (i * lineHeight);
+                else if(ctx.textBaseline === 'bottom') yPos -= ((lines.length - 1 - i) * lineHeight);
+                else yPos += (i - (lines.length-1)/2) * lineHeight;
+
+                ctx.fillText(line, nx + xOffset, yPos);
+            });
+        });
+    }
+    
+    // D. Scatter Map (Canvas)
+    function drawMap() {
+        const cvs = getEl('chartMap');
+        if(!cvs) return;
+        const ctx = cvs.getContext('2d');
+        const dpr = window.devicePixelRatio || 1;
+        const rect = cvs.getBoundingClientRect();
+        cvs.width = rect.width * dpr;
+        cvs.height = rect.height * dpr;
+        ctx.scale(dpr, dpr);
+        
+        const w = rect.width, h = rect.height;
+        const pad = 30;
+        
+        // Grid
+        ctx.beginPath();
+        ctx.strokeStyle = "rgba(0,0,0,.05)";
+        ctx.lineWidth = 1;
+        // Draw axis
+        ctx.moveTo(pad, pad); ctx.lineTo(pad, h-pad); ctx.lineTo(w-pad, h-pad);
+        ctx.stroke();
+        
+        // Labels
+        ctx.font = "10px Inter";
+        ctx.fillStyle = "rgba(0,0,0,.4)";
+        ctx.textAlign = "center";
+        ctx.fillText("Price →", w/2, h-10);
+        ctx.save();
+        ctx.translate(10, h/2);
+        ctx.rotate(-Math.PI/2);
+        ctx.fillText("Reliability →", 0, 0);
+        ctx.restore();
+        
+        // Data Points [x(0-1), y(0-1), label, isUs]
+        const points = [
+            {x:0.2, y:0.2, l:"Budget Rack", us:false},
+            {x:0.8, y:0.7, l:"Lux Boutique", us:false},
+            {x:0.5, y:0.85, l:"Us (Sweet Spot)", us:true}
+        ];
+        
+        points.forEach(p => {
+            const px = pad + p.x * (w - pad*2);
+            const py = (h - pad) - p.y * (h - pad*2);
+            
+            ctx.beginPath();
+            ctx.arc(px, py, p.us ? 8 : 5, 0, Math.PI*2);
+            ctx.fillStyle = p.us ? "rgba(31,157,110,.9)" : "rgba(0,0,0,.3)";
+            ctx.fill();
+            
+            // Halo for Us
+            if(p.us){
+                ctx.beginPath();
+                ctx.arc(px, py, 14, 0, Math.PI*2);
+                ctx.fillStyle = "rgba(31,157,110,.15)";
+                ctx.fill();
+            }
+            
+            ctx.fillStyle = "rgba(0,0,0,.7)";
+            ctx.textAlign = "left";
+            ctx.font = p.us ? "700 12px Inter" : "500 11px Inter";
+            ctx.fillText(p.l, px + 12, py + 4);
+        });
+    }
+
+    // --- 5. EVENT LISTENERS ---
+    
+    // Matrix Dropdown
+    getEl('matrixSelector').addEventListener('change', (e) => {
+        renderMatrix(e.target.value);
     });
+
+    // Stress Test Buttons
+    getEl('btnPlus').addEventListener('click', () => {
+        state.bookings = Math.min(state.bookings + 1, 50);
+        renderStress();
+    });
+    getEl('btnMinus').addEventListener('click', () => {
+        state.bookings = Math.max(state.bookings - 1, 0);
+        renderStress();
+    });
+    
+    // Parallax Hero
+    window.addEventListener('scroll', () => {
+        const scrolled = window.scrollY;
+        const img = getEl('heroImg');
+        if(img && scrolled < 600) {
+            img.style.transform = `scale(1.1) translateY(${scrolled * 0.15}px)`;
+        }
+        
+        // Progress Bar
+        const doc = document.documentElement;
+        const pct = (scrolled / (doc.scrollHeight - doc.clientHeight)) * 100;
+        getEl('prog').style.width = pct + "%";
+        getEl('readPct').textContent = Math.round(pct) + "%";
+    }, {passive:true});
+
+    // Resize Handler
+    window.addEventListener('resize', () => {
+        drawFlywheel();
+        drawMap();
+    });
+
+    // --- 6. INIT ---
+    (function init(){
+        renderStress();
+        renderMatrix('customer'); // Default view
+        // Delay chart draw slightly to ensure DOM layout is settled
+        setTimeout(() => {
+            drawFlywheel();
+            drawMap();
+        }, 100);
+    })();
   </script>
 </body>
 </html>
