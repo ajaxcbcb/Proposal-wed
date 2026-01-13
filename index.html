@@ -1203,6 +1203,10 @@
       const liveText = `${bookings} bookings. Net profit: RM ${net >= 0 ? '+' : '−'}${fmt.format(Math.abs(net))}. Runway: ${runway} months.`;
       const liveRegion = document.getElementById('stress-live-feedback');
       if(liveRegion) liveRegion.textContent = liveText;
+
+      // 🎨 Palette: Disable buttons at limits
+      document.getElementById('plus').disabled = (bookings >= 40);
+      document.getElementById('minus').disabled = (bookings <= 0);
     }
     document.getElementById('plus').addEventListener('click', ()=>{ bookings = clamp(bookings+1,0,40); renderStress(); });
     document.getElementById('minus').addEventListener('click', ()=>{ bookings = clamp(bookings-1,0,40); renderStress(); });
