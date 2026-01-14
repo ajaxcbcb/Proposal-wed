@@ -367,10 +367,11 @@
                 <div>
                     <h2 class="mb-1">Interactive Stress Test</h2>
                     <p class="mb-0" style="font-size:14px">Simulate bookings to see runway & profit.</p>
+                    <div id="stressAnnouncer" class="visually-hidden" aria-live="polite"></div>
                 </div>
                 <div class="d-flex gap-2">
-                    <button id="btnMinus" class="btn-action" style="width:50px;">−</button>
-                    <button id="btnPlus" class="btn-action" style="width:50px;">+</button>
+                    <button id="btnMinus" aria-label="Decrease bookings" class="btn-action" style="width:50px;">−</button>
+                    <button id="btnPlus" aria-label="Increase bookings" class="btn-action" style="width:50px;">+</button>
                 </div>
             </div>
 
@@ -490,6 +491,24 @@
         
         const runway = isProfitable ? 999 : Math.floor(CONFIG.capital / Math.abs(net));
         getEl('valRunway').textContent = runway > 100 ? "∞" : runway + " mo";
+
+        // Update Announcer for Screen Readers
+        const announcer = getEl('stressAnnouncer');
+        if(announcer) {
+            announcer.textContent = `Bookings: ${state.bookings}. Net Profit: RM ${fmt.format(net)}.`;
+        }
+
+        // Update Button States
+        const btnMinus = getEl('btnMinus');
+        const btnPlus = getEl('btnPlus');
+        if(btnMinus) {
+            btnMinus.disabled = state.bookings <= 0;
+            btnMinus.style.opacity = state.bookings <= 0 ? 0.5 : 1;
+        }
+        if(btnPlus) {
+            btnPlus.disabled = state.bookings >= 50;
+            btnPlus.style.opacity = state.bookings >= 50 ? 0.5 : 1;
+        }
     }
 
     // B. Matrix Renderer
