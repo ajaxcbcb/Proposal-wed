@@ -369,10 +369,12 @@
                     <p class="mb-0" style="font-size:14px">Simulate bookings to see runway & profit.</p>
                 </div>
                 <div class="d-flex gap-2">
-                    <button id="btnMinus" class="btn-action" style="width:50px;">−</button>
-                    <button id="btnPlus" class="btn-action" style="width:50px;">+</button>
+                    <button id="btnMinus" class="btn-action" style="width:50px;" aria-label="Decrease bookings">−</button>
+                    <button id="btnPlus" class="btn-action" style="width:50px;" aria-label="Increase bookings">+</button>
                 </div>
             </div>
+
+            <div id="stressLive" class="visually-hidden" aria-live="polite"></div>
 
             <div class="row g-3 text-center">
                 <div class="col-6 col-lg-3">
@@ -490,6 +492,14 @@
         
         const runway = isProfitable ? 999 : Math.floor(CONFIG.capital / Math.abs(net));
         getEl('valRunway').textContent = runway > 100 ? "∞" : runway + " mo";
+
+        // UX: Disable buttons at limits
+        getEl('btnMinus').disabled = state.bookings <= 0;
+        getEl('btnPlus').disabled = state.bookings >= 50;
+
+        // A11y: Live region announcement
+        const summary = `${state.bookings} bookings. Revenue RM ${fmt.format(revenue)}. Net Profit RM ${fmt.format(net)}.`;
+        getEl('stressLive').textContent = summary;
     }
 
     // B. Matrix Renderer
