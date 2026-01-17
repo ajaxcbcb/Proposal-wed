@@ -367,10 +367,11 @@
                 <div>
                     <h2 class="mb-1">Interactive Stress Test</h2>
                     <p class="mb-0" style="font-size:14px">Simulate bookings to see runway & profit.</p>
+                    <div id="stressLiveRegion" class="visually-hidden" aria-live="polite"></div>
                 </div>
                 <div class="d-flex gap-2">
-                    <button id="btnMinus" class="btn-action" style="width:50px;">−</button>
-                    <button id="btnPlus" class="btn-action" style="width:50px;">+</button>
+                    <button id="btnMinus" class="btn-action" aria-label="Decrease bookings" style="width:50px;">−</button>
+                    <button id="btnPlus" class="btn-action" aria-label="Increase bookings" style="width:50px;">+</button>
                 </div>
             </div>
 
@@ -490,6 +491,14 @@
         
         const runway = isProfitable ? 999 : Math.floor(CONFIG.capital / Math.abs(net));
         getEl('valRunway').textContent = runway > 100 ? "∞" : runway + " mo";
+
+        // Update Buttons
+        getEl('btnMinus').disabled = state.bookings <= 0;
+        getEl('btnPlus').disabled = state.bookings >= 50;
+
+        // Update Live Region
+        const summary = `${state.bookings} bookings. Revenue RM ${fmt.format(revenue)}. Net Profit RM ${fmt.format(net)}.`;
+        getEl('stressLiveRegion').textContent = summary;
     }
 
     // B. Matrix Renderer
@@ -701,11 +710,13 @@
 
     // Stress Test Buttons
     getEl('btnPlus').addEventListener('click', () => {
-        state.bookings = Math.min(state.bookings + 1, 50);
+        if (state.bookings >= 50) return;
+        state.bookings++;
         renderStress();
     });
     getEl('btnMinus').addEventListener('click', () => {
-        state.bookings = Math.max(state.bookings - 1, 0);
+        if (state.bookings <= 0) return;
+        state.bookings--;
         renderStress();
     });
     
