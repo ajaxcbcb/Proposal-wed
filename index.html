@@ -340,7 +340,7 @@
                             <div class="statLabel">Competitive Map</div>
                             <div style="font-size:11px; color:var(--muted)">Price vs. Reliability</div>
                         </div>
-                        <canvas id="chartMap" height="240"></canvas>
+                        <canvas id="chartMap" height="240" role="img" aria-label="Competitive Map: We are high reliability, moderate price"></canvas>
                     </div>
                 </div>
 
@@ -351,7 +351,7 @@
                             <div class="statLabel">The Flywheel</div>
                             <div style="font-size:11px; color:var(--muted)">Consistent Weekday Utilization</div>
                         </div>
-                        <canvas id="chartFlywheel"></canvas>
+                        <canvas id="chartFlywheel" role="img" aria-label="Flywheel: Consistency drives utilization and referrals"></canvas>
                     </div>
                 </div>
             </div>
@@ -367,10 +367,11 @@
                 <div>
                     <h2 class="mb-1">Interactive Stress Test</h2>
                     <p class="mb-0" style="font-size:14px">Simulate bookings to see runway & profit.</p>
+                    <div id="stressLive" class="visually-hidden" aria-live="polite"></div>
                 </div>
                 <div class="d-flex gap-2">
-                    <button id="btnMinus" class="btn-action" style="width:50px;">−</button>
-                    <button id="btnPlus" class="btn-action" style="width:50px;">+</button>
+                    <button id="btnMinus" class="btn-action" aria-label="Decrease bookings" style="width:50px;">−</button>
+                    <button id="btnPlus" class="btn-action" aria-label="Increase bookings" style="width:50px;">+</button>
                 </div>
             </div>
 
@@ -490,6 +491,18 @@
         
         const runway = isProfitable ? 999 : Math.floor(CONFIG.capital / Math.abs(net));
         getEl('valRunway').textContent = runway > 100 ? "∞" : runway + " mo";
+
+        // Update Live Region & Button State
+        getEl('stressLive').textContent = `${state.bookings} bookings. Net Profit RM ${fmt.format(net)}.`;
+
+        const min = 0, max = 50;
+        const bMin = getEl('btnMinus'), bPlus = getEl('btnPlus');
+
+        bMin.disabled = state.bookings <= min;
+        bMin.classList.toggle('opacity-50', state.bookings <= min);
+
+        bPlus.disabled = state.bookings >= max;
+        bPlus.classList.toggle('opacity-50', state.bookings >= max);
     }
 
     // B. Matrix Renderer
