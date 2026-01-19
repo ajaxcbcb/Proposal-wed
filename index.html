@@ -369,10 +369,11 @@
                     <p class="mb-0" style="font-size:14px">Simulate bookings to see runway & profit.</p>
                 </div>
                 <div class="d-flex gap-2">
-                    <button id="btnMinus" class="btn-action" style="width:50px;">−</button>
-                    <button id="btnPlus" class="btn-action" style="width:50px;">+</button>
+                    <button id="btnMinus" class="btn-action" aria-label="Decrease bookings" style="width:50px;">−</button>
+                    <button id="btnPlus" class="btn-action" aria-label="Increase bookings" style="width:50px;">+</button>
                 </div>
             </div>
+            <div id="stress-live" class="visually-hidden" aria-live="polite"></div>
 
             <div class="row g-3 text-center">
                 <div class="col-6 col-lg-3">
@@ -490,6 +491,18 @@
         
         const runway = isProfitable ? 999 : Math.floor(CONFIG.capital / Math.abs(net));
         getEl('valRunway').textContent = runway > 100 ? "∞" : runway + " mo";
+
+        // A11y & Logic
+        const btnMinus = getEl('btnMinus');
+        const btnPlus = getEl('btnPlus');
+
+        btnMinus.disabled = state.bookings <= 0;
+        btnMinus.classList.toggle('opacity-50', state.bookings <= 0);
+
+        btnPlus.disabled = state.bookings >= 50;
+        btnPlus.classList.toggle('opacity-50', state.bookings >= 50);
+
+        getEl('stress-live').textContent = `${state.bookings} bookings. Net: RM ${fmt.format(net)}. Runway: ${runway > 100 ? "infinite" : runway + " months"}`;
     }
 
     // B. Matrix Renderer
