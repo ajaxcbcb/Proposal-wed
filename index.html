@@ -367,10 +367,11 @@
                 <div>
                     <h2 class="mb-1">Interactive Stress Test</h2>
                     <p class="mb-0" style="font-size:14px">Simulate bookings to see runway & profit.</p>
+                    <div id="stressLive" class="visually-hidden" aria-live="polite"></div>
                 </div>
                 <div class="d-flex gap-2">
-                    <button id="btnMinus" class="btn-action" style="width:50px;">−</button>
-                    <button id="btnPlus" class="btn-action" style="width:50px;">+</button>
+                    <button id="btnMinus" class="btn-action" style="width:50px;" aria-label="Decrease bookings">−</button>
+                    <button id="btnPlus" class="btn-action" style="width:50px;" aria-label="Increase bookings">+</button>
                 </div>
             </div>
 
@@ -444,7 +445,8 @@
     const CONFIG = {
         avg: 850,
         burn: 7500,
-        capital: 190000
+        capital: 190000,
+        maxBookings: 50
     };
     let state = {
         bookings: 10
@@ -489,7 +491,32 @@
         netEl.style.color = isProfitable ? 'var(--good)' : 'var(--bad)';
         
         const runway = isProfitable ? 999 : Math.floor(CONFIG.capital / Math.abs(net));
-        getEl('valRunway').textContent = runway > 100 ? "∞" : runway + " mo";
+        const runwayText = runway > 100 ? "∞" : runway + " mo";
+        getEl('valRunway').textContent = runwayText;
+
+        // Accessibility Updates
+        const summary = `${state.bookings} bookings. Net Profit: RM ${fmt.format(net)}. Runway: ${runway > 100 ? 'Infinite' : runway + ' months'}.`;
+        getEl('stressLive').textContent = summary;
+
+        const btnMin = getEl('btnMinus');
+        const btnPls = getEl('btnPlus');
+
+        // Disable Logic
+        if(state.bookings <= 0) {
+            btnMin.disabled = true;
+            btnMin.classList.add('opacity-50');
+        } else {
+            btnMin.disabled = false;
+            btnMin.classList.remove('opacity-50');
+        }
+
+        if(state.bookings >= 50) {
+            btnPls.disabled = true;
+            btnPls.classList.add('opacity-50');
+        } else {
+            btnPls.disabled = false;
+            btnPls.classList.remove('opacity-50');
+        }
     }
 
     // B. Matrix Renderer
@@ -701,7 +728,7 @@
 
     // Stress Test Buttons
     getEl('btnPlus').addEventListener('click', () => {
-        state.bookings = Math.min(state.bookings + 1, 50);
+        state.bookings = Math.min(state.bookings + 1, CONFIG.maxBookings);
         renderStress();
     });
     getEl('btnMinus').addEventListener('click', () => {
