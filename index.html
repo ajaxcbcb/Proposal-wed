@@ -369,9 +369,10 @@
                     <p class="mb-0" style="font-size:14px">Simulate bookings to see runway & profit.</p>
                 </div>
                 <div class="d-flex gap-2">
-                    <button id="btnMinus" class="btn-action" style="width:50px;">−</button>
-                    <button id="btnPlus" class="btn-action" style="width:50px;">+</button>
+                    <button id="btnMinus" class="btn-action" style="width:50px;" aria-label="Decrease bookings">−</button>
+                    <button id="btnPlus" class="btn-action" style="width:50px;" aria-label="Increase bookings">+</button>
                 </div>
+                <div id="stressLive" class="visually-hidden" aria-live="polite"></div>
             </div>
 
             <div class="row g-3 text-center">
@@ -489,7 +490,25 @@
         netEl.style.color = isProfitable ? 'var(--good)' : 'var(--bad)';
         
         const runway = isProfitable ? 999 : Math.floor(CONFIG.capital / Math.abs(net));
-        getEl('valRunway').textContent = runway > 100 ? "∞" : runway + " mo";
+        const runwayText = runway > 100 ? "∞" : runway + " mo";
+        getEl('valRunway').textContent = runwayText;
+
+        // Accessibility Updates
+        const status = `${state.bookings} bookings. Net Profit: RM ${fmt.format(net)}. Runway: ${runwayText === "∞" ? "Infinite" : runwayText}`;
+        const liveRegion = getEl('stressLive');
+        if (liveRegion && liveRegion.textContent !== status) liveRegion.textContent = status;
+
+        const btnMinus = getEl('btnMinus');
+        const btnPlus = getEl('btnPlus');
+
+        if (btnMinus) {
+            btnMinus.disabled = state.bookings <= 0;
+            btnMinus.classList.toggle('opacity-50', state.bookings <= 0);
+        }
+        if (btnPlus) {
+            btnPlus.disabled = state.bookings >= 50;
+            btnPlus.classList.toggle('opacity-50', state.bookings >= 50);
+        }
     }
 
     // B. Matrix Renderer
