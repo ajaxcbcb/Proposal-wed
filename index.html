@@ -369,8 +369,9 @@
                     <p class="mb-0" style="font-size:14px">Simulate bookings to see runway & profit.</p>
                 </div>
                 <div class="d-flex gap-2">
-                    <button id="btnMinus" class="btn-action" style="width:50px;">−</button>
-                    <button id="btnPlus" class="btn-action" style="width:50px;">+</button>
+                    <div id="stressLiveRegion" class="visually-hidden" aria-live="polite"></div>
+                    <button id="btnMinus" class="btn-action" style="width:50px;" aria-label="Decrease bookings">−</button>
+                    <button id="btnPlus" class="btn-action" style="width:50px;" aria-label="Increase bookings">+</button>
                 </div>
             </div>
 
@@ -485,11 +486,32 @@
         getEl('valRev').textContent = fmt.format(revenue);
         
         const netEl = getEl('valNet');
-        netEl.textContent = `RM ${isProfitable ? '+' : ''}${fmt.format(net)}`;
+        const netText = `RM ${isProfitable ? '+' : ''}${fmt.format(net)}`;
+        netEl.textContent = netText;
         netEl.style.color = isProfitable ? 'var(--good)' : 'var(--bad)';
         
         const runway = isProfitable ? 999 : Math.floor(CONFIG.capital / Math.abs(net));
         getEl('valRunway').textContent = runway > 100 ? "∞" : runway + " mo";
+
+        // Update Live Region
+        getEl('stressLiveRegion').textContent = `${state.bookings} bookings. Net Profit: ${netText}`;
+
+        // Update Button States
+        const btnMinus = getEl('btnMinus');
+        const btnPlus = getEl('btnPlus');
+
+        const disableBtn = (btn, disabled) => {
+            if (disabled) {
+                btn.setAttribute('disabled', 'true');
+                btn.classList.add('opacity-50');
+            } else {
+                btn.removeAttribute('disabled');
+                btn.classList.remove('opacity-50');
+            }
+        };
+
+        disableBtn(btnMinus, state.bookings <= 0);
+        disableBtn(btnPlus, state.bookings >= 50);
     }
 
     // B. Matrix Renderer
