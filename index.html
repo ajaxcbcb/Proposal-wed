@@ -369,10 +369,12 @@
                     <p class="mb-0" style="font-size:14px">Simulate bookings to see runway & profit.</p>
                 </div>
                 <div class="d-flex gap-2">
-                    <button id="btnMinus" class="btn-action" style="width:50px;">−</button>
-                    <button id="btnPlus" class="btn-action" style="width:50px;">+</button>
+                    <button id="btnMinus" class="btn-action" style="width:50px;" aria-label="Decrease monthly bookings">−</button>
+                    <button id="btnPlus" class="btn-action" style="width:50px;" aria-label="Increase monthly bookings">+</button>
                 </div>
             </div>
+
+            <div id="stress-feedback" class="visually-hidden" aria-live="polite"></div>
 
             <div class="row g-3 text-center">
                 <div class="col-6 col-lg-3">
@@ -490,6 +492,21 @@
         
         const runway = isProfitable ? 999 : Math.floor(CONFIG.capital / Math.abs(net));
         getEl('valRunway').textContent = runway > 100 ? "∞" : runway + " mo";
+
+        // Accessbility: Live Feedback & Button States
+        const feedback = `${state.bookings} bookings. Net Profit: RM ${fmt.format(net)}`;
+        getEl('stress-feedback').textContent = feedback;
+
+        const btnMinus = getEl('btnMinus');
+        const btnPlus = getEl('btnPlus');
+
+        const atMin = state.bookings <= 0;
+        atMin ? btnMinus.setAttribute('disabled', 'true') : btnMinus.removeAttribute('disabled');
+        atMin ? btnMinus.classList.add('opacity-50') : btnMinus.classList.remove('opacity-50');
+
+        const atMax = state.bookings >= 50;
+        atMax ? btnPlus.setAttribute('disabled', 'true') : btnPlus.removeAttribute('disabled');
+        atMax ? btnPlus.classList.add('opacity-50') : btnPlus.classList.remove('opacity-50');
     }
 
     // B. Matrix Renderer
