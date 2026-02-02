@@ -369,8 +369,9 @@
                     <p class="mb-0" style="font-size:14px">Simulate bookings to see runway & profit.</p>
                 </div>
                 <div class="d-flex gap-2">
-                    <button id="btnMinus" class="btn-action" style="width:50px;">−</button>
-                    <button id="btnPlus" class="btn-action" style="width:50px;">+</button>
+                    <div id="stressAnnouncer" class="visually-hidden" aria-live="polite"></div>
+                    <button id="btnMinus" class="btn-action" style="width:50px;" aria-label="Decrease bookings">−</button>
+                    <button id="btnPlus" class="btn-action" style="width:50px;" aria-label="Increase bookings">+</button>
                 </div>
             </div>
 
@@ -485,11 +486,29 @@
         getEl('valRev').textContent = fmt.format(revenue);
         
         const netEl = getEl('valNet');
-        netEl.textContent = `RM ${isProfitable ? '+' : ''}${fmt.format(net)}`;
+        const netText = `RM ${isProfitable ? '+' : ''}${fmt.format(net)}`;
+        netEl.textContent = netText;
         netEl.style.color = isProfitable ? 'var(--good)' : 'var(--bad)';
         
         const runway = isProfitable ? 999 : Math.floor(CONFIG.capital / Math.abs(net));
-        getEl('valRunway').textContent = runway > 100 ? "∞" : runway + " mo";
+        const runwayText = runway > 100 ? "∞" : runway + " mo";
+        getEl('valRunway').textContent = runwayText;
+
+        // Accessible Updates
+        const summary = `${state.bookings} bookings. Net Profit: ${netText}. Runway: ${runwayText}.`;
+        getEl('stressAnnouncer').textContent = summary;
+
+        // Button States
+        const btnMinus = getEl('btnMinus');
+        const btnPlus = getEl('btnPlus');
+
+        const isMin = state.bookings <= 0;
+        btnMinus.disabled = isMin;
+        btnMinus.classList.toggle('opacity-50', isMin);
+
+        const isMax = state.bookings >= 50;
+        btnPlus.disabled = isMax;
+        btnPlus.classList.toggle('opacity-50', isMax);
     }
 
     // B. Matrix Renderer
