@@ -369,8 +369,9 @@
                     <p class="mb-0" style="font-size:14px">Simulate bookings to see runway & profit.</p>
                 </div>
                 <div class="d-flex gap-2">
-                    <button id="btnMinus" class="btn-action" style="width:50px;">−</button>
-                    <button id="btnPlus" class="btn-action" style="width:50px;">+</button>
+                    <div id="stressLiveRegion" class="visually-hidden" aria-live="polite"></div>
+                    <button id="btnMinus" class="btn-action" style="width:50px;" aria-label="Decrease bookings" aria-controls="valBookings valRev valNet valRunway">−</button>
+                    <button id="btnPlus" class="btn-action" style="width:50px;" aria-label="Increase bookings" aria-controls="valBookings valRev valNet valRunway">+</button>
                 </div>
             </div>
 
@@ -490,6 +491,22 @@
         
         const runway = isProfitable ? 999 : Math.floor(CONFIG.capital / Math.abs(net));
         getEl('valRunway').textContent = runway > 100 ? "∞" : runway + " mo";
+
+        // Accessibility & Bounds Logic
+        const liveText = `${state.bookings} bookings. Net Profit: RM ${fmt.format(net)}.`;
+        getEl('stressLiveRegion').textContent = liveText;
+
+        const btnMinus = getEl('btnMinus');
+        const btnPlus = getEl('btnPlus');
+
+        const atMin = state.bookings <= 0;
+        const atMax = state.bookings >= 50;
+
+        btnMinus.disabled = atMin;
+        btnMinus.classList.toggle('opacity-50', atMin);
+
+        btnPlus.disabled = atMax;
+        btnPlus.classList.toggle('opacity-50', atMax);
     }
 
     // B. Matrix Renderer
